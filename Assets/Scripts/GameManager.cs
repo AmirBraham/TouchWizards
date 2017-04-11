@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour {
 		rb2d = Player1.GetComponent<Rigidbody2D>();	
 	}
 
-
+//P1 CONTROLS
 //Holding Right Button
 	 public void P1_OnPointUpRightButton(){
 		 isP1HoldingRB = false;	 
@@ -36,6 +36,24 @@ public class GameManager : MonoBehaviour {
 	  public void P1_onPointerDownLeftButton () {
 		 isP1HoldingLB=true;
 	 }
+
+
+//P2 CONTROLS
+ public void P2_OnPointUpRightButton(){
+		 isP1HoldingRB = false;	 
+     }
+	  public void P2_onPointerDownRightButton () {
+		 isP1HoldingRB=true;
+	 }
+
+//Holding Left button
+ public void P2_OnPointUpLeftButton(){
+		 isP1HoldingLB = false;	 
+     }
+	  public void P2_onPointerDownLeftButton () {
+		 isP1HoldingLB=true;
+	 }
+
 
 
 

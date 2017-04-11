@@ -4,7 +4,7 @@ using CnControls;
 
 public class PlayerController : MonoBehaviour {
 
-    public float moveSpeed;             //Floating point variable to store the player's movement speed.
+               //Floating point variable to store the player's movement speed.
     public float jumpSpeed;
     bool canDoubleJump;
     private Rigidbody2D rb2d;       //Store a reference to the Rigidbody2D component required to use 2D Physics.
@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour {
     public LayerMask whatIsGround;
 
     public bool isGrounded;
+
+    GameManager game_manager;
 
     // Use this for initialization
     void Start()
@@ -33,11 +35,11 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Update () {
-        if        (CnInputManager.GetAxisRaw("Horizontal") > 0) {
+       /* if        (game_manager.isRightPressed && game_manager.isLeftPressed==false) {
                 rb2d.velocity = new Vector2(moveSpeed,rb2d.velocity.y);
                 transform.localScale = new Vector3(1,1,1);
 
-        } else if (CnInputManager.GetAxisRaw("Horizontal") < 0) {
+        } else if (game_manager.isLeftPressed && game_manager.isRightPressed==false) {
                 rb2d.velocity = new Vector2(-moveSpeed,rb2d.velocity.y);
                 transform.localScale = new Vector3(-1,1,1);
                 
@@ -45,8 +47,9 @@ public class PlayerController : MonoBehaviour {
                 rb2d.velocity = new Vector2(0,rb2d.velocity.y);
                 
         }
+        */
 
-        if(CnInputManager.GetAxisRaw("Vertical") > 0) {
+       /* if(CnInputManager.GetAxisRaw("Vertical") > 0) {
             
             if(isGrounded) {
                 rb2d.velocity = new Vector2(rb2d.velocity.x,jumpSpeed);
@@ -66,4 +69,6 @@ public class PlayerController : MonoBehaviour {
         Gizmos.DrawWireSphere(point.transform.position, radius);
 
     }
+    */
+}
 }

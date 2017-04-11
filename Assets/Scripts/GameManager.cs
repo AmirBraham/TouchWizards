@@ -6,10 +6,13 @@ public class GameManager : MonoBehaviour {
 	public float moveSpeed; 
 	Rigidbody2D rb2d;
 
-	bool isHoldingRB;
-	bool isHoldingLB;
+	bool isP1HoldingRB;
+	bool isP1HoldingLB;
+	bool isP2HoldingRB;
+	bool isP2HoldingLB;
 
 	GameObject Player1;
+	GameObject Player2;
 	
 	void Start()
 	{
@@ -19,33 +22,36 @@ public class GameManager : MonoBehaviour {
 
 
 //Holding Right Button
-	 public void OnPointUpRightButton(){
-		 isHoldingRB = false;	 
+	 public void P1_OnPointUpRightButton(){
+		 isP1HoldingRB = false;	 
      }
-	  public void onPointerDownRightButton () {
-		 isHoldingRB=true;
+	  public void P1_onPointerDownRightButton () {
+		 isP1HoldingRB=true;
 	 }
 
 //Holding Left button
- public void OnPointUpLeftButton(){
-		 isHoldingLB = false;	 
+ public void P1_OnPointUpLeftButton(){
+		 isP1HoldingLB = false;	 
      }
-	  public void onPointerDownLeftButton () {
-		 isHoldingLB=true;
+	  public void P1_onPointerDownLeftButton () {
+		 isP1HoldingLB=true;
 	 }
+
+
+
 void Update()
 {
-	if(isHoldingRB) {
+	if(isP1HoldingRB) {
           rb2d.velocity = new Vector2(moveSpeed,rb2d.velocity.y);
          Player1.transform.localScale = new Vector3(1,1,1);
 		  Player1.GetComponent<Animator>().SetBool("Player1_isRunning",true);
-	} else if(isHoldingLB) {
+	} else if(isP1HoldingLB) {
 		  rb2d.velocity = new Vector2(-moveSpeed,rb2d.velocity.y);
-                transform.localScale = new Vector3(-1,1,1);
-						Player1.GetComponent<Animator>().SetBool("Player1_isRunning",true);
+                Player1.transform.localScale = new Vector3(-1,1,1);
+				Player1.GetComponent<Animator>().SetBool("Player1_isRunning",true);
 
 	} else {
-						Player1.GetComponent<Animator>().SetBool("Player1_isRunning",false);
+				Player1.GetComponent<Animator>().SetBool("Player1_isRunning",false);
 					
 
 	}

@@ -8,10 +8,13 @@ public class GameManager : MonoBehaviour {
 
 	bool isHoldingRB;
 	bool isHoldingLB;
+
+	GameObject Player1;
 	
 	void Start()
 	{
-		rb2d = GameObject.FindGameObjectWithTag("Player_1").GetComponent<Rigidbody2D>();	
+		Player1 = GameObject.FindGameObjectWithTag("Player_1");
+		rb2d = Player1.GetComponent<Rigidbody2D>();	
 	}
 
 
@@ -34,10 +37,17 @@ void Update()
 {
 	if(isHoldingRB) {
           rb2d.velocity = new Vector2(moveSpeed,rb2d.velocity.y);
-          GameObject.FindGameObjectWithTag("Player_1").transform.localScale = new Vector3(1,1,1);
+         Player1.transform.localScale = new Vector3(1,1,1);
+		  Player1.GetComponent<Animator>().SetBool("Player1_isRunning",true);
 	} else if(isHoldingLB) {
 		  rb2d.velocity = new Vector2(-moveSpeed,rb2d.velocity.y);
                 transform.localScale = new Vector3(-1,1,1);
+						Player1.GetComponent<Animator>().SetBool("Player1_isRunning",true);
+
+	} else {
+						Player1.GetComponent<Animator>().SetBool("Player1_isRunning",false);
+					
+
 	}
 	
 }

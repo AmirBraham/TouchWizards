@@ -35,17 +35,17 @@ public class PlayerController : MonoBehaviour {
     void Update () {
         if        (CnInputManager.GetAxisRaw("Horizontal") > 0) {
                 rb2d.velocity = new Vector2(moveSpeed,rb2d.velocity.y);
-                //GetComponent<Animator>().SetBool("isMoving",true);
+                GetComponent<Animator>().SetBool("isRuning",true);
                 transform.localScale = new Vector3(1,1,1);
 
         } else if (CnInputManager.GetAxisRaw("Horizontal") < 0) {
                 rb2d.velocity = new Vector2(-moveSpeed,rb2d.velocity.y);
-                //GetComponent<Animator>().SetBool("isMoving",true);
+                GetComponent<Animator>().SetBool("isRuning",true);
                 transform.localScale = new Vector3(-1,1,1);
                 
         } else {
                 rb2d.velocity = new Vector2(0,rb2d.velocity.y);
-           // GetComponent<Animator>().SetBool("isMoving",false);
+           GetComponent<Animator>().SetBool("isRuning",false);
                 
         }
 

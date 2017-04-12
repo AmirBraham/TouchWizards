@@ -14,6 +14,7 @@ public class Shieldscript2 : MonoBehaviour {
 	void Update () {
 		if(ShieldResistance <= 0) {
 			Destroy(gameObject);
+			GameManager.P2_NumberOfShields -= 1;
 		}
 	}
 

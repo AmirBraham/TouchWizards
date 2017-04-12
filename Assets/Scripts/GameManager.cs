@@ -31,11 +31,13 @@ public class GameManager : MonoBehaviour {
 	float P1PosX;
 
 
-	int P1_NumberOfShields = 0 ;
-	int P2_NumberOfShields = 0 ;
+	public static int P1_NumberOfShields;
+	public static int P2_NumberOfShields;
 
 	GameObject Player1;
 	GameObject Player2;
+
+
 	
 	void Start()
 	{
@@ -166,4 +168,6 @@ P2_rb2d.velocity = new Vector2(-moveSpeed,P2_rb2d.velocity.y);
 
 
 }
+
+
 }

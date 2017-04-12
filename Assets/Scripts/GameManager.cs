@@ -11,7 +11,17 @@ public class GameManager : MonoBehaviour {
 	public GameObject P2_ShootingPoint;
 
 	public GameObject P1_Bullet;
+
+	public GameObject P1_ShieldPrefab;
+
+	public Transform P1_ShieldPoint;
 	public GameObject P2_Bullet;
+
+
+	public GameObject P2_ShieldPrefab;
+
+	public Transform P2_ShieldPoint;
+
 
 	bool isP1HoldingRB;
 	bool isP1HoldingLB;
@@ -72,6 +82,17 @@ public void P1_Shoot () {
 	P1_BulletClone = Instantiate(P1_Bullet,P1_ShootingPoint.transform.position,Quaternion.Euler(0,0,90f)) as GameObject;
 }
 
+
+public void P1_Shield () {
+	GameObject P1_ShieldClone;
+	P1_ShieldClone = Instantiate(P1_ShieldPrefab,P1_ShieldPoint.position,Quaternion.identity) as GameObject;
+}
+
+
+public void P2_Shield () {
+	GameObject P2_ShieldClone;
+	P2_ShieldClone = Instantiate(P2_ShieldPrefab,P2_ShieldPoint.position,Quaternion.identity) as GameObject;
+}
 public void P2_Shoot () {
 	GameObject P2_BulletClone;
 	P2_BulletClone = Instantiate(P2_Bullet,P2_ShootingPoint.transform.position,Quaternion.Euler(0,0,-90f)) as GameObject;

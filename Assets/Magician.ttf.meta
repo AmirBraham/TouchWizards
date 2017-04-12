@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: d0d83a6aa82208c4d97862f05c99e1c2
+timeCreated: 1492010834
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Magician
+  fontNames:
+  - Magician
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

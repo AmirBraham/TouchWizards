@@ -18,11 +18,14 @@ public class GameManager : MonoBehaviour {
 	bool isP2HoldingRB;
 	bool isP2HoldingLB;
 
+	float P1PosX;
+
 	GameObject Player1;
 	GameObject Player2;
 	
 	void Start()
 	{
+
 		Player1 = GameObject.FindGameObjectWithTag("Player_1");
 		Player2 = GameObject.FindGameObjectWithTag("Player_2");
 		P1_rb2d = Player1.GetComponent<Rigidbody2D>();	
@@ -81,11 +84,12 @@ void Update()
          Player1.transform.localScale = new Vector3(1.5f,1.5f,1.5f);
 		  Player1.GetComponent<Animator>().SetBool("Player1_isRunning",true);
 	} else if(isP1HoldingLB) {
-		 P1_rb2d.velocity = new Vector2(-moveSpeed,P1_rb2d.velocity.y);
+		 		P1_rb2d.velocity = new Vector2(-moveSpeed,P1_rb2d.velocity.y);
                 Player1.transform.localScale = new Vector3(-1.5f,1.5f,1.5f);
 				Player1.GetComponent<Animator>().SetBool("Player1_isRunning",true);
 
 	} else {
+				P1_rb2d.velocity = new Vector2(0,0);
 				Player1.GetComponent<Animator>().SetBool("Player1_isRunning",false);
 	}
 
@@ -101,6 +105,8 @@ P2_rb2d.velocity = new Vector2(-moveSpeed,P2_rb2d.velocity.y);
 		         Player2.transform.localScale = new Vector3(-1.5f,1.5f,1.5f);
 				 		  Player2.GetComponent<Animator>().SetBool("Player2_isRunning",true);
 	} else {
+						P2_rb2d.velocity = new Vector2(0,0);
+
 				 		  Player2.GetComponent<Animator>().SetBool("Player2_isRunning",false);
 
 
@@ -110,6 +116,23 @@ P2_rb2d.velocity = new Vector2(-moveSpeed,P2_rb2d.velocity.y);
 /*
 	
 	*/
+	if(Player1.transform.position.x <= -3) {
+
+		Player1.transform.position = new Vector2(-(Player1.transform.position.x+0.1f),Player1.transform.position.y);
+	} else if (Player1.transform.position.x >= 3 ) {
+		Player1.transform.position = new Vector2(-(Player1.transform.position.x - 0.1f),Player1.transform.position.y);
+		
+	}
+
+
+	if(Player2.transform.position.x <= -3) {
+
+		Player2.transform.position = new Vector2(-(Player2.transform.position.x+0.1f),Player2.transform.position.y);
+	} else if (Player2.transform.position.x >= 3 ) {
+		Player2.transform.position = new Vector2(-(Player2.transform.position.x - 0.1f),Player2.transform.position.y);
+		
+	}
+
 
 }
 }

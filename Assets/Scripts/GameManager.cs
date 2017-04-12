@@ -9,6 +9,11 @@ public class GameManager : MonoBehaviour {
 	Rigidbody2D P1_rb2d;
 	Rigidbody2D P2_rb2d;
 
+	public Slider P1_HealthSlider;
+
+	public Slider P2_HealthSlider;
+
+
 	public GameObject GameOver;
 	public Text GameOverText;
 
@@ -54,8 +59,8 @@ public class GameManager : MonoBehaviour {
 		Player2 = GameObject.FindGameObjectWithTag("Player_2");
 		P1_rb2d = Player1.GetComponent<Rigidbody2D>();	
 		P2_rb2d = Player2.GetComponent<Rigidbody2D>();
-		P1_Health = 100;
-		P2_Health = 100;
+		P1_Health = 1;
+		P2_Health = 1;
 		
 	}
 
@@ -123,6 +128,10 @@ public void P2_Shoot () {
 
 void Update()
 {
+	P1_HealthSlider.value = P1_Health;
+	P2_HealthSlider.value = P2_Health;
+	
+
 	Debug.Log(Player1.GetComponent<SpriteRenderer>().color.a);
 	if(P1_Health <=0) {
 		GameOver.SetActive(true);

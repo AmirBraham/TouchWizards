@@ -22,7 +22,7 @@ public class P2_shoot_Movement : MonoBehaviour {
 	void OnTriggerEnter2D (Collider2D col) {
 		if(col.gameObject.tag == "Player_1") {
 			Debug.Log("Player 2 Won");
-			GameManager.P1_Health -= 25;
+			GameManager.P1_Health -= 0.25f;
 
  			//col.gameObject.GetComponent<SpriteRenderer>().DOFade(0,2f);
 

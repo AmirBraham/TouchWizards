@@ -11,8 +11,7 @@ public class P2_shoot_Movement : MonoBehaviour {
 
 	void OnTriggerEnter2D (Collider2D col) {
 		if(col.gameObject.tag == "Player_1") {
-			Debug.Log("Player 1 Won");
-			Destroy(col.gameObject);
+			Debug.Log("Player 2 Won");
 		} else if (col.gameObject.tag == "P1_Bullet") {
 			Destroy(col.gameObject);
 			Destroy(gameObject);

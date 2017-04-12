@@ -17,7 +17,7 @@ public class P1_shoot_Movement : MonoBehaviour {
 	void OnTriggerEnter2D (Collider2D col) {
 		if(col.gameObject.tag == "Player_2") {
 			Debug.Log("Player 1 Won");
-						DeathClone = Instantiate(DeathPrefab,GameObject.FindGameObjectWithTag("Player_2").transform.position,Quaternion.identity);
+			DeathClone = Instantiate(DeathPrefab,GameObject.FindGameObjectWithTag("Player_2").transform.position,Quaternion.identity);
 
 		} else if (col.gameObject.tag == "P2_Bullet") {
 			Destroy(col.gameObject);

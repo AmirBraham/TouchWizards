@@ -54,6 +54,9 @@ public class GameManager : MonoBehaviour {
 	
 	void Start()
 	{
+		P1_NumberOfShields = 0;
+		P2_NumberOfShields = 0;
+		
 
 		Player1 = GameObject.FindGameObjectWithTag("Player_1");
 		Player2 = GameObject.FindGameObjectWithTag("Player_2");

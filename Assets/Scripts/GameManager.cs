@@ -7,11 +7,11 @@ public class GameManager : MonoBehaviour {
 	Rigidbody2D P1_rb2d;
 	Rigidbody2D P2_rb2d;
 
-	GameObject P1_ShootingPoint;
-	GameObject P2_ShootingPoint;
+	public GameObject P1_ShootingPoint;
+	public GameObject P2_ShootingPoint;
 
-	GameObject P1_Bullet;
-	GameObject P2_Bullet;
+	public GameObject P1_Bullet;
+	public GameObject P2_Bullet;
 
 	bool isP1HoldingRB;
 	bool isP1HoldingLB;
@@ -64,7 +64,15 @@ public class GameManager : MonoBehaviour {
 	 }
 
 
+public void P1_Shoot () {
+	GameObject P1_BulletClone;
+	P1_BulletClone = Instantiate(P1_Bullet,P1_ShootingPoint.transform.position,Quaternion.Euler(0,0,90f)) as GameObject;
+}
 
+public void P2_Shoot () {
+	GameObject P2_BulletClone;
+	P2_BulletClone = Instantiate(P2_Bullet,P2_ShootingPoint.transform.position,Quaternion.Euler(0,0,-90f)) as GameObject;
+}
 
 void Update()
 {
@@ -100,8 +108,7 @@ P2_rb2d.velocity = new Vector2(-moveSpeed,P2_rb2d.velocity.y);
 
 
 /*
-	GameObject P1_BulletClone;
-	P1_BulletClone = Instantiate(P1_Bullet,P1_ShootingPoint.transform.position,Quaternion.identity) as GameObject;
+	
 	*/
 
 }

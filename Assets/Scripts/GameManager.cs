@@ -1,11 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 	public float moveSpeed; 
 	Rigidbody2D P1_rb2d;
 	Rigidbody2D P2_rb2d;
+
+	public GameObject GameOver;
+	public Text GameOverText;
+
+	public  static float P1_Health = 100;
+	public static float P2_Health = 100;
 
 	public GameObject P1_ShootingPoint;
 	public GameObject P2_ShootingPoint;
@@ -46,6 +54,9 @@ public class GameManager : MonoBehaviour {
 		Player2 = GameObject.FindGameObjectWithTag("Player_2");
 		P1_rb2d = Player1.GetComponent<Rigidbody2D>();	
 		P2_rb2d = Player2.GetComponent<Rigidbody2D>();
+		P1_Health = 100;
+		P2_Health = 100;
+		
 	}
 
 //P1 CONTROLS
@@ -112,6 +123,21 @@ public void P2_Shoot () {
 
 void Update()
 {
+	Debug.Log(Player1.GetComponent<SpriteRenderer>().color.a);
+	if(P1_Health <=0) {
+		GameOver.SetActive(true);
+		Player1.GetComponent<SpriteRenderer>().DOFade(0,2f);
+		GameOverText.text = "Red Wizard Wins ! ";
+	}
+
+	if(P2_Health <=0) {
+				GameOver.SetActive(true);
+
+		Player2.GetComponent<SpriteRenderer>().DOFade(0,2f);
+				GameOverText.text = "Blue Wizard Wins ! ";
+
+
+	}
 	if(isP1HoldingRB) {
           P1_rb2d.velocity = new Vector2(moveSpeed,P1_rb2d.velocity.y);
          Player1.transform.localScale = new Vector3(1.5f,1.5f,1.5f);
@@ -170,4 +196,8 @@ P2_rb2d.velocity = new Vector2(-moveSpeed,P2_rb2d.velocity.y);
 }
 
 
+public void RestartLevel () {
+	Application.LoadLevel("Main");
+
+}
 }

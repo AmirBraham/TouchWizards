@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class P2_shoot_Movement : MonoBehaviour {
 	public float bulletSpeed;
@@ -21,6 +22,10 @@ public class P2_shoot_Movement : MonoBehaviour {
 	void OnTriggerEnter2D (Collider2D col) {
 		if(col.gameObject.tag == "Player_1") {
 			Debug.Log("Player 2 Won");
+			GameManager.P1_Health -= 25;
+
+ 			//col.gameObject.GetComponent<SpriteRenderer>().DOFade(0,2f);
+
 			DeathClone = Instantiate(DeathPrefab,GameObject.FindGameObjectWithTag("Player_1").transform.position,Quaternion.identity);
 
 		} else if (col.gameObject.tag == "P1_Bullet") {

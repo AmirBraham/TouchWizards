@@ -6,6 +6,13 @@ public class GameManager : MonoBehaviour {
 	public float moveSpeed; 
 	Rigidbody2D P1_rb2d;
 	Rigidbody2D P2_rb2d;
+
+	GameObject P1_ShootingPoint;
+	GameObject P2_ShootingPoint;
+
+	GameObject P1_Bullet;
+	GameObject P2_Bullet;
+
 	bool isP1HoldingRB;
 	bool isP1HoldingLB;
 	bool isP2HoldingRB;
@@ -90,28 +97,12 @@ P2_rb2d.velocity = new Vector2(-moveSpeed,P2_rb2d.velocity.y);
 
 
 	}
-	
+
+
+/*
+	GameObject P1_BulletClone;
+	P1_BulletClone = Instantiate(P1_Bullet,P1_ShootingPoint.transform.position,Quaternion.identity) as GameObject;
+	*/
+
 }
-	
-
-
-	
-     /*public void onPointerUpRightButton()
-     {
-         isRightPressed = false;
-     }
-*/
-	/*public void HoldLeftButton()
-     {
-		 		 Debug.Log("move L");
-
-         rb2d.velocity = new Vector2(-moveSpeed,rb2d.velocity.y);
-                transform.localScale = new Vector3(-1,1,1);
-     }
-     /*public void onPointerUpLeftButton()
-     {
-         isLeftPressed = false;
-     }
-	 */
-	
 }

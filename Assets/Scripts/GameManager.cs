@@ -63,11 +63,11 @@ void Update()
 {
 	if(isP1HoldingRB) {
           P1_rb2d.velocity = new Vector2(moveSpeed,P1_rb2d.velocity.y);
-         Player1.transform.localScale = new Vector3(1,1,1);
+         Player1.transform.localScale = new Vector3(1.5f,1.5f,1.5f);
 		  Player1.GetComponent<Animator>().SetBool("Player1_isRunning",true);
 	} else if(isP1HoldingLB) {
 		 P1_rb2d.velocity = new Vector2(-moveSpeed,P1_rb2d.velocity.y);
-                Player1.transform.localScale = new Vector3(-1,1,1);
+                Player1.transform.localScale = new Vector3(-1.5f,1.5f,1.5f);
 				Player1.GetComponent<Animator>().SetBool("Player1_isRunning",true);
 
 	} else {
@@ -77,13 +77,13 @@ void Update()
 
 	if(isP2HoldingRB) {
 		P2_rb2d.velocity = new Vector2(moveSpeed,P2_rb2d.velocity.y);
-		         Player2.transform.localScale = new Vector3(1,1,1);
+		         Player2.transform.localScale = new Vector3(1.5f,1.5f,1.5f);
 				 		  Player2.GetComponent<Animator>().SetBool("Player2_isRunning",true);
 
 
 	} else if (isP2HoldingLB) {
 P2_rb2d.velocity = new Vector2(-moveSpeed,P2_rb2d.velocity.y);
-		         Player2.transform.localScale = new Vector3(-1,1,1);
+		         Player2.transform.localScale = new Vector3(-1.5f,1.5f,1.5f);
 				 		  Player2.GetComponent<Animator>().SetBool("Player2_isRunning",true);
 	} else {
 				 		  Player2.GetComponent<Animator>().SetBool("Player2_isRunning",false);

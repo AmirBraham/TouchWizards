@@ -30,6 +30,10 @@ public class GameManager : MonoBehaviour {
 
 	float P1PosX;
 
+
+	int P1_NumberOfShields = 0 ;
+	int P2_NumberOfShields = 0 ;
+
 	GameObject Player1;
 	GameObject Player2;
 	
@@ -84,14 +88,20 @@ public void P1_Shoot () {
 
 
 public void P1_Shield () {
+	if(P1_NumberOfShields < 2) {
 	GameObject P1_ShieldClone;
 	P1_ShieldClone = Instantiate(P1_ShieldPrefab,P1_ShieldPoint.position,Quaternion.identity) as GameObject;
+	P1_NumberOfShields++;
+	}
 }
 
 
 public void P2_Shield () {
+	if(P2_NumberOfShields <2) {
 	GameObject P2_ShieldClone;
 	P2_ShieldClone = Instantiate(P2_ShieldPrefab,P2_ShieldPoint.position,Quaternion.identity) as GameObject;
+	P2_NumberOfShields++;
+	}
 }
 public void P2_Shoot () {
 	GameObject P2_BulletClone;

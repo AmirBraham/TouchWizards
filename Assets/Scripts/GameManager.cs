@@ -12,8 +12,7 @@ public class GameManager : MonoBehaviour {
 	public Slider P1_HealthSlider;
 
 	public Slider P2_HealthSlider;
-
-
+	
 	public GameObject GameOver;
 	public Text GameOverText;
 

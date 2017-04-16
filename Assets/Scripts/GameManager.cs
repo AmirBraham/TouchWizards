@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour {
 		public GameObject GameOver;
 		public Text GameOverText;
 
+		public GameObject GameOn;
+
 void Start() {
 		P1_NumberOfShields = 0;
 		P2_NumberOfShields = 0;
@@ -48,6 +50,7 @@ void Start() {
 		P1_Health = 1;
 		P2_Health = 1;
 		Time.timeScale=1;
+		GameOn.SetActive(true);
 	}
 
 //P1 CONTROLS
@@ -119,17 +122,20 @@ void Update()
 			GameOver.SetActive(true);
 			Player1.GetComponent<SpriteRenderer>().DOFade(0,2f);
 			GameOverText.text = "Red Wizard Wins ! ";
-			Time.timeScale=0;
+			GameOn.SetActive(false);
+			//Time.timeScale=0;
 		}}
 
 
-		public void Player2HealthStatus () {
+	public void Player2HealthStatus () {
 			P2_HealthSlider.value = P2_Health;
 			if(P2_Health <=0) {
 						GameOver.SetActive(true);
 						Player2.GetComponent<SpriteRenderer>().DOFade(0,2f);
 						GameOverText.text = "Blue Wizard Wins ! ";
-						Time.timeScale=0;
+						//Time.timeScale=0;
+									GameOn.SetActive(false);
+
 			}}
 
 

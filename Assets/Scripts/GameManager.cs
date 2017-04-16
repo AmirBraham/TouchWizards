@@ -5,7 +5,8 @@ using DG.Tweening;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
-	public float moveSpeed; 
+	float timer = 0.0f;
+	
 	//Player 1 
 		GameObject Player1;
 		Rigidbody2D P1_rb2d;
@@ -20,6 +21,9 @@ public class GameManager : MonoBehaviour {
 		float P1PosX;
 		public static int P1_NumberOfShields;
 
+		public static float P1_MoveSpeed;
+
+
 	//Player 2
 		GameObject Player2;		
 		Rigidbody2D P2_rb2d;
@@ -33,14 +37,22 @@ public class GameManager : MonoBehaviour {
 		bool isP2HoldingRB;
 		bool isP2HoldingLB;
 		public static int P2_NumberOfShields;
+
+		public static float P2_MoveSpeed ;
+
 	
 	//UI Elements
+	//Boosts
+		public GameObject SpeedBoostPrefab;
+         List<float> BoosterXPos = new List<float>();
+
 		public GameObject GameOver;
 		public Text P1_GameOverText;
 		public Text P2_GameOverText;
-
-
 		public GameObject GameOn;
+
+
+
 
 void Start() {
 		P1_NumberOfShields = 0;
@@ -53,6 +65,13 @@ void Start() {
 		P2_Health = 1;
 		Time.timeScale=1;
 		GameOn.SetActive(true);
+		P1_MoveSpeed = P2_MoveSpeed = 3;
+		BoosterXPos.Add(-5f);
+		BoosterXPos.Add(5f);
+		InvokeRepeating("SpawnSpeedBoost",10,Random.Range(5,7));
+
+
+
 	}
 
 //P1 CONTROLS
@@ -111,12 +130,20 @@ void Start() {
 //
 void Update()
 {
+	Debug.Log(timer);
 	Player1Loop();
 	Player2Loop();
 	Player1HealthStatus ();
 	Player2HealthStatus ();
 	Player1Controls ();
 	Player2Controls ();
+	if(P1_MoveSpeed != P2_MoveSpeed) {
+		timer+=Time.deltaTime;
+	}
+	if(timer >=10f) {
+				P1_MoveSpeed = P2_MoveSpeed = 3;
+
+	}
 }
 	public void Player1HealthStatus () {
 		P1_HealthSlider.value = P1_Health;
@@ -166,11 +193,11 @@ void Update()
 	public void Player1Controls () {
 
 		if(isP1HoldingRB) {
-					P1_rb2d.velocity = new Vector2(moveSpeed,P1_rb2d.velocity.y);
+					P1_rb2d.velocity = new Vector2(P1_MoveSpeed,P1_rb2d.velocity.y);
 					Player1.transform.localScale = new Vector3(1.5f,1.5f,1.5f);
 					Player1.GetComponent<Animator>().SetBool("Player1_isRunning",true);
 		} else if(isP1HoldingLB) {
-					P1_rb2d.velocity = new Vector2(-moveSpeed,P1_rb2d.velocity.y);
+					P1_rb2d.velocity = new Vector2(-P1_MoveSpeed,P1_rb2d.velocity.y);
 					Player1.transform.localScale = new Vector3(-1.5f,1.5f,1.5f);
 					Player1.GetComponent<Animator>().SetBool("Player1_isRunning",true);
 		} else {
@@ -179,18 +206,26 @@ void Update()
 		}}
 
 	public void Player2Controls () {
+
 		if(isP2HoldingRB) {
-				 P2_rb2d.velocity = new Vector2(moveSpeed,P2_rb2d.velocity.y);
+				 P2_rb2d.velocity = new Vector2(P2_MoveSpeed,P2_rb2d.velocity.y);
 		         Player2.transform.localScale = new Vector3(1.5f,1.5f,1.5f);
 				 Player2.GetComponent<Animator>().SetBool("Player2_isRunning",true);
 		} else if (isP2HoldingLB) {
-					P2_rb2d.velocity = new Vector2(-moveSpeed,P2_rb2d.velocity.y);
+					P2_rb2d.velocity = new Vector2(-P2_MoveSpeed,P2_rb2d.velocity.y);
 					Player2.transform.localScale = new Vector3(-1.5f,1.5f,1.5f);
 					Player2.GetComponent<Animator>().SetBool("Player2_isRunning",true);
 		} else {
 					P2_rb2d.velocity = new Vector2(0,0);
 					Player2.GetComponent<Animator>().SetBool("Player2_isRunning",false);
 		}}
+
+
+		void SpawnSpeedBoost () {
+			GameObject SpeedBoostClone;
+
+			SpeedBoostClone = Instantiate(SpeedBoostPrefab, new Vector3 (BoosterXPos[Random.Range(0,BoosterXPos.Count)],Random.Range(0.5f,-0.65f),0),Quaternion.identity) as GameObject;
+		}
 
 
 }

@@ -5,9 +5,9 @@ using DG.Tweening;
 
 public class P2_shoot_Movement : MonoBehaviour {
 	public float bulletSpeed;
-	public GameObject DeathClone;
+	GameObject P1_DeathClone;
 
-	public GameObject DeathPrefab;
+	public GameObject P1_DeathPrefab;
 
 
 	void Start () {
@@ -15,18 +15,20 @@ public class P2_shoot_Movement : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
+				if(GetComponent<Rigidbody2D>() != null) {
+
 		GetComponent<Rigidbody2D>().velocity = new Vector2(0,-bulletSpeed);
-		
+				}
+	}
+
+	void OnFinishAnim () {
+		Destroy(gameObject);
 	}
 
 	void OnTriggerEnter2D (Collider2D col) {
 		if(col.gameObject.tag == "Player_1") {
-			Debug.Log("Player 2 Won");
 			GameManager.P1_Health -= 0.25f;
-
- 			//col.gameObject.GetComponent<SpriteRenderer>().DOFade(0,2f);
-
-			DeathClone = Instantiate(DeathPrefab,GameObject.FindGameObjectWithTag("Player_1").transform.position,Quaternion.identity);
+			P1_DeathClone = Instantiate(P1_DeathPrefab,GameObject.FindGameObjectWithTag("Player_1").transform.position,Quaternion.identity);
 
 		} else if (col.gameObject.tag == "P1_Bullet") {
 			Destroy(col.gameObject);

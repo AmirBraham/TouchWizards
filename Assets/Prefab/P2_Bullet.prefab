@@ -107,8 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 11
-  DeathClone: {fileID: 0}
-  DeathPrefab: {fileID: 1950288275063688, guid: 06bac59a19cd75d4699bfa765df013fb,
+  P1_DeathPrefab: {fileID: 1423092416037432, guid: 06bac59a19cd75d4699bfa765df013fb,
     type: 2}
 --- !u!212 &212280056764812370
 SpriteRenderer:

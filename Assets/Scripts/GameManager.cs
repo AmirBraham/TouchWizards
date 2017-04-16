@@ -36,7 +36,9 @@ public class GameManager : MonoBehaviour {
 	
 	//UI Elements
 		public GameObject GameOver;
-		public Text GameOverText;
+		public Text P1_GameOverText;
+		public Text P2_GameOverText;
+
 
 		public GameObject GameOn;
 
@@ -121,7 +123,8 @@ void Update()
 		if(P1_Health <=0) {
 			GameOver.SetActive(true);
 			Player1.GetComponent<SpriteRenderer>().DOFade(0,2f);
-			GameOverText.text = "Red Wizard Wins ! ";
+			P2_GameOverText.text = "You Win!";
+			P1_GameOverText.text = "You Lose!";
 			GameOn.SetActive(false);
 			//Time.timeScale=0;
 		}}
@@ -132,9 +135,11 @@ void Update()
 			if(P2_Health <=0) {
 						GameOver.SetActive(true);
 						Player2.GetComponent<SpriteRenderer>().DOFade(0,2f);
-						GameOverText.text = "Blue Wizard Wins ! ";
+						P1_GameOverText.text = "You Win!";
+						P2_GameOverText.text = "You Lose!";
+
 						//Time.timeScale=0;
-									GameOn.SetActive(false);
+						GameOn.SetActive(false);
 
 			}}
 

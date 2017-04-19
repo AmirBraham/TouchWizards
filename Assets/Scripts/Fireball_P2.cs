@@ -21,7 +21,7 @@ public class Fireball_P2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("fireball_impact") && hasCollided && animator.GetCurrentAnimatorStateInfo(0).length <
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("P2_fireball_impact") && hasCollided && animator.GetCurrentAnimatorStateInfo(0).length <
     animator.GetCurrentAnimatorStateInfo(0).normalizedTime)
         {
             Destroy(gameObject);

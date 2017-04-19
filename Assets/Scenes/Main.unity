@@ -288,7 +288,6 @@ GameObject:
   - component: {fileID: 61212844}
   - component: {fileID: 61212843}
   - component: {fileID: 61212846}
-  - component: {fileID: 61212847}
   - component: {fileID: 61212848}
   - component: {fileID: 61212845}
   m_Layer: 0
@@ -383,17 +382,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &61212847
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 61212842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac1980d432f08724e8b60fba1118ba78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &61212848
 Animator:
   serializedVersion: 3
@@ -469,7 +457,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.6911765, g: 0.6911765, b: 0.6911765, a: 0.464}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -532,48 +520,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 122764499}
---- !u!1001 &228172230
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4776396785979112, guid: 4ed80cf98a09e794780aeecdd48a7e6b, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 1.2787628
-      objectReference: {fileID: 0}
-    - target: {fileID: 4776396785979112, guid: 4ed80cf98a09e794780aeecdd48a7e6b, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -1.7388966
-      objectReference: {fileID: 0}
-    - target: {fileID: 4776396785979112, guid: 4ed80cf98a09e794780aeecdd48a7e6b, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4776396785979112, guid: 4ed80cf98a09e794780aeecdd48a7e6b, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4776396785979112, guid: 4ed80cf98a09e794780aeecdd48a7e6b, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4776396785979112, guid: 4ed80cf98a09e794780aeecdd48a7e6b, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4776396785979112, guid: 4ed80cf98a09e794780aeecdd48a7e6b, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4776396785979112, guid: 4ed80cf98a09e794780aeecdd48a7e6b, type: 2}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 4ed80cf98a09e794780aeecdd48a7e6b, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &228623711
 GameObject:
   m_ObjectHideFlags: 0
@@ -2156,6 +2102,8 @@ MonoBehaviour:
   GameOver: {fileID: 624376183}
   P1_GameOverText: {fileID: 1263714015}
   P2_GameOverText: {fileID: 525540010}
+  Shield1_Button: {fileID: 122764501}
+  Shield2_Button: {fileID: 1527938436}
   GameOn: {fileID: 415191258}
 --- !u!224 &1161382910
 RectTransform:
@@ -2704,7 +2652,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.6901961, g: 0.6901961, b: 0.6901961, a: 0.4627451}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:

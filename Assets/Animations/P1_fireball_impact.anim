@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: fireball_impact
+  m_Name: P1_fireball_impact
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -19,12 +19,14 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: b174dc2b28b23ae40a70aebf334d3d78, type: 3}
+      value: {fileID: 21300000, guid: cc0153dc2eb38d244ac06b6e3fe9a761, type: 3}
     - time: 0.1
-      value: {fileID: 21300000, guid: de96a6749fc81a645b5aa8edf4d08c7e, type: 3}
+      value: {fileID: 21300000, guid: b174dc2b28b23ae40a70aebf334d3d78, type: 3}
     - time: 0.2
-      value: {fileID: 21300000, guid: 62988d0426039da4d9f949024ee18abf, type: 3}
+      value: {fileID: 21300000, guid: de96a6749fc81a645b5aa8edf4d08c7e, type: 3}
     - time: 0.3
+      value: {fileID: 21300000, guid: 62988d0426039da4d9f949024ee18abf, type: 3}
+    - time: 0.4
       value: {fileID: 21300000, guid: 590c8d568e3e7ca49b1ac9f5ba934a22, type: 3}
     attribute: m_Sprite
     path: 
@@ -44,6 +46,7 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
+    - {fileID: 21300000, guid: cc0153dc2eb38d244ac06b6e3fe9a761, type: 3}
     - {fileID: 21300000, guid: b174dc2b28b23ae40a70aebf334d3d78, type: 3}
     - {fileID: 21300000, guid: de96a6749fc81a645b5aa8edf4d08c7e, type: 3}
     - {fileID: 21300000, guid: 62988d0426039da4d9f949024ee18abf, type: 3}
@@ -53,7 +56,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.4
+    m_StopTime: 0.5
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

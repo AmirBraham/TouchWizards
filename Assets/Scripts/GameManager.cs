@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 	float timer = 0.0f;
+    int normalPlayerSpeed = 4;
 	
 	//Player 1 
 		GameObject Player1;
@@ -49,12 +50,15 @@ public class GameManager : MonoBehaviour {
 		public GameObject GameOver;
 		public Text P1_GameOverText;
 		public Text P2_GameOverText;
+        public Button Shield1_Button;
+        public Button Shield2_Button;
 		public GameObject GameOn;
 
 
 
 
 void Start() {
+        normalPlayerSpeed = 4;
 		P1_NumberOfShields = 0;
 		P2_NumberOfShields = 0;
 		Player1 = GameObject.FindGameObjectWithTag("Player_1");
@@ -65,10 +69,10 @@ void Start() {
 		P2_Health = 1;
 		Time.timeScale=1;
 		GameOn.SetActive(true);
-		P1_MoveSpeed = P2_MoveSpeed = 3;
+		P1_MoveSpeed = P2_MoveSpeed = normalPlayerSpeed;
 		BoosterXPos.Add(-5f);
 		BoosterXPos.Add(5f);
-		InvokeRepeating("SpawnSpeedBoost",10,Random.Range(5,7));
+		InvokeRepeating("SpawnSpeedBoost",10,Random.Range(10,15));
 
 
 
@@ -99,7 +103,13 @@ void Start() {
 		GameObject P1_ShieldClone;
 		P1_ShieldClone = Instantiate(P1_ShieldPrefab,P1_ShieldPoint.position,Quaternion.identity) as GameObject;
 		P1_NumberOfShields++;
-			}}
+        Shield1_Button.interactable = true;
+        }
+        else
+        {
+            Shield1_Button.interactable = false;
+        }
+    }
 //P2 CONTROLS
 	public void P2_OnPointUpRightButton(){
 			isP2HoldingRB = false;	 
@@ -121,7 +131,12 @@ void Start() {
 		GameObject P2_ShieldClone;
 		P2_ShieldClone = Instantiate(P2_ShieldPrefab,P2_ShieldPoint.position,Quaternion.identity) as GameObject;
 		P2_NumberOfShields++;
-		}
+        Shield2_Button.interactable = true;
+        }
+        else
+        {
+            Shield2_Button.interactable = false;
+        }
 	}
 	public void P2_Shoot () {
 		GameObject P2_BulletClone;
@@ -140,11 +155,26 @@ void Update()
 		timer+=Time.deltaTime;
 	}
 	if(timer >=10f) {
-				P1_MoveSpeed = P2_MoveSpeed = 3;
+				P1_MoveSpeed = P2_MoveSpeed = normalPlayerSpeed;
             timer = 0;
-
 	}
-}
+        if (P1_NumberOfShields<2)
+        {
+            Shield1_Button.interactable = true;
+        }
+        else
+        {
+            Shield1_Button.interactable = false;
+        }
+        if (P2_NumberOfShields < 2)
+        {
+            Shield2_Button.interactable = true;
+        }
+        else
+        {
+            Shield2_Button.interactable = false;
+        }
+    }
 	public void Player1HealthStatus () {
 		P1_HealthSlider.value = P1_Health;
 		if(P1_Health <=0) {

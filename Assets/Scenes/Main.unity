@@ -2099,12 +2099,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   P1_HealthSlider: {fileID: 951815041}
   P1_ShootingPoint: {fileID: 240930813}
-  P1_Bullet: {fileID: 1060409514387532, guid: a55cf292bb5a4fb43bd54796f34001f0, type: 2}
+  P1_Bullet: {fileID: 1623138230751784, guid: 4ed80cf98a09e794780aeecdd48a7e6b, type: 2}
   P1_ShieldPrefab: {fileID: 1306834977121360, guid: 1316c914c990a3b4cac36875df8dbf3a,
     type: 2}
   P1_ShieldPoint: {fileID: 426803060}
   P2_ShootingPoint: {fileID: 658765895}
-  P2_Bullet: {fileID: 1330852000520352, guid: 117abfcbf89e9a843b0c08e90351a287, type: 2}
+  P2_Bullet: {fileID: 1058990547218076, guid: 6b6153ac41af8a945b8fa33be9da0105, type: 2}
   P2_ShieldPrefab: {fileID: 1958236570266622, guid: f2b2eba61ae0d2441a12a6cbbb562cc3,
     type: 2}
   P2_ShieldPoint: {fileID: 782153205}

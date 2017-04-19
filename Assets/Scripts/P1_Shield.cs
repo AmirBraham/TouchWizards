@@ -20,7 +20,6 @@ public class P1_Shield : MonoBehaviour {
 	{
 		if(col.gameObject.tag=="P2_Bullet" ) {
 			ShieldResistance -= 20;
-			Destroy(col.gameObject);
 		}
 	}
 }

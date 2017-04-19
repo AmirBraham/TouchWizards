@@ -130,7 +130,6 @@ void Start() {
 //
 void Update()
 {
-	Debug.Log(timer);
 	Player1Loop();
 	Player2Loop();
 	Player1HealthStatus ();
@@ -142,6 +141,7 @@ void Update()
 	}
 	if(timer >=10f) {
 				P1_MoveSpeed = P2_MoveSpeed = 3;
+            timer = 0;
 
 	}
 }

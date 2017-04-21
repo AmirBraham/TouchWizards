@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class P1_Shield : MonoBehaviour {
+public class Shield : MonoBehaviour {
 
 
 	float ShieldResistance = 100;
@@ -11,7 +11,7 @@ public class P1_Shield : MonoBehaviour {
 	void Update () {
 		if(ShieldResistance <= 0) {
 			Destroy(gameObject);
-			GameManager.P1_NumberOfShields -= 1;
+			GameManager.NumberOfShields-= 1;
 		}
 	}
 

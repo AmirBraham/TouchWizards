@@ -5,9 +5,9 @@ using DG.Tweening;
 
 public class P2_shoot_Movement : MonoBehaviour {
 	public float bulletSpeed;
-	GameObject P1_DeathClone;
+	GameObject DeathClone;
 
-	public GameObject P1_DeathPrefab;
+	public GameObject DeathPrefab;
 
 
 	void Start () {
@@ -27,13 +27,13 @@ public class P2_shoot_Movement : MonoBehaviour {
 
 	void OnTriggerEnter2D (Collider2D col) {
 		if(col.gameObject.tag == "Player_1") {
-			GameManager.P1_Health -= 0.25f;
-			P1_DeathClone = Instantiate(P1_DeathPrefab,GameObject.FindGameObjectWithTag("Player_1").transform.position,Quaternion.identity);
+			//GameManager.Health -= 0.25f;
+			DeathClone = Instantiate(DeathPrefab,GameObject.FindGameObjectWithTag("Player_1").transform.position,Quaternion.identity);
 
-		} else if (col.gameObject.tag == "P1_Bullet") {
+		} else if (col.gameObject.tag == "Bullet") {
 			Destroy(col.gameObject);
 			Destroy(gameObject);
-		} else if (col.gameObject.tag =="P1_Shield") {
+		} else if (col.gameObject.tag =="Shield") {
 			Destroy(gameObject);
 		} else if (col.gameObject.tag =="ground") {
 			Destroy(gameObject);

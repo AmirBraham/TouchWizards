@@ -38,7 +38,7 @@ public class Fireball_P2 : MonoBehaviour
             hasCollided = true;
             if (col.gameObject.tag == "Player_1")
             {
-                GameManager.P1_Health -= 0.25f;
+                GameManager.Health -= 0.25f;
                 //col.gameObject.GetComponent<SpriteRenderer>().DOFade(0,2f);
                 DeathClone = Instantiate(DeathPrefab, GameObject.FindGameObjectWithTag("Player_1").transform.position, Quaternion.identity);
 

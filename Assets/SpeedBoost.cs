@@ -29,8 +29,8 @@ public class SpeedBoost : MonoBehaviour {
 
         
 
-        if (col.gameObject.tag=="P1_Bullet") {
-			GameManager.P1_MoveSpeed+=2;
+        if (col.gameObject.tag=="Bullet") {
+			//P1_Controls.MoveSpeed+=2;
             Destroy(gameObject);
         } else if (col.gameObject.tag=="P2_Bullet") {
 			GameManager.P2_MoveSpeed+=2;

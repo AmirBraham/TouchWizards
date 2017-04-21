@@ -9,14 +9,7 @@ public class GameManager : MonoBehaviour {
     int normalPlayerSpeed = 4;
 	
 	//Player 1 
-		GameObject Player1;
-		Rigidbody2D rb2d;
-		public  static Slider P1_HealthSlider;
-		public  static float Health = 100;
-		public GameObject ShootingPoint;
-		public GameObject Bullet;
-		public GameObject ShieldPrefab;
-		public Transform ShieldPoint;
+	
 		
 		float P1PosX;
 		public static int NumberOfShields;
@@ -61,13 +54,13 @@ void Start() {
         normalPlayerSpeed = 4;
 		NumberOfShields = 0;
 		P2_NumberOfShields = 0;
-		Player1 = GameObject.FindGameObjectWithTag("Player_1");
 		Player2 = GameObject.FindGameObjectWithTag("Player_2");
-		rb2d = Player1.GetComponent<Rigidbody2D>();	
 		P2_rb2d = Player2.GetComponent<Rigidbody2D>();
-		Health = 1;
 		P2_Health = 1;
 		Time.timeScale=1;
+		GameOn = GameObject.FindGameObjectWithTag("GameOn");
+		GameOver = GameObject.FindGameObjectWithTag("GameOver");
+		GameOver.SetActive(false);
 		GameOn.SetActive(true);
 		MoveSpeed = P2_MoveSpeed = normalPlayerSpeed;
 		BoosterXPos.Add(-5f);

@@ -6,19 +6,24 @@ using DG.Tweening;
 public class P1_Controls : MonoBehaviour {
 
 	public static int MoveSpeed = 4;
+
+	public static float Health = 1;
 	bool isHoldingRB;
 	bool isHoldingLB;
+
+			public   Slider P1_HealthSlider;
+
 
 	public GameObject Bullet;
 
 	public Transform ShootingPoint;
 
 	int NumberOfShields;
-	GameObject ShieldPrefab;
+	public GameObject ShieldPrefab;
 
-	Transform ShieldPoint;
+	public Transform ShieldPoint;
 
-	Button Shield1_Button;
+	public Button Shield1_Button;
 
 	List<float> BoosterXPos = new List<float>();
 
@@ -29,6 +34,7 @@ public class P1_Controls : MonoBehaviour {
 			BoosterXPos.Add(-5f);
 			BoosterXPos.Add(5f);
 			NumberOfShields = 0;
+			Health =1;
 	}
 	
 	// Update is called once per frame
@@ -36,8 +42,7 @@ public class P1_Controls : MonoBehaviour {
 		Loop ();
 		HealthStatus ();
 		Movement ();
-					Debug.Log("isHoldingRB :" + isHoldingRB);
-					Debug.Log("isHoldingLB :" + isHoldingLB);
+					Debug.Log("Shield :" + Health);
 					
 
 		   if (NumberOfShields<2)
@@ -83,12 +88,12 @@ public class P1_Controls : MonoBehaviour {
     }
 
 	public void HealthStatus () {
-//		GameManager.P1_HealthSlider.value = GameManager.Health;
-		if(GameManager.Health <=0) {
+ 		P1_HealthSlider.value = Health;
+		if(Health <=0) {
 			GameManager.GameOver.SetActive(true);
 			GetComponent<SpriteRenderer>().DOFade(0,2f);
-			
-			GameManager.GameOverText.text = "You Lose!";
+			if( GameManager.GameOverText!= null)
+				GameManager.GameOverText.text = "You Lose!";
 			GameManager.GameOn.SetActive(false);
 			//Time.timeScale=0;
 		}}

@@ -19,6 +19,8 @@ public class P2_shoot_Movement : MonoBehaviour {
 
 		GetComponent<Rigidbody2D>().velocity = new Vector2(0,-bulletSpeed);
 				}
+							Debug.Log("Damage");
+
 	}
 
 	void OnFinishAnim () {
@@ -27,9 +29,8 @@ public class P2_shoot_Movement : MonoBehaviour {
 
 	void OnTriggerEnter2D (Collider2D col) {
 		if(col.gameObject.tag == "Player_1") {
-			//GameManager.Health -= 0.25f;
+			P1_Controls.Health -= 0.25f;
 			DeathClone = Instantiate(DeathPrefab,GameObject.FindGameObjectWithTag("Player_1").transform.position,Quaternion.identity);
-
 		} else if (col.gameObject.tag == "Bullet") {
 			Destroy(col.gameObject);
 			Destroy(gameObject);

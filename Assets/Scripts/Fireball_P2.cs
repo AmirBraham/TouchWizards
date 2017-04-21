@@ -38,11 +38,15 @@ public class Fireball_P2 : MonoBehaviour
             hasCollided = true;
             if (col.gameObject.tag == "Player_1")
             {
-                GameManager.Health -= 0.25f;
+                P1_Controls.Health -= 0.25f;
                 //col.gameObject.GetComponent<SpriteRenderer>().DOFade(0,2f);
                 DeathClone = Instantiate(DeathPrefab, GameObject.FindGameObjectWithTag("Player_1").transform.position, Quaternion.identity);
 
+            } else if (col.gameObject.tag =="P1_Shield") {   
+
+
             }
+             
 
         }
     }

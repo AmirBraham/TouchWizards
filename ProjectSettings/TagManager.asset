@@ -11,6 +11,9 @@ TagManager:
   - P1_Shield
   - P2_Shield
   - ground
+  - GameOn
+  - P1_HealthSlider
+  - GameOver
   layers:
   - Default
   - TransparentFX

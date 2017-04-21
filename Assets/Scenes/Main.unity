@@ -284,8 +284,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fff7033a2fa11ea4e8404a5fb0f01361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  P1_HealthSlider: {fileID: 951815041}
   Bullet: {fileID: 1623138230751784, guid: 4ed80cf98a09e794780aeecdd48a7e6b, type: 2}
   ShootingPoint: {fileID: 240930814}
+  ShieldPrefab: {fileID: 1306834977121360, guid: 1316c914c990a3b4cac36875df8dbf3a,
+    type: 2}
+  ShieldPoint: {fileID: 426803060}
+  Shield1_Button: {fileID: 122764501}
 --- !u!114 &525540010 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114470792477510144, guid: b5e0d8c949e3cc448b671025708ca12a,
@@ -667,6 +672,22 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Shield
+      objectReference: {fileID: 0}
+    - target: {fileID: 1826708716129090, guid: b5e0d8c949e3cc448b671025708ca12a, type: 2}
+      propertyPath: m_TagString
+      value: GameOn
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025191245845330, guid: b5e0d8c949e3cc448b671025708ca12a, type: 2}
+      propertyPath: m_TagString
+      value: P1_HealthSlider
+      objectReference: {fileID: 0}
+    - target: {fileID: 1706605795416118, guid: b5e0d8c949e3cc448b671025708ca12a, type: 2}
+      propertyPath: m_TagString
+      value: GameOver
+      objectReference: {fileID: 0}
+    - target: {fileID: 1706605795416118, guid: b5e0d8c949e3cc448b671025708ca12a, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b5e0d8c949e3cc448b671025708ca12a, type: 2}

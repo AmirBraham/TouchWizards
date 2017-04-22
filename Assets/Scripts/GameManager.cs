@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour {
 	
 		
 		float P1PosX;
-		public static int NumberOfShields;
 
 		public static float MoveSpeed;
 
@@ -52,7 +51,6 @@ public class GameManager : MonoBehaviour {
 
 void Start() {
         normalPlayerSpeed = 4;
-		NumberOfShields = 0;
 		P2_NumberOfShields = 0;
 		Player2 = GameObject.FindGameObjectWithTag("Player_2");
 		P2_rb2d = Player2.GetComponent<Rigidbody2D>();
@@ -118,14 +116,7 @@ void Update()
 				MoveSpeed = P2_MoveSpeed = normalPlayerSpeed;
             timer = 0;
 	}
-        if (NumberOfShields<2)
-        {
-            Shield1_Button.interactable = true;
-        }
-        else
-        {
-            Shield1_Button.interactable = false;
-        }
+     
         if (P2_NumberOfShields < 2)
         {
             Shield2_Button.interactable = true;

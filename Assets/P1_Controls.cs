@@ -11,19 +11,21 @@ public class P1_Controls : MonoBehaviour {
 	bool isHoldingRB;
 	bool isHoldingLB;
 
-			public   Slider P1_HealthSlider;
+	public   Slider P1_HealthSlider;
 
+	public static int NumberOfShields =2;
 
 	public GameObject Bullet;
 
 	public Transform ShootingPoint;
 
-	int NumberOfShields;
 	public GameObject ShieldPrefab;
 
 	public Transform ShieldPoint;
 
 	public Button Shield1_Button;
+
+	
 
 	List<float> BoosterXPos = new List<float>();
 
@@ -33,7 +35,7 @@ public class P1_Controls : MonoBehaviour {
 			rb2d = GetComponent<Rigidbody2D>();	
 			BoosterXPos.Add(-5f);
 			BoosterXPos.Add(5f);
-			NumberOfShields = 0;
+			NumberOfShields = 2;
 			Health =1;
 	}
 	
@@ -45,7 +47,7 @@ public class P1_Controls : MonoBehaviour {
 					Debug.Log("Shield :" + Health);
 					
 
-		   if (NumberOfShields<2)
+		   if (NumberOfShields<=3)
         {
             Shield1_Button.interactable = true;
         }
@@ -75,16 +77,17 @@ public class P1_Controls : MonoBehaviour {
 
 
 	public void Shield () {
-		if(NumberOfShields < 2) {
+		
+		if(NumberOfShields <= 3) {
 		GameObject ShieldClone;
 		ShieldClone = Instantiate(ShieldPrefab,ShieldPoint.position,Quaternion.identity) as GameObject;
 		NumberOfShields++;
         Shield1_Button.interactable = true;
         }
-        else
-        {
+        else{
             Shield1_Button.interactable = false;
         }
+
     }
 
 	public void HealthStatus () {

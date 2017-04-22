@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4020816363741000}
   - component: {fileID: 212493223847021052}
   - component: {fileID: 95167961995101400}
-  - component: {fileID: 114555620538163316}
   - component: {fileID: 61716328546585520}
+  - component: {fileID: 114186432687996328}
   m_Layer: 0
   m_Name: P1_Shield
   m_TagString: P1_Shield
@@ -74,7 +74,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114555620538163316
+--- !u!114 &114186432687996328
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -85,6 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d3ce99ab8e152d438e8a757f16f4976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShieldResistance: 100
 --- !u!212 &212493223847021052
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class P2_Shield : MonoBehaviour {
 
-	float ShieldResistance = 100;
-	// Use this for initialization
-	void Start () {
-		
-	}
+
+	public  float ShieldResistance = 100;
 	
 	// Update is called once per frame
+
+
+	void Start()
+	{
+		
+	}
 	void Update () {
-		if(ShieldResistance <= 0) {
-			Destroy(gameObject);
-			GameManager.P2_NumberOfShields -= 1;
-		}
+		
 	}
 
 
@@ -23,6 +23,10 @@ public class P2_Shield : MonoBehaviour {
 	{
 		if(col.gameObject.tag=="P1_Bullet" ) {
 			ShieldResistance -= 20;
+			if(ShieldResistance <= 0) {
+			Destroy(gameObject);
+			P2_Controls.NumberOfShields--;
+		}
 		}
 	}
 }

@@ -19,7 +19,7 @@ public class P1_shoot_Movement : MonoBehaviour {
 	}
 	void OnTriggerEnter2D (Collider2D col) {
 		if(col.gameObject.tag == "Player_2") {
-			GameManager.P2_Health -= 0.25f;
+			P2_Controls.Health -= 0.25f;
 			P2_DeathClone = Instantiate(P2_DeathPrefab,GameObject.FindGameObjectWithTag("Player_2").transform.position,Quaternion.identity);
 		} else if (col.gameObject.tag == "P2_Bullet") {
 			Destroy(col.gameObject);

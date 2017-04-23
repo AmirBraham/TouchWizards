@@ -4,33 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 public class P1_Controls : MonoBehaviour {
-
 	public static int MoveSpeed = 4;
-
 	public static float Health = 1;
 	bool isHoldingRB;
 	bool isHoldingLB;
-
 	public   Slider P1_HealthSlider;
-
 	public static int NumberOfShields =2;
-
 	public GameObject Bullet;
-
 	public Transform ShootingPoint;
-
 	public GameObject ShieldPrefab;
-
 	public Transform ShieldPoint;
-
 	public Button Shield1_Button;
-
-	
-
 	List<float> BoosterXPos = new List<float>();
-
 	Rigidbody2D rb2d;
-	// Use this for initialization
 	void Start () {
 			rb2d = GetComponent<Rigidbody2D>();	
 			BoosterXPos.Add(-5f);
@@ -39,25 +25,16 @@ public class P1_Controls : MonoBehaviour {
 			Health =1;
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		Loop ();
 		HealthStatus ();
 		Movement ();
-		   if (NumberOfShields<=3)
-        {
-            Shield1_Button.interactable = true;
-        }
-        else
-        {
-            Shield1_Button.interactable = false;
-        }
-
+		ShieldButtonStatus ();
 	}
 	public void OnPointUpRightButton(){
 			isHoldingRB = false;	 
 		}
-		public void onPointerDownRightButton () {
+	public void onPointerDownRightButton () {
 			isHoldingRB=true;
 		}
 
@@ -72,6 +49,13 @@ public class P1_Controls : MonoBehaviour {
 		BulletClone = Instantiate(Bullet,ShootingPoint.position,Quaternion.Euler(0,0,90f)) as GameObject;
 		}
 
+	void ShieldButtonStatus () {
+			 if (NumberOfShields<=3){
+            Shield1_Button.interactable = true;
+        	}else {
+            Shield1_Button.interactable = false;
+        	}
+		}
 
 	public void Shield () {
 		
@@ -95,17 +79,16 @@ public class P1_Controls : MonoBehaviour {
 			if( GameManager.GameOverText!= null)
 				GameManager.GameOverText.text = "You Lose!";
 			GameManager.GameOn.SetActive(false);
-			//Time.timeScale=0;
 		}}
 
-		public void Loop () {
+	public void Loop () {
 			if(transform.position.x <= -3) {
 				transform.position = new Vector2(-(transform.position.x+0.1f),transform.position.y);
 			} else if (transform.position.x >= 3 ) {
 				transform.position = new Vector2(-(transform.position.x - 0.1f),transform.position.y);
 		
 		}}
-		public void Movement () {
+	public void Movement () {
 
 		if(isHoldingRB) {
 					rb2d.velocity = new Vector2(MoveSpeed,rb2d.velocity.y);

@@ -8,23 +8,19 @@ public class P2_Controls : MonoBehaviour {
 
 	public static int MoveSpeed =4;
 	public static float Health = 1;
-
 	Rigidbody2D rb2d;
 	public GameObject ShootingPoint;
 	public GameObject Bullet;
 	public GameObject ShieldPrefab;
 	public Transform ShieldPoint;
 	public Slider HealthSlider;
-
 	bool isHoldingRB;
 	bool isHoldingLB;
 	public static int NumberOfShields;
-
 	public Button  Shield2_Button;
 	List<float> BoosterXPos = new List<float>();
 
 
-	// Use this for initialization
 	void Start () {
 		rb2d = GetComponent<Rigidbody2D>();
 			BoosterXPos.Add(-5f);
@@ -33,19 +29,11 @@ public class P2_Controls : MonoBehaviour {
 			Health =1;
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		Loop ();
 		HealthStatus ();
 		Movement ();
-		 if (NumberOfShields <= 3)
-        {
-            Shield2_Button.interactable = true;
-        }
-        else
-        {
-            Shield2_Button.interactable = false;
-        }
+		ShieldButtonStatus ();
 	}
 
 	public void OnPointUpRightButton(){
@@ -118,4 +106,15 @@ public class P2_Controls : MonoBehaviour {
 			transform.position = new Vector2(-(transform.position.x - 0.1f),transform.position.y);
 			
 		}} 
+
+		void ShieldButtonStatus () {
+				if (NumberOfShields <= 3)
+			{
+				Shield2_Button.interactable = true;
+			}
+			else
+			{
+				Shield2_Button.interactable = false;
+			}
+		}
 }

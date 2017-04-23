@@ -7,84 +7,43 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour {
 	float timer = 0.0f;
     int normalPlayerSpeed = 4;
-	
-	//Player 1 
-	
+	public GameObject SpeedBoostPrefab;
+    List<float> BoosterXPos = new List<float>();
+	public static  GameObject GameOver;
+	public static  Text  GameOverText;
+	public static Text P2_GameOverText;
+	public static GameObject GameOn;
+
+
+	void Start() {
+			normalPlayerSpeed = 4;
+			Time.timeScale=1;
+			GameOn = GameObject.FindGameObjectWithTag("GameOn");
+			GameOver = GameObject.FindGameObjectWithTag("GameOver");
+			GameOver.SetActive(false);
+			GameOn.SetActive(true);
+			BoosterXPos.Add(-5f);
+			BoosterXPos.Add(5f);
+			InvokeRepeating("SpawnSpeedBoost",10,Random.Range(10,15));
+		}
+
+
+	void Update(){
 		
-		float P1PosX;
-
-		public static float MoveSpeed;
-
-
-	//Player 2
+			if(P1_Controls.MoveSpeed!= P2_Controls.MoveSpeed) {
+				timer+=Time.deltaTime;
+			}
+			if(timer >=10f) {
+						P1_Controls.MoveSpeed = P2_Controls.MoveSpeed = normalPlayerSpeed;
+					timer = 0;
+			}
 		
 		
+		}
 	
-
-	
-	//UI Elements
-	//Boosts
-		public GameObject SpeedBoostPrefab;
-         List<float> BoosterXPos = new List<float>();
-
-		public static  GameObject GameOver;
-
-		public static  Text  GameOverText;
-		public static Text P2_GameOverText;
-		public static GameObject GameOn;
-
-
-
-
-void Start() {
-        normalPlayerSpeed = 4;
-		Time.timeScale=1;
-		GameOn = GameObject.FindGameObjectWithTag("GameOn");
-		GameOver = GameObject.FindGameObjectWithTag("GameOver");
-		GameOver.SetActive(false);
-		GameOn.SetActive(true);
-		BoosterXPos.Add(-5f);
-		BoosterXPos.Add(5f);
-		InvokeRepeating("SpawnSpeedBoost",10,Random.Range(10,15));
-
-
-
-	}
-
-//P1 CONTROLS
-	
-//P2 CONTROLS
-	
-//
-void Update()
-{
-	
-	if(P1_Controls.MoveSpeed!= P2_Controls.MoveSpeed) {
-		timer+=Time.deltaTime;
-	}
-	if(timer >=10f) {
-				P1_Controls.MoveSpeed = P2_Controls.MoveSpeed = normalPlayerSpeed;
-            timer = 0;
-	}
-     
-       
-    }
-	
-
-
-	
-
-
-
-
-
 	public void RestartLevel () {
 		Application.LoadLevel("Main");}
 	
-
-	
-
-
 		void SpawnSpeedBoost () {
 			GameObject SpeedBoostClone;
 

@@ -5,17 +5,15 @@ using UnityEngine;
 public class SpeedBoost : MonoBehaviour {
 
 	Rigidbody2D BoosterRb;
-	// Use this for initialization
+	public float speed;
 	void Start () {
 		BoosterRb = GetComponent<Rigidbody2D>();
 	}
-	
-	// Update is called once per frame
 	void Update () {
 		if(transform.position.x == -5f) {
-		BoosterRb.velocity = new Vector2(8f,BoosterRb.velocity.y);
+		BoosterRb.velocity = new Vector2(speed,BoosterRb.velocity.y);
 		} else if (transform.position.x == 5f) {
-					BoosterRb.velocity = new Vector2(-8f,BoosterRb.velocity.y);
+					BoosterRb.velocity = new Vector2(-speed,BoosterRb.velocity.y);
 					transform.localScale = new Vector3(-1,1,1);
 		}
 

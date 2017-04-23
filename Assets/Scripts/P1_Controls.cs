@@ -44,9 +44,6 @@ public class P1_Controls : MonoBehaviour {
 		Loop ();
 		HealthStatus ();
 		Movement ();
-					Debug.Log("Shield :" + Health);
-					
-
 		   if (NumberOfShields<=3)
         {
             Shield1_Button.interactable = true;

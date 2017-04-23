@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4748333068413058}
   - component: {fileID: 212939312185010774}
   - component: {fileID: 95136850025205308}
-  - component: {fileID: 114648258002724014}
+  - component: {fileID: 114645209310258998}
   m_Layer: 0
   m_Name: P1_Death
   m_TagString: Untagged
@@ -59,7 +59,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114648258002724014
+--- !u!114 &114645209310258998
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -67,12 +67,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1423092416037432}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 551b46bee23ecdd4dbfeabc767c41460, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ef2bf27fdecb15459ab44c004221930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 0
-  P2_DeathPrefab: {fileID: 1728246110539032, guid: 51511b8371ee5874181678e695a54523,
-    type: 2}
 --- !u!212 &212939312185010774
 SpriteRenderer:
   m_ObjectHideFlags: 1

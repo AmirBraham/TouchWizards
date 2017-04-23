@@ -38,7 +38,6 @@ public class P2_Controls : MonoBehaviour {
 		Loop ();
 		HealthStatus ();
 		Movement ();
-		Debug.Log(NumberOfShields);
 		 if (NumberOfShields <= 3)
         {
             Shield2_Button.interactable = true;
@@ -86,9 +85,12 @@ public class P2_Controls : MonoBehaviour {
 			if(Health <=0) {
 						GameManager.GameOver.SetActive(true);
 						GetComponent<SpriteRenderer>().DOFade(0,2f);
-						GameManager.GameOverText.text = "You Win!";
-						GameManager.P2_GameOverText.text = "You Lose!";
-
+						if(GameManager.GameOverText!=null ){
+							GameManager.GameOverText.text = "You Win!";
+						}
+						if(GameManager.P2_GameOverText!=null) {
+							GameManager.P2_GameOverText.text = "You Lose!";
+						}
 						//Time.timeScale=0;
 						GameManager.GameOn.SetActive(false);
 

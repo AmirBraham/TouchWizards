@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 50321994820867456}
   - component: {fileID: 95299164934011774}
   - component: {fileID: 61277937073692482}
+  - component: {fileID: 114188466981537122}
   m_Layer: 0
   m_Name: wizard_1
   m_TagString: Player_1
@@ -236,9 +237,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.07568671, y: -0.11159913}
   serializedVersion: 2
-  m_Size: {x: 0.6857143, y: 1.0857143}
+  m_Size: {x: 0.53434217, y: 0.86251736}
 --- !u!95 &95299164934011774
 Animator:
   serializedVersion: 3
@@ -256,6 +257,24 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114188466981537122
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1321109163587254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fff7033a2fa11ea4e8404a5fb0f01361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P1_HealthSlider: {fileID: 0}
+  Bullet: {fileID: 1623138230751784, guid: 4ed80cf98a09e794780aeecdd48a7e6b, type: 2}
+  ShootingPoint: {fileID: 4818704836262658}
+  ShieldPrefab: {fileID: 1306834977121360, guid: 1316c914c990a3b4cac36875df8dbf3a,
+    type: 2}
+  ShieldPoint: {fileID: 4600862473637824}
+  Shield1_Button: {fileID: 0}
 --- !u!212 &212115678340474726
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -24,11 +24,8 @@ public class SpeedBoost : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D col)
 	{
-
-        
-
-        if (col.gameObject.tag=="Bullet") {
-			//P1_Controls.MoveSpeed+=2;
+        if (col.gameObject.tag=="P1_Bullet") {
+			P1_Controls.MoveSpeed+=2;
             Destroy(gameObject);
         } else if (col.gameObject.tag=="P2_Bullet") {
 			P2_Controls.MoveSpeed+=2;

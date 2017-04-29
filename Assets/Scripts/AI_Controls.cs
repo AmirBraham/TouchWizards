@@ -24,6 +24,9 @@ public class AI_Controls : MonoBehaviour {
 
 	public float DetectionRaduis;
 
+			float random = Random.Range(0,110);
+			float randomDuration = Random.Range(4,30);
+
 
 	void Start () {
 		rb2d = GetComponent<Rigidbody2D>();
@@ -31,6 +34,7 @@ public class AI_Controls : MonoBehaviour {
 			BoosterXPos.Add(5f);
 			NumberOfShields = 2;
 			Health =1;
+
 	}
 	
 	void Update () {
@@ -42,6 +46,7 @@ public class AI_Controls : MonoBehaviour {
 		if(DetectedEnemyBullet) {
 		Shield();
 		}
+
 	}
 		 void OnDrawGizmosSelected()
      {
@@ -97,18 +102,34 @@ public class AI_Controls : MonoBehaviour {
 			}}
 
 			public void Movement () {
-
-		if(isHoldingRB) {
+				Debug.Log(random);
+		if(random > 30 && random < 60) {
 				rb2d.velocity = new Vector2(MoveSpeed,rb2d.velocity.y);
 		         transform.localScale = new Vector3(1.5f,1.5f,1.5f);
 				 GetComponent<Animator>().SetBool("Player2_isRunning",true);
-		} else if (isHoldingLB) {
+				 randomDuration++;
+				 if(randomDuration >=30) {
+					 random = Random.Range(0,110);
+					 randomDuration = Random.Range(4,30);
+				 }
+		} else if (random > 60 && random < 100) {
 					rb2d.velocity = new Vector2(-MoveSpeed,rb2d.velocity.y);
 					transform.localScale = new Vector3(-1.5f,1.5f,1.5f);
 					GetComponent<Animator>().SetBool("Player2_isRunning",true);
+					 randomDuration++;
+				 if(randomDuration >=30) {
+					 random = Random.Range(0,110);
+					 randomDuration = Random.Range(4,30);
+				 }
 		} else {
 					rb2d.velocity = new Vector2(0,0);
 					GetComponent<Animator>().SetBool("Player2_isRunning",false);
+										 randomDuration++;
+				 if(randomDuration >=30) {
+					 random = Random.Range(0,110);
+					 randomDuration = Random.Range(4,30);
+				 }
+
 		}}
 			public void Loop () {
 			if(transform.position.x <= -3) {

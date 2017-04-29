@@ -19,21 +19,28 @@ public class AI_Controls : MonoBehaviour {
 	List<float> BoosterXPos = new List<float>();
 
 	public bool DetectedEnemyBullet;
+	public bool DetectedEnemy;
+
+	public static bool ReadyToShoot;
 
 	public LayerMask P1_Bullet;
+	public LayerMask Enemy;
 
-	public float DetectionRaduis;
+	public float BulletDetectionRaduis;
 
-			float random = Random.Range(0,110);
-			float randomDuration = Random.Range(4,30);
+			float random ;
+			float randomDuration;
 
 
 	void Start () {
 		rb2d = GetComponent<Rigidbody2D>();
-			BoosterXPos.Add(-5f);
-			BoosterXPos.Add(5f);
-			NumberOfShields = 2;
-			Health =1;
+		BoosterXPos.Add(-5f);
+		BoosterXPos.Add(5f);
+		NumberOfShields = 2;
+		Health =1;
+		random	= Random.Range(0,110);
+		randomDuration = Random.Range(4,30);
+		ReadyToShoot = true;
 
 	}
 	
@@ -41,18 +48,28 @@ public class AI_Controls : MonoBehaviour {
 		Loop ();
 		HealthStatus ();
 		Movement ();
-		DetectedEnemyBullet = Physics2D.OverlapCircle(transform.position,DetectionRaduis,P1_Bullet);
-		Debug.Log(DetectedEnemyBullet);
+		DetectedEnemyBullet = Physics2D.OverlapCircle(transform.position,BulletDetectionRaduis,P1_Bullet);
+		DetectedEnemy = Physics2D.Raycast(transform.position,Vector2.down,20f,Enemy);
 		if(DetectedEnemyBullet) {
 		Shield();
 		}
+
+
+		if(DetectedEnemy && ReadyToShoot) {
+			Shoot();
+			DetectedEnemy = false;
+			ReadyToShoot = false;
+			Debug.Log("Shoot");
+		}
+
 
 	}
 		 void OnDrawGizmosSelected()
      {
 
 		  Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, DetectionRaduis);
+        Gizmos.DrawWireSphere(transform.position, BulletDetectionRaduis);
+		
 	 }
 
 	public void OnPointUpRightButton(){
@@ -86,6 +103,8 @@ public class AI_Controls : MonoBehaviour {
 	}
 
 	public void HealthStatus () {
+						Debug.Log("AI Health : " + Health);
+
 			if(Health <=0) {
                         rb2d.velocity = new Vector2(0, rb2d.velocity.y);
 						GameManager.GameOver.SetActive(true);
@@ -102,7 +121,6 @@ public class AI_Controls : MonoBehaviour {
 			}}
 
 			public void Movement () {
-				Debug.Log(random);
 		if(random > 30 && random < 60) {
 				rb2d.velocity = new Vector2(MoveSpeed,rb2d.velocity.y);
 		         transform.localScale = new Vector3(1.5f,1.5f,1.5f);

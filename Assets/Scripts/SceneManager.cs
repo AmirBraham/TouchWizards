@@ -11,14 +11,12 @@ public class SceneManager : MonoBehaviour {
 
 	public GameObject ReturnUI;
 
-	public void GameScene () {
-		Application.LoadLevel("Main");
+	public void SoloScene () {
+		Application.LoadLevel("SinglePlayer");
 	}
 
-	public void Credits () {
-		PLAY.transform.DOMoveX(10,5f);
-		CREDITS.transform.DOMoveX(-10,5f);
-		CreditsText.transform.DOLocalMoveX(0,2f);
+	public void MultiScene () {
+		Application.LoadLevel("LocalMultiplayer");
 	}
 
 	public void Return () {

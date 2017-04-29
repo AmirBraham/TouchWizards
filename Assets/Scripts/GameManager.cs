@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour {
 			Time.timeScale=1;
 			GameOn = GameObject.FindGameObjectWithTag("GameOn");
 			GameOver = GameObject.FindGameObjectWithTag("GameOver");
+			
 			GameOver.SetActive(false);
 			GameOn.SetActive(true);
 			BoosterXPos.Add(-5f);
@@ -42,7 +43,7 @@ public class GameManager : MonoBehaviour {
 		}
 	
 	public void RestartLevel () {
-		Application.LoadLevel("Main");}
+		Application.LoadLevel(Application.loadedLevelName);}
 	
 		void SpawnSpeedBoost () {
 			GameObject SpeedBoostClone;

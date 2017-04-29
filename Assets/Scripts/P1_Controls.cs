@@ -73,6 +73,7 @@ public class P1_Controls : MonoBehaviour {
 
 	public void HealthStatus () {
  		P1_HealthSlider.value = Health;
+		 Debug.Log(Health);
 		if(Health <=0) {
             rb2d.velocity = new Vector2(0, rb2d.velocity.y);
 			GameManager.GameOver.SetActive(true);

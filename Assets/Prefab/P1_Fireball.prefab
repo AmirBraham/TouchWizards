@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 50690790417672448}
   - component: {fileID: 61381042197976398}
   - component: {fileID: 114156155042961840}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: P1_Fireball
   m_TagString: P1_Bullet
   m_Icon: {fileID: 0}

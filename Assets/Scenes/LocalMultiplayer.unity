@@ -889,8 +889,7 @@ GameObject:
   - component: {fileID: 1835293233}
   - component: {fileID: 1835293232}
   m_Layer: 0
-  m_Name: Wizard (8 Bit Remix Version) [Tribute to Martin Ga - 8 Bit Universe Cover
-    (1)
+  m_Name: BGMusic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

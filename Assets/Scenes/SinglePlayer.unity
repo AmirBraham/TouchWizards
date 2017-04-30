@@ -1477,6 +1477,14 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 1.97
       objectReference: {fileID: 0}
+    - target: {fileID: 1286341837471512, guid: 6ba42372845cc1c42a2da0f5dde4e4f6, type: 2}
+      propertyPath: m_Name
+      value: AI
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030545640621322, guid: 6ba42372845cc1c42a2da0f5dde4e4f6, type: 2}
+      propertyPath: m_Name
+      value: AI_Wizard
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114307730553954928, guid: 6ba42372845cc1c42a2da0f5dde4e4f6, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 6ba42372845cc1c42a2da0f5dde4e4f6, type: 2}

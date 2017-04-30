@@ -13,8 +13,6 @@ public class AI_Controls : MonoBehaviour {
 	public GameObject Bullet;
 	public GameObject ShieldPrefab;
 	public Transform ShieldPoint;
-	bool isHoldingRB;
-	bool isHoldingLB;
 	public static int NumberOfShields;
 	List<float> BoosterXPos = new List<float>();
 
@@ -28,8 +26,8 @@ public class AI_Controls : MonoBehaviour {
 
 	public float BulletDetectionRaduis;
 
-			float random ;
-			float randomDuration;
+	float random ;
+	float randomDuration;
 
 
 	void Start () {
@@ -45,61 +43,34 @@ public class AI_Controls : MonoBehaviour {
 	}
 	
 	void Update () {
+		DetectedEnemyBullet = Physics2D.OverlapCircle(transform.position,BulletDetectionRaduis,P1_Bullet);
+		DetectedEnemy = Physics2D.Raycast(transform.position,Vector2.down,20f,Enemy);
 		Loop ();
 		HealthStatus ();
 		Movement ();
-		DetectedEnemyBullet = Physics2D.OverlapCircle(transform.position,BulletDetectionRaduis,P1_Bullet);
-		DetectedEnemy = Physics2D.Raycast(transform.position,Vector2.down,20f,Enemy);
-		if(DetectedEnemyBullet) {
-		Shield();
-		}
-
-
-		if(DetectedEnemy && ReadyToShoot) {
-			Shoot();
-			DetectedEnemy = false;
-			ReadyToShoot = false;
-			Debug.Log("Shoot");
-		}
+		Shield(); 
+		Shoot();
 
 
 	}
-		 void OnDrawGizmosSelected()
-     {
-
-		  Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, BulletDetectionRaduis);
-		
-	 }
-
-	public void OnPointUpRightButton(){
-			isHoldingRB = false;	 
-		}
-		public void onPointerDownRightButton () {
-			isHoldingRB=true;
-		}
-
-	//Holding Left button
-	public void OnPointUpLeftButton(){
-			isHoldingLB = false;	 
-		}
-		public void onPointerDownLeftButton () {
-			isHoldingLB=true;
-		}
-
+	
 	public void Shield () {
-		if(NumberOfShields <=3) {
-		GameObject ShieldClone;
-		ShieldClone = Instantiate(ShieldPrefab,ShieldPoint.position,Quaternion.identity) as GameObject;
-		NumberOfShields++;
-        }
-        else
-        {
-        }
+		if(DetectedEnemyBullet) {
+			if(NumberOfShields <=3) {
+				GameObject ShieldClone;
+				ShieldClone = Instantiate(ShieldPrefab,ShieldPoint.position,Quaternion.identity) as GameObject;
+				NumberOfShields++;
+			}
+			
+		}
 	}
 	public void Shoot () {
-		GameObject BulletClone;
-		BulletClone = Instantiate(Bullet,ShootingPoint.transform.position,Quaternion.Euler(0,0,-90f)) as GameObject;
+		if(DetectedEnemy && ReadyToShoot) {
+			GameObject BulletClone;
+			BulletClone = Instantiate(Bullet,ShootingPoint.transform.position,Quaternion.Euler(0,0,-90f)) as GameObject;
+			DetectedEnemy = false;
+			ReadyToShoot = false;
+		}
 	}
 
 	public void HealthStatus () {
@@ -108,53 +79,50 @@ public class AI_Controls : MonoBehaviour {
                         rb2d.velocity = new Vector2(0, rb2d.velocity.y);
 						GameManager.GameOver.SetActive(true);
 						GetComponent<SpriteRenderer>().DOFade(0,2f);
-						/*if(GameManager.GameOverText!=null ){
-							GameManager.PGameOverText.text = "You Win!";
-						}
-						if(GameManager.P2_GameOverText!=null) {
-							GameManager.P2_GameOverText.text = "You Lose!";
-						}
-						*/
-						//Time.timeScale=0;
 						GameManager.GameOn.SetActive(false);
 
 			}}
 
-			public void Movement () {
-		if(random > 30 && random < 60) {
-				rb2d.velocity = new Vector2(MoveSpeed,rb2d.velocity.y);
-		         transform.localScale = new Vector3(1.5f,1.5f,1.5f);
-				 GetComponent<Animator>().SetBool("Player2_isRunning",true);
-				 randomDuration++;
-				 if(randomDuration >=30) {
-					 random = Random.Range(0,110);
-					 randomDuration = Random.Range(4,30);
-				 }
-		} else if (random > 60 && random < 100) {
-					rb2d.velocity = new Vector2(-MoveSpeed,rb2d.velocity.y);
-					transform.localScale = new Vector3(-1.5f,1.5f,1.5f);
+	public void Movement () {
+			if(random > 30 && random < 60) {
+					rb2d.velocity = new Vector2(MoveSpeed,rb2d.velocity.y);
+					transform.localScale = new Vector3(1.5f,1.5f,1.5f);
 					GetComponent<Animator>().SetBool("Player2_isRunning",true);
-					 randomDuration++;
-				 if(randomDuration >=30) {
-					 random = Random.Range(0,110);
-					 randomDuration = Random.Range(4,30);
-				 }
-		} else {
-					rb2d.velocity = new Vector2(0,0);
-					GetComponent<Animator>().SetBool("Player2_isRunning",false);
-										 randomDuration++;
-				 if(randomDuration >=30) {
-					 random = Random.Range(0,110);
-					 randomDuration = Random.Range(4,30);
-				 }
-
-		}}
-			public void Loop () {
+					randomDuration++;
+					if(randomDuration >=30) {
+						random = Random.Range(0,110);
+						randomDuration = Random.Range(4,30);
+					}
+			} else if (random > 60 && random < 100) {
+						rb2d.velocity = new Vector2(-MoveSpeed,rb2d.velocity.y);
+						transform.localScale = new Vector3(-1.5f,1.5f,1.5f);
+						GetComponent<Animator>().SetBool("Player2_isRunning",true);
+						randomDuration++;
+							if(randomDuration >=30) {
+								random = Random.Range(0,110);
+								randomDuration = Random.Range(4,30);
+							}
+			} else {
+						rb2d.velocity = new Vector2(0,0);
+						GetComponent<Animator>().SetBool("Player2_isRunning",false);
+											randomDuration++;
+						if(randomDuration >=30) {
+							random = Random.Range(0,110);
+							randomDuration = Random.Range(4,30);
+						}
+			}
+		}
+	public void Loop () {
 			if(transform.position.x <= -3) {
+				transform.position = new Vector2(-(transform.position.x+0.1f),transform.position.y);
+			} else if (transform.position.x >= 3 ) {
+				transform.position = new Vector2(-(transform.position.x - 0.1f),transform.position.y);
+			}
+		} 
 
-			transform.position = new Vector2(-(transform.position.x+0.1f),transform.position.y);
-		} else if (transform.position.x >= 3 ) {
-			transform.position = new Vector2(-(transform.position.x - 0.1f),transform.position.y);
-			
-		}} 
+	void OnDrawGizmosSelected()
+     {
+		Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, BulletDetectionRaduis);
+	 }
 }

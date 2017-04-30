@@ -103,18 +103,18 @@ public class AI_Controls : MonoBehaviour {
 	}
 
 	public void HealthStatus () {
-						Debug.Log("AI Health : " + Health);
 
 			if(Health <=0) {
                         rb2d.velocity = new Vector2(0, rb2d.velocity.y);
 						GameManager.GameOver.SetActive(true);
 						GetComponent<SpriteRenderer>().DOFade(0,2f);
-						if(GameManager.GameOverText!=null ){
-							GameManager.GameOverText.text = "You Win!";
+						/*if(GameManager.GameOverText!=null ){
+							GameManager.PGameOverText.text = "You Win!";
 						}
 						if(GameManager.P2_GameOverText!=null) {
 							GameManager.P2_GameOverText.text = "You Lose!";
 						}
+						*/
 						//Time.timeScale=0;
 						GameManager.GameOn.SetActive(false);
 

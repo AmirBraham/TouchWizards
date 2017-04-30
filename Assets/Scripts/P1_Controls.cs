@@ -73,13 +73,13 @@ public class P1_Controls : MonoBehaviour {
 
 	public void HealthStatus () {
  		P1_HealthSlider.value = Health;
-		 Debug.Log(Health);
 		if(Health <=0) {
             rb2d.velocity = new Vector2(0, rb2d.velocity.y);
 			GameManager.GameOver.SetActive(true);
 			GetComponent<SpriteRenderer>().DOFade(0,2f);
-			if( GameManager.GameOverText!= null)
-				GameManager.GameOverText.text = "You Lose!";
+			if( GameManager.P1_GameOverText!= null) {
+			GameManager.P1_GameOverText.text = "You Lose!";
+			}
 			GameManager.GameOn.SetActive(false);
 		}}
 

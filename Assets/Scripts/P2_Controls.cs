@@ -74,8 +74,8 @@ public class P2_Controls : MonoBehaviour {
                         rb2d.velocity = new Vector2(0, rb2d.velocity.y);
 						GameManager.GameOver.SetActive(true);
 						GetComponent<SpriteRenderer>().DOFade(0,2f);
-						if(GameManager.GameOverText!=null ){
-							GameManager.GameOverText.text = "You Win!";
+						if(GameManager.P1_GameOverText!=null ){
+							GameManager.P1_GameOverText.text = "You Win!";
 						}
 						if(GameManager.P2_GameOverText!=null) {
 							GameManager.P2_GameOverText.text = "You Lose!";

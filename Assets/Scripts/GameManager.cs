@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject SpeedBoostPrefab;
     List<float> BoosterXPos = new List<float>();
 	public static  GameObject GameOver;
-	public static  Text  GameOverText;
+	public static  Text  P1_GameOverText;
 	public static Text P2_GameOverText;
 	public static GameObject GameOn;
 
@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour {
 			Time.timeScale=1;
 			GameOn = GameObject.FindGameObjectWithTag("GameOn");
 			GameOver = GameObject.FindGameObjectWithTag("GameOver");
-			
+			P1_GameOverText = GameObject.FindGameObjectWithTag("P1_GameOverText").GetComponent<Text>();
 			GameOver.SetActive(false);
 			GameOn.SetActive(true);
 			BoosterXPos.Add(-5f);

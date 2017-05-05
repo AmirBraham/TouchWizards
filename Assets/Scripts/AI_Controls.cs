@@ -44,7 +44,7 @@ public class AI_Controls : MonoBehaviour {
 	
 	void Update () {
 		DetectedEnemyBullet = Physics2D.OverlapCircle(transform.position,BulletDetectionRaduis,P1_Bullet);
-		DetectedEnemy = Physics2D.Raycast(transform.position,Vector2.down,20f,Enemy);
+		DetectedEnemy = Physics2D.OverlapArea(transform.position, new Vector2(transform.position.x ,transform.position.y-60f),Enemy);
 		Loop ();
 		HealthStatus ();
 		Movement ();
@@ -78,9 +78,9 @@ public class AI_Controls : MonoBehaviour {
 			if(Health <=0) {
                         rb2d.velocity = new Vector2(0, rb2d.velocity.y);
 						GameManager.GameOver.SetActive(true);
-						GetComponent<SpriteRenderer>().DOFade(0,2f);
+						GetComponent<SpriteRenderer>().DOFade(0,2f);	
 						GameManager.GameOn.SetActive(false);
-
+						Destroy(gameObject);
 			}}
 
 	public void Movement () {
@@ -124,5 +124,6 @@ public class AI_Controls : MonoBehaviour {
      {
 		Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, BulletDetectionRaduis);
+		
 	 }
 }

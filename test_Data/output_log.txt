@@ -25,19 +25,16 @@ Platform assembly: C:\Users\amirb\Desktop\Code\GameDev\Touch Wizards\test_Data\M
 Loading C:\Users\amirb\Desktop\Code\GameDev\Touch Wizards\test_Data\Managed\DOTween46.dll into Unity Child Domain
 Platform assembly: C:\Users\amirb\Desktop\Code\GameDev\Touch Wizards\test_Data\Managed\DOTween50.dll (this message is harmless)
 Loading C:\Users\amirb\Desktop\Code\GameDev\Touch Wizards\test_Data\Managed\DOTween50.dll into Unity Child Domain
-- Completed reload, in  0.354 seconds
+- Completed reload, in  0.250 seconds
 Platform assembly: C:\Users\amirb\Desktop\Code\GameDev\Touch Wizards\test_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\amirb\Desktop\Code\GameDev\Touch Wizards\test_Data\Managed\System.dll (this message is harmless)
 desktop: 1600x900 60Hz; virtual: 1600x900 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 1.468495 ms
-Log: connection {1} has been disconnected by timeout; address {::ffff:127.0.0.1:7777}
-ClientDisconnected due to error: Timeout
+UnloadTime: 1.198229 ms
+Log: connection {1} has been disconnected by timeout; address {::ffff:127.0.0.1:55632}
+ServerDisconnected due to error: Timeout
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Setting up 2 worker threads for Enlighten.
-  Thread -> id: 1ff0 -> priority: 1 
-  Thread -> id: 46ec -> priority: 1 

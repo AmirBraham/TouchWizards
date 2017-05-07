@@ -9,6 +9,8 @@ public class AI_Controls : MonoBehaviour {
 	public static int MoveSpeed =4;
 	public static float Health = 1;
 	Rigidbody2D rb2d;
+		public   Slider HealthSlider;
+
 	public GameObject ShootingPoint;
 	public GameObject Bullet;
 	public GameObject ShieldPrefab;
@@ -74,7 +76,7 @@ public class AI_Controls : MonoBehaviour {
 	}
 
 	public void HealthStatus () {
-
+		HealthSlider.value = Health;
 			if(Health <=0) {
                         rb2d.velocity = new Vector2(0, rb2d.velocity.y);
 						GameManager.GameOver.SetActive(true);

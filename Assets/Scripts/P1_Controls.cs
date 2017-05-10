@@ -30,6 +30,7 @@ public class P1_Controls : MonoBehaviour {
 		HealthStatus ();
 		Movement ();
 		ShieldButtonStatus ();
+		TimeUp ();
 	}
 	public void OnPointUpRightButton(){
 			isHoldingRB = false;	 
@@ -105,5 +106,11 @@ public class P1_Controls : MonoBehaviour {
 					rb2d.velocity = new Vector2(0,0);
 					GetComponent<Animator>().SetBool("Player1_isRunning",false);
 		}}
+
+	public void TimeUp () {
+		if(GameManager.TimeUp) {
+			GameManager.GameOn.SetActive(false);
+		}
+	}
 }
 

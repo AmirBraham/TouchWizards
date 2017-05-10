@@ -13,6 +13,10 @@ public class GameManager : MonoBehaviour {
 	public static  Text  P1_GameOverText;
 	public static Text P2_GameOverText;
 	public static GameObject GameOn;
+	public static  float timeLeft = 10.0f;
+
+	public static bool TimeUp;
+     
 
 
 	void Start() {
@@ -26,11 +30,19 @@ public class GameManager : MonoBehaviour {
 			BoosterXPos.Add(-5f);
 			BoosterXPos.Add(5f);
 			InvokeRepeating("SpawnSpeedBoost",10,Random.Range(10,15));
+			TimeUp = false;
 		}
 
 
 	void Update(){
-		
+		Debug.Log(timeLeft);
+		if(timeLeft > 0) {
+			timeLeft -= Time.deltaTime;
+
+		}	else {
+				TimeUp = true;
+				GameOn.SetActive(false);
+		}
 			if(P1_Controls.MoveSpeed!= P2_Controls.MoveSpeed) {
 				timer+=Time.deltaTime;
 			}

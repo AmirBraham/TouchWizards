@@ -15,6 +15,9 @@ TagManager:
   - P1_HealthSlider
   - GameOver
   - P1_GameOverText
+  - P2_GameOverText
+  - P2_HealthSlider
+  - music
   layers:
   - Default
   - TransparentFX

@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 61179032717934382}
   - component: {fileID: 114921040041952754}
   - component: {fileID: 114127791268161374}
+  - component: {fileID: 114631097590530980}
   m_Layer: 0
   m_Name: wizard_1
   m_TagString: Player_1
@@ -128,6 +129,26 @@ MonoBehaviour:
     i15: 130
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
+--- !u!114 &114631097590530980
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1088292306789924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 2
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 3
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!114 &114921040041952754
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -139,7 +160,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9082d049e87d9346a7597139c7d1fa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xPos: 0
 --- !u!212 &212824049521062854
 SpriteRenderer:
   m_ObjectHideFlags: 1

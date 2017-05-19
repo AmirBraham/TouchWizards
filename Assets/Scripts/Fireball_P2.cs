@@ -38,6 +38,7 @@ public class Fireball_P2 : MonoBehaviour
 
             if (col.gameObject.tag == "Player_1") {
                 P1_Controls.Health -= 0.25f;
+                SoloP1_Controls.Health -= 0.25f;
                 DeathClone = Instantiate(DeathPrefab, GameObject.FindGameObjectWithTag("Player_1").transform.position, Quaternion.identity);
             }
         }

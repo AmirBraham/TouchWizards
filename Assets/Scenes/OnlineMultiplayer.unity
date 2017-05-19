@@ -172,7 +172,7 @@ Transform:
   m_LocalScale: {x: 0.84921813, y: 0.8492176, z: 0.8492176}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &896209599
 GameObject:
@@ -236,7 +236,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &925468636
 GameObject:
@@ -247,6 +247,7 @@ GameObject:
   m_Component:
   - component: {fileID: 925468639}
   - component: {fileID: 925468638}
+  - component: {fileID: 925468640}
   - component: {fileID: 925468637}
   m_Layer: 0
   m_Name: NetworkManager
@@ -326,7 +327,7 @@ MonoBehaviour:
     m_ReactorMaximumReceivedMessages: 1024
     m_ReactorMaximumSentMessages: 1024
     m_MaxPacketSize: 2000
-  m_Channels: 
+  m_Channels: 0500000000000000
   m_UseWebSockets: 0
   m_UseSimulator: 0
   m_SimulatedLatency: 1
@@ -350,50 +351,23 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1460993533
-Prefab:
+--- !u!114 &925468640
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4495824396593494, guid: fa6a65e11b313924e8a9af4b00c0a282, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0.35800955
-      objectReference: {fileID: 0}
-    - target: {fileID: 4495824396593494, guid: fa6a65e11b313924e8a9af4b00c0a282, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -2.7010698
-      objectReference: {fileID: 0}
-    - target: {fileID: 4495824396593494, guid: fa6a65e11b313924e8a9af4b00c0a282, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4495824396593494, guid: fa6a65e11b313924e8a9af4b00c0a282, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4495824396593494, guid: fa6a65e11b313924e8a9af4b00c0a282, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4495824396593494, guid: fa6a65e11b313924e8a9af4b00c0a282, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4495824396593494, guid: fa6a65e11b313924e8a9af4b00c0a282, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4495824396593494, guid: fa6a65e11b313924e8a9af4b00c0a282, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: fa6a65e11b313924e8a9af4b00c0a282, type: 2}
-  m_IsPrefabParent: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 925468636}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b09a687fdad1aa4c84361a582a82075, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player1Prefab: {fileID: 1088292306789924, guid: fa6a65e11b313924e8a9af4b00c0a282,
+    type: 2}
+  player2Prefab: {fileID: 1043951252792656, guid: b9926b770b92a5548a9d59ddec6bb667,
+    type: 2}
 --- !u!1 &2053644692
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,7 +449,7 @@ Transform:
   m_LocalScale: {x: 0.8492181, y: 0.8492181, z: 0.8492181}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -180.001, y: 0, z: 0}
 --- !u!1 &2057482807
 GameObject:

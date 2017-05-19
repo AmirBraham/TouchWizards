@@ -34,6 +34,7 @@ public class P2_Controls : MonoBehaviour {
 		HealthStatus ();
 		Movement ();
 		ShieldButtonStatus ();
+		TimeUp ();
 	}
 
 	public void OnPointUpRightButton(){
@@ -118,4 +119,9 @@ public class P2_Controls : MonoBehaviour {
 				Shield2_Button.interactable = false;
 			}
 		}
+		public void TimeUp () {
+		if(GameManager.timeLeft <= 0) {
+			transform.position = new Vector3(0,6.86f,0);
+		}
+	}
 }

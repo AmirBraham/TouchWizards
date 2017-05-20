@@ -34,8 +34,8 @@ public class GameManager : MonoBehaviour {
 		Time.timeScale=1;
 		GameOn = GameObject.FindGameObjectWithTag("GameOn");
 		GameOver = GameObject.FindGameObjectWithTag("GameOver");
-//		P1_GameOverText = GameObject.FindGameObjectWithTag("P1_GameOverText").GetComponent<Text>();
-//        P2_GameOverText = GameObject.FindGameObjectWithTag("P2_GameOverText").GetComponent<Text>();
+   		P1_GameOverText = GameObject.FindGameObjectWithTag("P1_GameOverText").GetComponent<Text>();
+        P2_GameOverText = GameObject.FindGameObjectWithTag("P2_GameOverText").GetComponent<Text>();
         GameOver.SetActive(false);
 		GameOn.SetActive(true);
 		BoosterXPos.Add(-5f);
@@ -65,12 +65,9 @@ public class GameManager : MonoBehaviour {
                 if (Time.time-tapDuelCheck<10) { 
                     if (Time.time-lastUpdate > 0.2f)
                     {
-                        if (tappos != null)
-                        {
-                            tappos.transform.DOMove (new Vector3(tappos.transform.position.x,tappos.transform.position.y+(difference+Random.Range(-0.5f,0.5f))*0.5f,tappos.transform.position.z), 0.2f).SetEase(Ease.OutQuad);
-                            lastUpdate = Time.time;
-
-                        }
+                        tappos.transform.DOMove (new Vector3(tappos.transform.position.x,tappos.transform.position.y+(difference+Random.Range(-0.5f,0.5f))*0.2f,tappos.transform.position.z), 0.2f).SetEase(Ease.OutQuad);
+                        lastUpdate = Time.time;
+                        p1taps = p2taps = 0;
                     }
                 }else
                 {

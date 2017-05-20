@@ -16,6 +16,9 @@ public class P2_Controls : MonoBehaviour {
 	public Slider HealthSlider;
 	bool isHoldingRB;
 	bool isHoldingLB;
+
+	Vector3 StartPos;
+	bool ResetPos;
 	public static int NumberOfShields;
 	public Button  Shield2_Button;
 	List<float> BoosterXPos = new List<float>();
@@ -27,6 +30,8 @@ public class P2_Controls : MonoBehaviour {
 			BoosterXPos.Add(5f);
 			NumberOfShields = 2;
 			Health =1;
+			StartPos = transform.position;
+			ResetPos = false;
 	}
 	
 	void Update () {
@@ -34,7 +39,7 @@ public class P2_Controls : MonoBehaviour {
 		HealthStatus ();
 		Movement ();
 		ShieldButtonStatus ();
-		TimeUp ();
+		TimeUp();
 	}
 
 	public void OnPointUpRightButton(){
@@ -120,8 +125,11 @@ public class P2_Controls : MonoBehaviour {
 			}
 		}
 		public void TimeUp () {
-		if(GameManager.timeLeft <= 0) {
-			transform.position = new Vector3(0,6.86f,0);
+		if(GameManager.timeLeft <= 0 && (!ResetPos)) {
+			transform.position = StartPos;
+			ResetPos = true;
 		}
 	}
-}
+		
+	}
+

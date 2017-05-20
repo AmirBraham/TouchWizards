@@ -17,15 +17,20 @@ public class P1_Controls : MonoBehaviour {
 	public Button Shield1_Button;
 	List<float> BoosterXPos = new List<float>();
 	Rigidbody2D rb2d;
+	Vector3 StartPos;
+	bool ResetPos;
 	void Start () {
 			rb2d = GetComponent<Rigidbody2D>();	
 			BoosterXPos.Add(-5f);
 			BoosterXPos.Add(5f);
 			NumberOfShields = 2;
 			Health =1;
+			StartPos = transform.position;
+			ResetPos = false;
 	}
 	
 	void Update () {
+		Debug.Log("Reset :" + ResetPos);
 		Loop ();
 		HealthStatus ();
 		Movement ();
@@ -107,8 +112,9 @@ public class P1_Controls : MonoBehaviour {
 		}}
 
 	public void TimeUp () {
-		if(GameManager.TimeUp) {
-			GameManager.GameOn.SetActive(false);
+		if(GameManager.timeLeft <= 0 && (!ResetPos)) {
+			transform.position = StartPos;
+			ResetPos = true;
 		}
 	}
 }

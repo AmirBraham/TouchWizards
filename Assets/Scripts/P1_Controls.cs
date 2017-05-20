@@ -30,7 +30,6 @@ public class P1_Controls : MonoBehaviour {
 	}
 	
 	void Update () {
-		Debug.Log("Reset :" + ResetPos);
 		Loop ();
 		HealthStatus ();
 		Movement ();

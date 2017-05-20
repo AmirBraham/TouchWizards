@@ -63,11 +63,7 @@ public class GameManager : MonoBehaviour {
 		}else {
                 DuelTime ();
                 tappos.SetActive(true);
-                if(timerCircle.fillAmount <= 0) {
-                    timerCircle.fillAmount = 1;
-                }
-                Debug.Log(timerCircle.fillAmount);
-                timerCircle.fillAmount -= (( (int) DuelDuration - (Time.time -tapDuelCheck))/DuelDuration);
+                timerCircle.fillAmount = (( (int) DuelDuration - (Time.time -tapDuelCheck))/DuelDuration);
                 countTaps();
                 TimeUp = true;
                 GameOn.SetActive(false);
@@ -164,7 +160,6 @@ public class GameManager : MonoBehaviour {
     void DuelTime () {
         for(int i = 0;i< GameObjectTags.Count;i++ ) {
             GameObject[] Objects =  GameObject.FindGameObjectsWithTag(GameObjectTags[i]);
-            Debug.Log(GameObjectTags[i]);
             foreach (GameObject item in Objects) {
                 Destroy(item);
             }

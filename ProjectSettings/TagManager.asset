@@ -18,6 +18,7 @@ TagManager:
   - P2_GameOverText
   - P2_HealthSlider
   - music
+  - SpeedBooster
   layers:
   - Default
   - TransparentFX

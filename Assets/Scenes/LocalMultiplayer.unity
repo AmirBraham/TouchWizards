@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 420898180}
   - component: {fileID: 420898179}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Clock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.459}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -654,6 +654,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1826708716129090, guid: b5e0d8c949e3cc448b671025708ca12a, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b5e0d8c949e3cc448b671025708ca12a, type: 2}
   m_IsPrefabParent: 0
@@ -761,7 +765,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 468, y: 0}
-  m_SizeDelta: {x: 110, y: 100}
+  m_SizeDelta: {x: 160, y: 168}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1062484378
 MonoBehaviour:
@@ -834,7 +838,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 4a538cc000c472241ae309194f6ec6e0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8bbc302a5cc709b4690fd38b738eb188, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1429,6 +1433,11 @@ Prefab:
     - target: {fileID: 1773400498318072, guid: 6e7ee89ef8508b044b3df645f5ab5526, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114855265623175216, guid: 6e7ee89ef8508b044b3df645f5ab5526,
+        type: 2}
+      propertyPath: DuelDuration
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6e7ee89ef8508b044b3df645f5ab5526, type: 2}

@@ -22,10 +22,14 @@ public class GameManager : MonoBehaviour {
 	public static  Text  P1_GameOverText;
 	public static Text P2_GameOverText;
 	public static GameObject GameOn;
-    int timeAmount = 10;
+    public int timeAmount = 10;
 	public static  float timeLeft ;
 	public static bool TimeUp;
     List<float> BoosterXPos = new List<float>();
+
+    public float DuelDuration;
+
+     List<string> GameObjectTags = new List<string>();
 
 	void Start() {
         Time.timeScale = 1;
@@ -34,7 +38,7 @@ public class GameManager : MonoBehaviour {
 		Time.timeScale=1;
 		GameOn = GameObject.FindGameObjectWithTag("GameOn");
 		GameOver = GameObject.FindGameObjectWithTag("GameOver");
-   		P1_GameOverText = GameObject.FindGameObjectWithTag("P1_GameOverText").GetComponent<Text>();
+        P1_GameOverText = GameObject.FindGameObjectWithTag("P1_GameOverText").GetComponent<Text>();
         P2_GameOverText = GameObject.FindGameObjectWithTag("P2_GameOverText").GetComponent<Text>();
         GameOver.SetActive(false);
 		GameOn.SetActive(true);
@@ -46,6 +50,7 @@ public class GameManager : MonoBehaviour {
         lastUpdate = Time.time;
         MusicSlider.value = PlayerPrefs.GetFloat("MusicVol");
         SFXSlider.value = PlayerPrefs.GetFloat("SFXVol");
+        GameObjectTags.AddRange (new string[]{"P1_Shield","P2_Shield","P1_Bullet","P2_Bullet","SpeedBooster"});
     }
 
 
@@ -56,21 +61,29 @@ public class GameManager : MonoBehaviour {
             tapDuelCheck = Time.time;
 			timeLeft -= Time.deltaTime;
 		}else {
+                DuelTime ();
                 tappos.SetActive(true);
+                if(timerCircle.fillAmount <= 0) {
+                    timerCircle.fillAmount = 1;
+                }
+                Debug.Log(timerCircle.fillAmount);
+                timerCircle.fillAmount -= (( (int) DuelDuration - (Time.time -tapDuelCheck))/DuelDuration);
                 countTaps();
                 TimeUp = true;
                 GameOn.SetActive(false);
                 float difference = p1taps - p2taps;
                 
-                if (Time.time-tapDuelCheck<10) { 
+                if (Time.time-tapDuelCheck<DuelDuration) { 
                     if (Time.time-lastUpdate > 0.2f)
                     {
-                        tappos.transform.DOMove (new Vector3(tappos.transform.position.x,tappos.transform.position.y+(difference+Random.Range(-0.5f,0.5f))*0.2f,tappos.transform.position.z), 0.2f).SetEase(Ease.OutQuad);
-                        lastUpdate = Time.time;
-                        p1taps = p2taps = 0;
+                        if (tappos != null)
+                        {
+                            tappos.transform.DOMove (new Vector3(tappos.transform.position.x,tappos.transform.position.y+(difference+Random.Range(-0.5f,0.5f))*0.5f,tappos.transform.position.z), 0.2f).SetEase(Ease.OutQuad);
+                            lastUpdate = Time.time;
+
+                        }
                     }
-                }else
-                {
+                }else {
                 GameOver.SetActive(true);
                 Time.timeScale = 0;
                 if (tappos.transform.position.y > 0)
@@ -148,4 +161,13 @@ public class GameManager : MonoBehaviour {
 			GameObject SpeedBoostClone;
 			SpeedBoostClone = Instantiate(SpeedBoostPrefab, new Vector3 (BoosterXPos[Random.Range(0,BoosterXPos.Count)],Random.Range(0.5f,-0.65f),0),Quaternion.identity) as GameObject;
 		}
+    void DuelTime () {
+        for(int i = 0;i< GameObjectTags.Count;i++ ) {
+            GameObject[] Objects =  GameObject.FindGameObjectsWithTag(GameObjectTags[i]);
+            Debug.Log(GameObjectTags[i]);
+            foreach (GameObject item in Objects) {
+                Destroy(item);
+            }
+        }
+    }
 }

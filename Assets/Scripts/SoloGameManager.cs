@@ -1,72 +1,1 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using DG.Tweening;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-
-public class SoloGameManager : MonoBehaviour
-{
-    public GameObject PauseMenu;
-    public Slider MusicSlider;
-    public Slider SFXSlider;
-    int normalPlayerSpeed = 4;
-    public GameObject SpeedBoostPrefab;
-    public static GameObject GameOver;
-    public static Text P1_GameOverText;
-    public static GameObject GameOn;
-    List<float> BoosterXPos = new List<float>();
-
-    void Start()
-    {
-        Time.timeScale = 1;
-        normalPlayerSpeed = 4;
-        Time.timeScale = 1;
-        GameOn = GameObject.FindGameObjectWithTag("GameOn");
-        GameOver = GameObject.FindGameObjectWithTag("GameOver");
-        P1_GameOverText = GameObject.FindGameObjectWithTag("P1_GameOverText").GetComponent<Text>();
-        GameOver.SetActive(false);
-        GameOn.SetActive(true);
-        BoosterXPos.Add(-5f);
-        BoosterXPos.Add(5f);
-        InvokeRepeating("SpawnSpeedBoost", 10, Random.Range(10, 15));
-        MusicSlider.value = PlayerPrefs.GetFloat("MusicVol");
-        SFXSlider.value = PlayerPrefs.GetFloat("SFXVol");
-    }
-
-
-    public void changeMusicVolume()
-    {
-        PlayerPrefs.SetFloat("MusicVol", MusicSlider.value);
-    }
-    public void changeSFXVolume()
-    {
-        PlayerPrefs.SetFloat("SFXVol", SFXSlider.value);
-    }
-    public void ShowPause()
-    {
-        PauseMenu.SetActive(true);
-        Time.timeScale = 0;
-    }
-    public void HidePauses()
-    {
-        Time.timeScale = 1;
-        PauseMenu.SetActive(false);
-    }
-
-
-    public void RestartLevel()
-    {
-        Application.LoadLevel(Application.loadedLevelName);
-    }
-    public void GoHome()
-    {
-        Application.LoadLevel("Start");
-    }
-
-    void SpawnSpeedBoost()
-    {
-        GameObject SpeedBoostClone;
-        SpeedBoostClone = Instantiate(SpeedBoostPrefab, new Vector3(BoosterXPos[Random.Range(0, BoosterXPos.Count)], Random.Range(0.5f, -0.65f), 0), Quaternion.identity) as GameObject;
-    }
-}
+﻿using System.Collections; using System.Collections.Generic; using UnityEngine; using DG.Tweening; using UnityEngine.UI; using UnityEngine.SceneManagement;  public class SoloGameManager : MonoBehaviour {     public GameObject confettis;     public Text score;     public Text HighScoreText;     public GameObject PauseMenu;     public Slider MusicSlider;     public Slider SFXSlider;     int normalPlayerSpeed = 4;     public GameObject SpeedBoostPrefab;     public static GameObject GameOver;     public static Text P1_GameOverText;     public static GameObject GameOn;     List<float> BoosterXPos = new List<float>();      void Start()     {         confettis.SetActive(false);         HighScoreText.text = "High Score: " + PlayerPrefs.GetInt("HighScore").ToString();         Time.timeScale = 1;         normalPlayerSpeed = 4;         Time.timeScale = 1;         GameOn = GameObject.FindGameObjectWithTag("GameOn");         GameOver = GameObject.FindGameObjectWithTag("GameOver");         P1_GameOverText = GameObject.FindGameObjectWithTag("P1_GameOverText").GetComponent<Text>();         GameOver.SetActive(false);         GameOn.SetActive(true);         BoosterXPos.Add(-5f);         BoosterXPos.Add(5f);         InvokeRepeating("SpawnSpeedBoost", 10, Random.Range(10, 15));         MusicSlider.value = PlayerPrefs.GetFloat("MusicVol");         SFXSlider.value = PlayerPrefs.GetFloat("SFXVol");     }     void Update()     {         score.text = "Your Score: " + PlayerPrefs.GetInt("CurrentScore").ToString();         if (PlayerPrefs.GetInt("CurrentScore") > PlayerPrefs.GetInt("HighScore"))         {             confettis.SetActive(true);             HighScoreText.text = "New High Score! : " + PlayerPrefs.GetInt("HighScore").ToString();             PlayerPrefs.SetInt("HighScore", PlayerPrefs.GetInt("CurrentScore"));         }     }       public void changeMusicVolume()     {         PlayerPrefs.SetFloat("MusicVol", MusicSlider.value);     }     public void changeSFXVolume()     {         PlayerPrefs.SetFloat("SFXVol", SFXSlider.value);     }     public void ShowPause()     {         PauseMenu.SetActive(true);         Time.timeScale = 0;     }     public void HidePauses()     {         Time.timeScale = 1;         PauseMenu.SetActive(false);     }       public void RestartLevel()     {         Application.LoadLevel(Application.loadedLevelName);     }     public void GoHome()     {         PlayerPrefs.SetInt("CurrentScore", 0);         Application.LoadLevel("Start");     }      void SpawnSpeedBoost()     {         GameObject SpeedBoostClone;         SpeedBoostClone = Instantiate(SpeedBoostPrefab, new Vector3(BoosterXPos[Random.Range(0, BoosterXPos.Count)], Random.Range(0.5f, -0.65f), 0), Quaternion.identity) as GameObject;     } } 

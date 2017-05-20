@@ -10,7 +10,8 @@ public class P1_Shield : MonoBehaviour {
 			ShieldResistance -= 20;
 			if(ShieldResistance <= 0) {
 			Destroy(gameObject);
-			P1_Controls.NumberOfShields--;
+			SoloP1_Controls.NumberOfShields--;
+                P1_Controls.NumberOfShields--;
 		}
 		}
 	}

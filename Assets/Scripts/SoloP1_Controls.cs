@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 public class SoloP1_Controls : MonoBehaviour
 {
+    bool hasChanged = false;
     public static int MoveSpeed = 4;
     public static float Health = 1;
     bool isHoldingRB;
@@ -20,6 +21,7 @@ public class SoloP1_Controls : MonoBehaviour
     Rigidbody2D rb2d;
     void Start()
     {
+        hasChanged = false;
         rb2d = GetComponent<Rigidbody2D>();
         BoosterXPos.Add(-5f);
         BoosterXPos.Add(5f);
@@ -91,6 +93,8 @@ public class SoloP1_Controls : MonoBehaviour
         P1_HealthSlider.value = Health;
         if (Health <= 0)
         {
+            if (!hasChanged)
+                PlayerPrefs.SetInt("CurrentScore",0);
             rb2d.velocity = new Vector2(0, rb2d.velocity.y);
             SoloGameManager.GameOver.SetActive(true);
             GetComponent<SpriteRenderer>().DOFade(0, 2f);

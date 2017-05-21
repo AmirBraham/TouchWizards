@@ -19,6 +19,7 @@ TagManager:
   - P2_HealthSlider
   - music
   - SpeedBooster
+  - BG
   layers:
   - Default
   - TransparentFX

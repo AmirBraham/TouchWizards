@@ -26,10 +26,9 @@ public class GameManager : MonoBehaviour {
 	public static  float timeLeft ;
 	public static bool TimeUp;
     List<float> BoosterXPos = new List<float>();
-
     public float DuelDuration;
-
-     List<string> GameObjectTags = new List<string>();
+    List<string> GameObjectTags = new List<string>();
+    GameObject BG;
 
 	void Start() {
         Time.timeScale = 1;
@@ -51,6 +50,7 @@ public class GameManager : MonoBehaviour {
         MusicSlider.value = PlayerPrefs.GetFloat("MusicVol");
         SFXSlider.value = PlayerPrefs.GetFloat("SFXVol");
         GameObjectTags.AddRange (new string[]{"P1_Shield","P2_Shield","P1_Bullet","P2_Bullet","SpeedBooster"});
+        BG = GameObject.FindGameObjectWithTag("BG");
     }
 
 
@@ -72,12 +72,10 @@ public class GameManager : MonoBehaviour {
                 if (Time.time-tapDuelCheck<DuelDuration) { 
                     if (Time.time-lastUpdate > 0.2f)
                     {
-                        if (tappos != null)
-                        {
-                            tappos.transform.DOMove (new Vector3(tappos.transform.position.x,tappos.transform.position.y+(difference+Random.Range(-0.5f,0.5f))*0.5f,tappos.transform.position.z), 0.2f).SetEase(Ease.OutQuad);
-                            lastUpdate = Time.time;
+                        tappos.transform.DOMove (new Vector3(tappos.transform.position.x,tappos.transform.position.y+(difference+Random.Range(-0.5f,0.5f))/10,tappos.transform.position.z), 0.2f).SetEase(Ease.OutQuad);
+                    lastUpdate = Time.time;
+                    p1taps = p2taps = 0;
 
-                        }
                     }
                 }else {
                 GameOver.SetActive(true);
@@ -158,6 +156,7 @@ public class GameManager : MonoBehaviour {
 			SpeedBoostClone = Instantiate(SpeedBoostPrefab, new Vector3 (BoosterXPos[Random.Range(0,BoosterXPos.Count)],Random.Range(0.5f,-0.65f),0),Quaternion.identity) as GameObject;
 		}
     void DuelTime () {
+        BG.GetComponent<SpriteRenderer>().color = new Color(0.5607f,0.5607f,0.5607f);
         for(int i = 0;i< GameObjectTags.Count;i++ ) {
             GameObject[] Objects =  GameObject.FindGameObjectsWithTag(GameObjectTags[i]);
             foreach (GameObject item in Objects) {

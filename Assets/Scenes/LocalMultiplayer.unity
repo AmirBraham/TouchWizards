@@ -465,7 +465,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1678204351960354, guid: b6c06e8669c175649bf7ea2f6b33eebf, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6c06e8669c175649bf7ea2f6b33eebf, type: 2}
@@ -721,22 +721,22 @@ Prefab:
     - target: {fileID: 224479640072706490, guid: b5e0d8c949e3cc448b671025708ca12a,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224479640072706490, guid: b5e0d8c949e3cc448b671025708ca12a,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224360673308498568, guid: b5e0d8c949e3cc448b671025708ca12a,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224360673308498568, guid: b5e0d8c949e3cc448b671025708ca12a,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1706605795416118, guid: b5e0d8c949e3cc448b671025708ca12a, type: 2}
       propertyPath: m_IsActive
@@ -1641,6 +1641,11 @@ Prefab:
         type: 2}
       propertyPath: DuelDuration
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114855265623175216, guid: 6e7ee89ef8508b044b3df645f5ab5526,
+        type: 2}
+      propertyPath: timeAmount
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6e7ee89ef8508b044b3df645f5ab5526, type: 2}

@@ -21,6 +21,7 @@ public class SoloP1_Controls : MonoBehaviour
     Rigidbody2D rb2d;
     void Start()
     {
+        MoveSpeed = 4;
         hasChanged = false;
         rb2d = GetComponent<Rigidbody2D>();
         BoosterXPos.Add(-5f);
@@ -31,6 +32,8 @@ public class SoloP1_Controls : MonoBehaviour
 
     void Update()
     {
+        if (AI_Controls.Health <= 0)
+            rb2d.velocity = new Vector2(0,0); 
         Loop();
         HealthStatus();
         Movement();

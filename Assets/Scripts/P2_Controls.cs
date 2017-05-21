@@ -18,23 +18,24 @@ public class P2_Controls : MonoBehaviour {
 	bool isHoldingLB;
 
 	Vector3 StartPos;
-	bool ResetPos;
 	public static int NumberOfShields;
 	public Button  Shield2_Button;
 	List<float> BoosterXPos = new List<float>();
 
 
 	void Start () {
+        MoveSpeed = 4;
 		rb2d = GetComponent<Rigidbody2D>();
-			BoosterXPos.Add(-5f);
-			BoosterXPos.Add(5f);
-			NumberOfShields = 2;
-			Health =1;
-			StartPos = transform.position;
-			ResetPos = false;
+		BoosterXPos.Add(-5f);
+		BoosterXPos.Add(5f);
+		NumberOfShields = 2;
+		Health =1;
+		StartPos = transform.position;
 	}
 	
 	void Update () {
+        if (P1_Controls.Health <= 0)
+            rb2d.velocity = new Vector2(0,0);
 		Loop ();
 		HealthStatus ();
 		Movement ();
@@ -75,24 +76,23 @@ public class P2_Controls : MonoBehaviour {
 	}
 
 	public void HealthStatus () {
-			HealthSlider.value = Health;
-			if(Health <=0) {
-                        rb2d.velocity = new Vector2(0, rb2d.velocity.y);
-						GameManager.GameOver.SetActive(true);
-						GetComponent<SpriteRenderer>().DOFade(0,1f);
-						if(GameManager.P1_GameOverText!=null ){
-							GameManager.P1_GameOverText.text = "You Win!";
-						}
-						if(GameManager.P2_GameOverText!=null) {
-							GameManager.P2_GameOverText.text = "You Lose!";
-						}
-						//Time.timeScale=0;
-						GameManager.GameOn.SetActive(false);
+		HealthSlider.value = Health;
+		if(Health <=0) {
+            rb2d.velocity = new Vector2(0, rb2d.velocity.y);
+			GameManager.GameOver.SetActive(true);
+			GetComponent<SpriteRenderer>().DOFade(0,1f);
+			if(GameManager.P1_GameOverText!=null ){
+				GameManager.P1_GameOverText.text = "You Win!";
+			}
+			if(GameManager.P2_GameOverText!=null) {
+				GameManager.P2_GameOverText.text = "You Lose!";
+			}
+			//Time.timeScale=0;
+			GameManager.GameOn.SetActive(false);
+			}
+    }
 
-			}}
-
-			public void Movement () {
-
+	public void Movement () {
 		if(isHoldingRB) {
 				rb2d.velocity = new Vector2(MoveSpeed,rb2d.velocity.y);
 		         transform.localScale = new Vector3(1.5f,1.5f,1.5f);
@@ -104,18 +104,18 @@ public class P2_Controls : MonoBehaviour {
 		} else {
 					rb2d.velocity = new Vector2(0,0);
 					GetComponent<Animator>().SetBool("Player2_isRunning",false);
-		}}
-			public void Loop () {
-			if(transform.position.x <= -3) {
-
+		}
+    }
+	public void Loop () {
+		if(transform.position.x <= -3) {
 			transform.position = new Vector2(-(transform.position.x+0.1f),transform.position.y);
 		} else if (transform.position.x >= 3 ) {
 			transform.position = new Vector2(-(transform.position.x - 0.1f),transform.position.y);
-			
-		}} 
+		}
+    } 
 
-		void ShieldButtonStatus () {
-				if (NumberOfShields <= 3)
+	void ShieldButtonStatus () {
+		if (NumberOfShields <= 3)
 			{
 				Shield2_Button.interactable = true;
 			}
@@ -123,13 +123,14 @@ public class P2_Controls : MonoBehaviour {
 			{
 				Shield2_Button.interactable = false;
 			}
-		}
-		public void TimeUp () {
-		if(GameManager.timeLeft <= 0 && (!ResetPos)) {
+	}
+    public void TimeUp () {
+		if(GameManager.timeLeft <= 0) {
+            GetComponent<Animator>().SetBool("Player2_isRunning", false);
+            rb2d.velocity = new Vector2(0,0);
 			transform.position = StartPos;
-			ResetPos = true;
 		}
 	}
 		
-	}
+}
 

@@ -1272,6 +1272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b78b683bd8c17e5489e2989a4402bb3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  replayText: {fileID: 1381238897}
   confettis: {fileID: 190758526}
   score: {fileID: 2017539164}
   HighScoreText: {fileID: 1139975956}
@@ -1280,6 +1281,7 @@ MonoBehaviour:
   SFXSlider: {fileID: 1359190358}
   SpeedBoostPrefab: {fileID: 1432170999327188, guid: e07c30ab1b1fcfa4d86990fcc67c322c,
     type: 2}
+  P1_GameOverTextGO: {fileID: 1414040419}
 --- !u!1 &1136817493
 GameObject:
   m_ObjectHideFlags: 0
@@ -1645,7 +1647,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: a0da9ae736646494eb3a5b51d33a30d0, type: 3}
-    m_FontSize: 180
+    m_FontSize: 140
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -1656,7 +1658,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: You win
+  m_Text: 
 --- !u!222 &1414040420
 CanvasRenderer:
   m_ObjectHideFlags: 0

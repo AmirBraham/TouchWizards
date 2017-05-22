@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
+    public static bool gameOver;
     public GameObject PauseMenu;
     public Slider MusicSlider;
     public Slider SFXSlider;
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour {
     GameObject BG;
 
 	void Start() {
+        gameOver = false;
         Time.timeScale = 1;
         p1taps = p2taps = 0;
 		normalPlayerSpeed = 4;
@@ -60,7 +62,7 @@ public class GameManager : MonoBehaviour {
             tappos.SetActive(false);
             tapDuelCheck = Time.time;
 			timeLeft -= Time.deltaTime;
-		}else {
+		}else if(!gameOver) {
                 DuelTime ();
                 tappos.SetActive(true);
                 timerCircle.fillAmount = (( (int) DuelDuration - (Time.time -tapDuelCheck))/DuelDuration);

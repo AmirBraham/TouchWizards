@@ -32,12 +32,15 @@ public class SoloP1_Controls : MonoBehaviour
 
     void Update()
     {
-        if (AI_Controls.Health <= 0)
-            rb2d.velocity = new Vector2(0,0); 
         Loop();
         HealthStatus();
         Movement();
         ShieldButtonStatus();
+        if (AI_Controls.Health <= 0)
+        {
+            rb2d.velocity = new Vector2(0, 0);
+            GetComponent<Animator>().SetBool("Player1_isRunning", false);
+        }
     }
     public void OnPointUpRightButton()
     {
@@ -102,10 +105,8 @@ public class SoloP1_Controls : MonoBehaviour
             SoloGameManager.GameOver.SetActive(true);
             GetComponent<SpriteRenderer>().DOFade(0, 2f);
             Destroy(gameObject);
-            if (SoloGameManager.P1_GameOverText != null)
-            {
-                SoloGameManager.P1_GameOverText.text = "You Lose!";
-            }
+            SoloGameManager.replaytext = "Replay";
+            SoloGameManager.P1_GameOverText= "You Lose!";
             SoloGameManager.GameOn.SetActive(false);
         }
     }

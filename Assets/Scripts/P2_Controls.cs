@@ -76,9 +76,9 @@ public class P2_Controls : MonoBehaviour {
 	}
 
 	public void HealthStatus () {
-        GameManager.gameOver = true;
 		HealthSlider.value = Health;
 		if(Health <=0) {
+            GameManager.gameOver = true;
             rb2d.velocity = new Vector2(0, rb2d.velocity.y);
 			GameManager.GameOver.SetActive(true);
 			GetComponent<SpriteRenderer>().DOFade(0,1f);

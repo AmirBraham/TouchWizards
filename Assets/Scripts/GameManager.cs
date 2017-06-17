@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour {
     public float DuelDuration;
     List<string> GameObjectTags = new List<string>();
     GameObject BG;
+    int Replays_num = 0;
 
 	void Start() {
         gameOver = false;
@@ -146,7 +147,16 @@ public class GameManager : MonoBehaviour {
     }
 
     public void RestartLevel () {
-		Application.LoadLevel(Application.loadedLevelName);
+        
+        PlayerPrefs.SetInt("Replays_num",PlayerPrefs.GetInt("Replays_num",0)+1);
+        if(PlayerPrefs.GetInt("Replays_num") >= 4) {
+            print("watch ad");
+            PlayerPrefs.SetInt("Replays_num",0);
+        } else {
+             Application.LoadLevel(Application.loadedLevelName);
+        }
+                print(PlayerPrefs.GetInt("Replays_num"));
+
     }
     public void GoHome()
     {

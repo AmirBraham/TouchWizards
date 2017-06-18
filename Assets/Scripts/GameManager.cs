@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Advertisements;
 
 public class GameManager : MonoBehaviour {
     public static bool gameOver;
@@ -145,13 +146,39 @@ public class GameManager : MonoBehaviour {
         Time.timeScale = 1;
         PauseMenu.SetActive(false);
     }
+    
+     public void ShowReplayAd()
+              {
+                if (Advertisement.IsReady())
+                {
+                    var options = new ShowOptions { resultCallback = HandleShowResult };
+                  Advertisement.Show(options);
+                }
+              }
+
+     private void HandleShowResult(ShowResult result)
+              {
+                switch (result)
+                {
+                  case ShowResult.Finished:
+                    Debug.Log("The ad was successfully shown.");
+                    PlayerPrefs.SetInt("Replays_num",0);
+
+                    break;
+                  case ShowResult.Skipped:
+                    Debug.Log("The ad was skipped before reaching the end.");
+                    break;
+                  case ShowResult.Failed:
+                    Debug.LogError("The ad failed to be shown.");
+                    break;
+                }
+              }
 
     public void RestartLevel () {
         
         PlayerPrefs.SetInt("Replays_num",PlayerPrefs.GetInt("Replays_num",0)+1);
         if(PlayerPrefs.GetInt("Replays_num") >= 4) {
-            print("watch ad");
-            PlayerPrefs.SetInt("Replays_num",0);
+            ShowReplayAd();
         } else {
              Application.LoadLevel(Application.loadedLevelName);
         }

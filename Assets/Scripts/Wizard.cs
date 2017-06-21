@@ -4,6 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
+
 
 public class Wizard : MonoBehaviour {
 	int MoveSpeed;
@@ -15,11 +17,12 @@ public class Wizard : MonoBehaviour {
 	GameObject Bullet;
 	Transform ShootingPoint;
 	GameObject ShieldPrefab;
-	Transform ShieldPoint;
+	Vector2 ShieldPoint;
 	Button Shield1_Button;
 	List<float> BoosterXPos = new List<float>();
 	Rigidbody2D rb2d;
 	Vector3 StartPos;
+
 
 	public Wizard () {}
 
@@ -43,10 +46,10 @@ public class Wizard : MonoBehaviour {
 		return ShieldPrefab;
 	}
 
-	public void setShieldPoint (Transform position) {
+	public void setShieldPoint (Vector2 position) {
 		ShieldPoint = position;
 	}
-	public Transform getShieldPoint () {
+	public Vector2 getShieldPoint () {
 		return ShieldPoint;
 	}
 	public void setShootingPoint (Transform position) {
@@ -69,6 +72,28 @@ public class Wizard : MonoBehaviour {
 		return Health;
 	}
 
+	public void setIsHoldingRB (bool x) {
+		isHoldingRB = x;
+	}
+	public bool getIsHoldingRB () {
+		return isHoldingRB;
+	}
+
+	public void setIsHoldingLB (bool x) {
+		isHoldingRB = x;
+	}
+	public bool getIsHoldingLB () {
+		return isHoldingRB;
+	}
+
+	public void GenerateControls () {
+			Instantiate(new GameObject("leftButton"),Vector3.zero,Quaternion.identity);
+	}
+
+	public void GenerateShield () {
+			Instantiate(ShieldPrefab,ShieldPoint,Quaternion.identity);
+	}
+
 	public void Movement () {
 
 		//if(isHoldingRB) {
@@ -85,5 +110,15 @@ public class Wizard : MonoBehaviour {
 		}
 		*/
     }
+	public void Loop () {
+		if(transform.position.x <= -3) {
+		    transform.position = new Vector2(-(transform.position.x+0.1f),transform.position.y);
+		} else if (transform.position.x >= 3 ) {
+	        transform.position = new Vector2(-(transform.position.x-0.1f),transform.position.y);
+	    }
+    }
+
+	
+	      
 
 }

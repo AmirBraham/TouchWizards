@@ -34,8 +34,23 @@ public class GameManager : MonoBehaviour {
     int Replays_num = 0;
     Wizard Blue_Wizard ;
 
+    public GameObject shield;
+
+    
+
+
+    void Awake()
+    {
+        
+        Blue_Wizard = GameObject.FindGameObjectWithTag("Player_1").AddComponent<Wizard>();
+        Blue_Wizard.GenerateControls();
+        Blue_Wizard.setShieldPrefab(shield);
+        Blue_Wizard.setNumberOfShields(2);
+        //Blue_Wizard.setShieldPoint(new Vector2(0,0));
+        Blue_Wizard.GenerateShield ();
+
+    }
 	void Start() {
-         Blue_Wizard = GameObject.FindGameObjectWithTag("Player_1").AddComponent<Wizard>();
         Blue_Wizard.setHealth(1);
         Blue_Wizard.setMoveSpeed(4);
         Blue_Wizard.gameObject.AddComponent<Rigidbody2D>();
@@ -65,7 +80,8 @@ public class GameManager : MonoBehaviour {
 
 
 	void Update(){
-        //Blue_Wizard.Movement();
+        Blue_Wizard.Movement();
+        Blue_Wizard.Loop();
 		if(timeLeft > 0) {
             timerCircle.fillAmount = timeLeft / timeAmount;
             tappos.SetActive(false);

@@ -34,6 +34,9 @@ public class GameManager : MonoBehaviour {
     int Replays_num = 0;
 
 	void Start() {
+        Wizard Blue_Wizard = GameObject.FindGameObjectWithTag("Player_1").AddComponent<Wizard>();
+        Blue_Wizard.setHealth(1);
+        Debug.Log(Blue_Wizard.getHealth());
         gameOver = false;
         Time.timeScale = 1;
         p1taps = p2taps = 0;

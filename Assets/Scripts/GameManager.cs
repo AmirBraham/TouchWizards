@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour {
     int Replays_num = 0;
     Wizard Blue_Wizard ;
 
+    public Sprite MoveButton;
+
     public GameObject shield;
 
     
@@ -43,11 +45,12 @@ public class GameManager : MonoBehaviour {
     {
         
         Blue_Wizard = GameObject.FindGameObjectWithTag("Player_1").AddComponent<Wizard>();
-        Blue_Wizard.GenerateControls();
         Blue_Wizard.setShieldPrefab(shield);
         Blue_Wizard.setNumberOfShields(2);
+        Blue_Wizard.setWizardName("Player1");
+        Blue_Wizard.GenerateControls(MoveButton);
         //Blue_Wizard.setShieldPoint(new Vector2(0,0));
-        Blue_Wizard.GenerateShield ();
+        //Blue_Wizard.GenerateShield ();
 
     }
 	void Start() {

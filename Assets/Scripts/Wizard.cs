@@ -96,7 +96,7 @@ public class Wizard : MonoBehaviour {
 		return isHoldingRB;
 	}
 
-	public void GenerateControls (Sprite MoveButton) {
+	public void GenerateControls (Sprite MoveButton,Sprite shieldButton,Sprite shootButton) {
 			GameObject Canvas = Instantiate(new GameObject(Wizard_Name+"_Canvas"),Vector3.zero,Quaternion.identity) as GameObject;
 			Canvas.AddComponent<RectTransform>();
 			Canvas.GetComponent<RectTransform>().anchoredPosition = new Vector2(0,0);
@@ -111,8 +111,7 @@ public class Wizard : MonoBehaviour {
 			Canvas.AddComponent<GraphicRaycaster>();
 			GameObject LeftButton =  Instantiate(new GameObject(Wizard_Name+"_LeftButton"),Vector3.zero,Quaternion.identity) as GameObject;
 			Destroy (LeftButton.GetComponent<Transform>());
-						LeftButton.transform.parent = Canvas.transform;
-
+			LeftButton.transform.parent = Canvas.transform;
 			LeftButton.AddComponent<RectTransform>();
 			LeftButton.GetComponent<RectTransform>().anchoredPosition = new Vector3(-403f,-851f,0.1f);
 			LeftButton.GetComponent<RectTransform>().sizeDelta = new Vector2(163,154);
@@ -122,6 +121,42 @@ public class Wizard : MonoBehaviour {
 			LeftButton.AddComponent<Image>();
 			LeftButton.GetComponent<Image>().sprite = MoveButton;
 			LeftButton.AddComponent<Button>();
+			GameObject RightButton =  Instantiate(new GameObject(Wizard_Name+"_RightButton"),Vector3.zero,Quaternion.identity) as GameObject;
+			Destroy (RightButton.GetComponent<Transform>());
+			RightButton.transform.parent = Canvas.transform;
+			RightButton.AddComponent<RectTransform>();
+			RightButton.GetComponent<RectTransform>().anchoredPosition = new Vector3(-127f,-845f,0.1f);
+			RightButton.GetComponent<RectTransform>().sizeDelta = new Vector2(172,166);
+			RightButton.GetComponent<RectTransform>().localScale = new Vector3(1.5f,1.5f,1.5f);
+			RightButton.GetComponent<RectTransform>().localRotation =Quaternion.Euler(0,0,-90);
+			RightButton.AddComponent<CanvasRenderer>();
+			RightButton.AddComponent<Image>();
+			RightButton.GetComponent<Image>().sprite = MoveButton;
+			RightButton.AddComponent<Button>();
+			GameObject ShieldButton =  Instantiate(new GameObject(Wizard_Name+"_ShieldButton"),Vector3.zero,Quaternion.identity) as GameObject;
+			Destroy (ShieldButton.GetComponent<Transform>());
+			ShieldButton.transform.parent = Canvas.transform;
+			ShieldButton.AddComponent<RectTransform>();
+			ShieldButton.GetComponent<RectTransform>().anchoredPosition = new Vector3(168f,-846.5f,0.1f);
+			ShieldButton.GetComponent<RectTransform>().sizeDelta = new Vector2(126,145);
+			ShieldButton.GetComponent<RectTransform>().localScale = new Vector3(1f,1f,1f);
+			ShieldButton.GetComponent<RectTransform>().localRotation =Quaternion.Euler(0,0,0);
+			ShieldButton.AddComponent<CanvasRenderer>();
+			ShieldButton.AddComponent<Image>();
+			ShieldButton.GetComponent<Image>().sprite = shieldButton;
+			ShieldButton.AddComponent<Button>();
+			GameObject ShootButton =  Instantiate(new GameObject(Wizard_Name+"_ShootButton"),Vector3.zero,Quaternion.identity) as GameObject;
+			Destroy (ShootButton.GetComponent<Transform>());
+			ShootButton.transform.parent = Canvas.transform;
+			ShootButton.AddComponent<RectTransform>();
+			ShootButton.GetComponent<RectTransform>().anchoredPosition = new Vector3(431f,-851f,0.1f);
+			ShootButton.GetComponent<RectTransform>().sizeDelta = new Vector2(400,400);
+			ShootButton.GetComponent<RectTransform>().localScale = new Vector3(0.496f,0.496f,0.496f);
+			ShootButton.GetComponent<RectTransform>().localRotation =Quaternion.Euler(0,0,30);
+			ShootButton.AddComponent<CanvasRenderer>();
+			ShootButton.AddComponent<Image>();
+			ShootButton.GetComponent<Image>().sprite = shootButton;
+			ShootButton.AddComponent<Button>();
 	}
 
 	public void GenerateShield () {

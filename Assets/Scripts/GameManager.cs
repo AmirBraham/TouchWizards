@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour {
     Wizard Blue_Wizard ;
 
     public Sprite MoveButton;
+    public Sprite ShieldButton;
+    public Sprite shootButton;
 
     public GameObject shield;
 
@@ -48,7 +50,7 @@ public class GameManager : MonoBehaviour {
         Blue_Wizard.setShieldPrefab(shield);
         Blue_Wizard.setNumberOfShields(2);
         Blue_Wizard.setWizardName("Player1");
-        Blue_Wizard.GenerateControls(MoveButton);
+        Blue_Wizard.GenerateControls(MoveButton,ShieldButton,shootButton);
         //Blue_Wizard.setShieldPoint(new Vector2(0,0));
         //Blue_Wizard.GenerateShield ();
 

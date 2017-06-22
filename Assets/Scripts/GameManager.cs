@@ -33,12 +33,16 @@ public class GameManager : MonoBehaviour {
     GameObject BG;
     int Replays_num = 0;
     Wizard Blue_Wizard ;
+    Wizard Red_Wizard ;
+
 
     public Sprite MoveButton;
     public Sprite ShieldButton;
     public Sprite shootButton;
 
     public GameObject shield;
+
+    
 
     
 

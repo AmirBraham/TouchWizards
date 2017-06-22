@@ -3,11 +3,12 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using DG.Tweening;
 
 
-public class Wizard : MonoBehaviour {
+public class Wizard : MonoBehaviour{
 	string Wizard_Name;
 	int MoveSpeed;
 	float Health;
@@ -24,9 +25,18 @@ public class Wizard : MonoBehaviour {
 	Rigidbody2D rb2d;
 	Vector3 StartPos;
 
+	GameObject LeftButton ;
 
+	HandleTouch LeftHandle;
+
+	HandleTouch RightHandle;
+	
 	public Wizard () {}
 
+
+void Start()
+{
+}
 	public void setWizardName (string name) {
 		Wizard_Name = name;
 	} 
@@ -96,6 +106,8 @@ public class Wizard : MonoBehaviour {
 		return isHoldingRB;
 	}
 
+		
+		
 	public void GenerateControls (Sprite MoveButton,Sprite shieldButton,Sprite shootButton) {
 			GameObject Canvas = Instantiate(new GameObject(Wizard_Name+"_Canvas"),Vector3.zero,Quaternion.identity) as GameObject;
 			Canvas.AddComponent<RectTransform>();
@@ -109,7 +121,7 @@ public class Wizard : MonoBehaviour {
 			Canvas.GetComponent<Canvas>().sortingOrder = 30;
 			Canvas.AddComponent<CanvasScaler>();
 			Canvas.AddComponent<GraphicRaycaster>();
-			GameObject LeftButton =  Instantiate(new GameObject(Wizard_Name+"_LeftButton"),Vector3.zero,Quaternion.identity) as GameObject;
+			LeftButton =  Instantiate(new GameObject(Wizard_Name+"_LeftButton"),Vector3.zero,Quaternion.identity) as GameObject;
 			Destroy (LeftButton.GetComponent<Transform>());
 			LeftButton.transform.parent = Canvas.transform;
 			LeftButton.AddComponent<RectTransform>();
@@ -121,6 +133,8 @@ public class Wizard : MonoBehaviour {
 			LeftButton.AddComponent<Image>();
 			LeftButton.GetComponent<Image>().sprite = MoveButton;
 			LeftButton.AddComponent<Button>();
+			LeftHandle = LeftButton.AddComponent<HandleTouch>();
+			LeftHandle.setHandleTouchParent(LeftButton.name);
 			GameObject RightButton =  Instantiate(new GameObject(Wizard_Name+"_RightButton"),Vector3.zero,Quaternion.identity) as GameObject;
 			Destroy (RightButton.GetComponent<Transform>());
 			RightButton.transform.parent = Canvas.transform;
@@ -133,6 +147,8 @@ public class Wizard : MonoBehaviour {
 			RightButton.AddComponent<Image>();
 			RightButton.GetComponent<Image>().sprite = MoveButton;
 			RightButton.AddComponent<Button>();
+			RightHandle = RightButton.AddComponent<HandleTouch>();
+			RightHandle.setHandleTouchParent(RightButton.name);
 			GameObject ShieldButton =  Instantiate(new GameObject(Wizard_Name+"_ShieldButton"),Vector3.zero,Quaternion.identity) as GameObject;
 			Destroy (ShieldButton.GetComponent<Transform>());
 			ShieldButton.transform.parent = Canvas.transform;
@@ -159,6 +175,7 @@ public class Wizard : MonoBehaviour {
 			ShootButton.AddComponent<Button>();
 	}
 
+	
 	public void GenerateShield () {
 			Instantiate(ShieldPrefab,ShieldPoint,Quaternion.identity);
 	}

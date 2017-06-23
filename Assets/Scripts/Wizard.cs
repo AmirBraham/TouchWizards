@@ -31,6 +31,8 @@ public class Wizard : MonoBehaviour{
 
 	HandleTouch RightHandle;
 	
+	HandleTouch ShootHandle;
+	HandleTouch ShieldHandle;
 	public Wizard () {}
 
 
@@ -161,6 +163,8 @@ void Start()
 			ShieldButton.AddComponent<Image>();
 			ShieldButton.GetComponent<Image>().sprite = shieldButton;
 			ShieldButton.AddComponent<Button>();
+			ShieldHandle = ShieldButton.AddComponent<HandleTouch>();
+			ShieldHandle.setHandleTouchParent(ShieldButton.name);
 			GameObject ShootButton =  Instantiate(new GameObject(Wizard_Name+"_ShootButton"),Vector3.zero,Quaternion.identity) as GameObject;
 			Destroy (ShootButton.GetComponent<Transform>());
 			ShootButton.transform.parent = Canvas.transform;
@@ -173,6 +177,8 @@ void Start()
 			ShootButton.AddComponent<Image>();
 			ShootButton.GetComponent<Image>().sprite = shootButton;
 			ShootButton.AddComponent<Button>();
+			ShootHandle = ShootButton.AddComponent<HandleTouch>();
+			ShootHandle.setHandleTouchParent(ShootButton.name);
 	}
 
 	

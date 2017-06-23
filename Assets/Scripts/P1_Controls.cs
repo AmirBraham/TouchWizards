@@ -18,7 +18,6 @@ public class P1_Controls : MonoBehaviour {
 	List<float> BoosterXPos = new List<float>();
 	Rigidbody2D rb2d;
 	Vector3 StartPos;
-
 	void Start () {
         MoveSpeed = 4;
 		rb2d = GetComponent<Rigidbody2D>();	
@@ -111,8 +110,7 @@ public class P1_Controls : MonoBehaviour {
 					transform.localScale = new Vector3(-1.5f,1.5f,1.5f);
 					GetComponent<Animator>().SetBool("Player1_isRunning",true);
 		} else {
-					if(rb2d!=null)			
-						rb2d.velocity = new Vector2(0,0);
+					rb2d.velocity = new Vector2(0,0);
 					GetComponent<Animator>().SetBool("Player1_isRunning",false);
 		}
     }
@@ -120,8 +118,7 @@ public class P1_Controls : MonoBehaviour {
 	public void TimeUp () {
         if (GameManager.timeLeft <= 0) {
             GetComponent<Animator>().SetBool("Player1_isRunning",false);
-			if(rb2d != null)
-            	rb2d.velocity = new Vector2(0, 0);
+            rb2d.velocity = new Vector2(0, 0);
             transform.position = StartPos;
 		}
 	}

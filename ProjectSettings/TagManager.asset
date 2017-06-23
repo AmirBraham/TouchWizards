@@ -20,7 +20,6 @@ TagManager:
   - music
   - SpeedBooster
   - BG
-  - Player1_Left
   layers:
   - Default
   - TransparentFX

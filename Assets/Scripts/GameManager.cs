@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour {
     int Replays_num = 0;
 
 	void Start() {
+       
+        Debug.Log(SpeedBoostPrefab.ToString());
         gameOver = false;
         Time.timeScale = 1;
         p1taps = p2taps = 0;
@@ -59,6 +61,7 @@ public class GameManager : MonoBehaviour {
 
 
 	void Update(){
+       
 		if(timeLeft > 0) {
             timerCircle.fillAmount = timeLeft / timeAmount;
             tappos.SetActive(false);

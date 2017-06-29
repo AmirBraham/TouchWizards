@@ -151,6 +151,8 @@ public class GameManager : MonoBehaviour {
               {
                 if (Advertisement.IsReady())
                 {
+			Debug.Log ("show ad");
+
                     var options = new ShowOptions { resultCallback = HandleShowResult };
                   Advertisement.Show(options);
                 }
@@ -178,6 +180,8 @@ public class GameManager : MonoBehaviour {
         
         PlayerPrefs.SetInt("Replays_num",PlayerPrefs.GetInt("Replays_num",0)+1);
         if(PlayerPrefs.GetInt("Replays_num") >= 4) {
+			Debug.Log ("time to show ad");
+
             ShowReplayAd();
         } else {
              Application.LoadLevel(Application.loadedLevelName);

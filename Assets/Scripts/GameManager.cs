@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour {
     int Replays_num = 0;
 
 	void Start() {
+       
+        Debug.Log(SpeedBoostPrefab.ToString());
         gameOver = false;
         Time.timeScale = 1;
         p1taps = p2taps = 0;
@@ -59,6 +61,7 @@ public class GameManager : MonoBehaviour {
 
 
 	void Update(){
+       
 		if(timeLeft > 0) {
             timerCircle.fillAmount = timeLeft / timeAmount;
             tappos.SetActive(false);
@@ -151,8 +154,6 @@ public class GameManager : MonoBehaviour {
               {
                 if (Advertisement.IsReady())
                 {
-			Debug.Log ("show ad");
-
                     var options = new ShowOptions { resultCallback = HandleShowResult };
                   Advertisement.Show(options);
                 }
@@ -180,8 +181,6 @@ public class GameManager : MonoBehaviour {
         
         PlayerPrefs.SetInt("Replays_num",PlayerPrefs.GetInt("Replays_num",0)+1);
         if(PlayerPrefs.GetInt("Replays_num") >= 4) {
-			Debug.Log ("time to show ad");
-
             ShowReplayAd();
         } else {
              Application.LoadLevel(Application.loadedLevelName);

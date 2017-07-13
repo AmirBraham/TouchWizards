@@ -6,7 +6,7 @@ using DG.Tweening;
 
 public class AI_Controls : MonoBehaviour
 {
-	public static int MoveSpeed = 4;
+	public static float MoveSpeed = 1;
 	public static float Health = 1;
 	Rigidbody2D rb2d;
 	public   Slider HealthSlider;
@@ -39,6 +39,18 @@ public class AI_Controls : MonoBehaviour
 		random	= Random.Range (0, 110);
 		randomDuration = Random.Range (4, 30);
 		ReadyToShoot = true;
+		if (PlayerPrefs.GetInt ("CurrentScore") != 0) {
+			if (MoveSpeed < 7) {
+				MoveSpeed = PlayerPrefs.GetInt ("CurrentScore");
+			}
+
+		}
+
+		if (Health <= 4) {
+			
+			Health = PlayerPrefs.GetInt ("CurrentScore") / 1.4f;
+			HealthSlider.maxValue = Health;
+		}
 	}
 
 	void Update ()
@@ -55,7 +67,7 @@ public class AI_Controls : MonoBehaviour
 	public void Shield ()
 	{
 		if (DetectedEnemyBullet) {
-			if (NumberOfShields <= 3) {
+			if (NumberOfShields <= 1 * PlayerPrefs.GetInt ("CurrentScore") && NumberOfShields < 5) {
 				Shields.Add (Instantiate (ShieldPrefab, ShieldPoint.position, Quaternion.identity) as GameObject);
 				NumberOfShields++;
 			}

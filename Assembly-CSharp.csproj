@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scripts\Fireball_P1.cs" />
      <Compile Include="Assets\Scripts\Fireball_P2.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\HelloMongo.cs" />
      <Compile Include="Assets\Scripts\NetworkScript.cs" />
      <Compile Include="Assets\Scripts\P1_Controls.cs" />
      <Compile Include="Assets\Scripts\P1_Shield.cs" />
@@ -107,6 +108,12 @@
  </Reference>
  <Reference Include="DOTween50">
  <HintPath>/Users/amirbraham/Desktop/TouchWizards/Assets/DOTween/DOTween50.dll</HintPath>
+ </Reference>
+ <Reference Include="MongoDB.Bson">
+ <HintPath>/Users/amirbraham/Desktop/TouchWizards/Assets/Plugins/MongoDB.Bson.dll</HintPath>
+ </Reference>
+ <Reference Include="MongoDB.Driver">
+ <HintPath>/Users/amirbraham/Desktop/TouchWizards/Assets/Plugins/MongoDB.Driver.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/SinglePlayer.unity
+- path: Assets/Scenes/OnlineMultiplayer.unity
   isLoaded: 1
   isActive: 1

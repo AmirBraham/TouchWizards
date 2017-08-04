@@ -132,6 +132,12 @@
  <Reference Include="DOTweenEditor">
  <HintPath>/Users/amirbraham/Desktop/TouchWizards/Assets/DOTween/Editor/DOTweenEditor.dll</HintPath>
  </Reference>
+ <Reference Include="MongoDB.Bson">
+ <HintPath>/Users/amirbraham/Desktop/TouchWizards/Assets/Plugins/MongoDB.Bson.dll</HintPath>
+ </Reference>
+ <Reference Include="MongoDB.Driver">
+ <HintPath>/Users/amirbraham/Desktop/TouchWizards/Assets/Plugins/MongoDB.Driver.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp.csproj">

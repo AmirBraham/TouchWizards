@@ -46,7 +46,7 @@ public class AI_Controls : MonoBehaviour
 
 		}
 
-		if (Health <= 4) {
+		if (Health <= 4 && PlayerPrefs.GetInt ("CurrentScore")!=0) {
 			
 			Health = PlayerPrefs.GetInt ("CurrentScore") / 1.4f;
 			HealthSlider.maxValue = Health;

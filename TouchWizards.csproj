@@ -137,8 +137,6 @@
     <Compile Include="Assets\Scripts\SoloP1_Controls.cs" />
     <Compile Include="Assets\Scripts\SpeedBoost.cs" />
     <Compile Include="Assets\Scripts\tutorialManager.cs" />
-    <Compile Include="Assets\Shop\Shields\ShieldObject.cs" />
-    <Compile Include="Assets\Shop\Weapons\WeaponObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\DOTween\DOTween.XML" />

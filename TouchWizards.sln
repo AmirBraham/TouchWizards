@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio for Mac
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TouchWizards", "TouchWizards.csproj", "{CFB87CED-D4A2-5E47-B2F7-A8A460E13B01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TouchWizards.Editor", "TouchWizards.Editor.csproj", "{F1A31D4B-EFCC-2258-A69A-4897CB3F2BEF}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,10 +13,6 @@ Global
 		{CFB87CED-D4A2-5E47-B2F7-A8A460E13B01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFB87CED-D4A2-5E47-B2F7-A8A460E13B01}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFB87CED-D4A2-5E47-B2F7-A8A460E13B01}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F1A31D4B-EFCC-2258-A69A-4897CB3F2BEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F1A31D4B-EFCC-2258-A69A-4897CB3F2BEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F1A31D4B-EFCC-2258-A69A-4897CB3F2BEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F1A31D4B-EFCC-2258-A69A-4897CB3F2BEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -9,14 +9,12 @@ public class SceneManager : MonoBehaviour
 	public GameObject MultiChooseButtons;
 	public GameObject OptionsMenu;
 	public Slider MusicSlider;
-	public Slider SFXSlider;
 
 	void Start ()
 	{
 		sorryPanel.SetActive (false);
 		Time.timeScale = 1;
 		MusicSlider.value = PlayerPrefs.GetFloat ("MusicVol");
-		SFXSlider.value = PlayerPrefs.GetFloat ("SFXVol");
 	}
 
 	public void ShowSorry ()
@@ -44,11 +42,6 @@ public class SceneManager : MonoBehaviour
 	public void changeMusicVolume ()
 	{
 		PlayerPrefs.SetFloat ("MusicVol", MusicSlider.value);
-	}
-
-	public void changeSFXVolume ()
-	{
-		PlayerPrefs.SetFloat ("SFXVol", SFXSlider.value);
 	}
 
 	public void ShowOptions ()

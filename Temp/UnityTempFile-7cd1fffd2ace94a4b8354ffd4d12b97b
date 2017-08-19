@@ -5,9 +5,9 @@
 -out:'Temp/Assembly-CSharp-Editor.dll'
 -unsafe
 -r:'Library/ScriptAssemblies/Assembly-CSharp.dll'
--r:'Library/ScriptAssemblies/Assembly-UnityScript.dll'
 -r:'/Applications/Unity/Unity.app/Contents/Managed/UnityEditor.dll'
 -r:'/Applications/Unity/Unity.app/Contents/Managed/UnityEngine.dll'
+-r:'Library/ScriptAssemblies/Assembly-UnityScript.dll'
 -r:'/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll'
 -r:'/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll'
 -r:'/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll'
@@ -34,6 +34,7 @@
 -r:'Assets/DOTween/DOTween46.dll'
 -r:'Assets/DOTween/DOTween50.dll'
 -r:'Assets/DOTween/Editor/DOTweenEditor.dll'
+-r:'/Applications/Visual Studio.app/Contents/Resources/lib/monodevelop/AddIns/MonoDevelop.Unity/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll'
 -define:UNITY_5_3_OR_NEWER
 -define:UNITY_5_4_OR_NEWER
 -define:UNITY_5_5_OR_NEWER
@@ -117,6 +118,8 @@
 -define:UNITY_EDITOR_OSX
 -define:ENABLE_NATIVE_ARRAY_CHECKS
 -define:UNITY_TEAM_LICENSE
+-define:ENABLE_VSTU
+-define:UNITY_PRO_LICENSE
 -define:UNITY_HAS_GOOGLEVR
 'Assets/Shop/Editor/makeShield.cs'
 'Assets/Shop/Editor/makeWeapon.cs'

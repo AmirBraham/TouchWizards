@@ -121,7 +121,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 1.0.3
+  bundleVersion: 1.0
   preloadedAssets: []
   metroInputSource: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -141,7 +141,7 @@ PlayerSettings:
   targetPixelDensity: 0
   resolutionScalingMode: 0
   applicationIdentifier:
-    Android: com.TrashProds.TouchWizards
+    Android: com.TrashProds.TouchWizard
     Standalone: unity.Trash Production.Touch Wizards
     Tizen: com.TrashProds.TouchWizards
     iOS: com.TrashProds.TouchWizards

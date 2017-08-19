@@ -18,8 +18,6 @@
 -r:'Assets/DOTween/DOTween43.dll'
 -r:'Assets/DOTween/DOTween46.dll'
 -r:'Assets/DOTween/DOTween50.dll'
--r:'Assets/Plugins/MongoDB.Bson.dll'
--r:'Assets/Plugins/MongoDB.Driver.dll'
 -define:UNITY_5_3_OR_NEWER
 -define:UNITY_5_4_OR_NEWER
 -define:UNITY_5_5_OR_NEWER
@@ -103,6 +101,8 @@
 -define:UNITY_EDITOR_OSX
 -define:ENABLE_NATIVE_ARRAY_CHECKS
 -define:UNITY_TEAM_LICENSE
+-define:ENABLE_VSTU
+-define:UNITY_PRO_LICENSE
 -define:UNITY_HAS_GOOGLEVR
 'Assets/Scripts/AI_Controls.cs'
 'Assets/Scripts/DeathAnim.cs'
@@ -110,7 +110,6 @@
 'Assets/Scripts/Fireball_P1.cs'
 'Assets/Scripts/Fireball_P2.cs'
 'Assets/Scripts/GameManager.cs'
-'Assets/Scripts/HelloMongo.cs'
 'Assets/Scripts/NetworkScript.cs'
 'Assets/Scripts/P1_Controls.cs'
 'Assets/Scripts/P1_Shield.cs'

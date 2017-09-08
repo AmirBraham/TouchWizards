@@ -126,18 +126,30 @@ public class P1_Controls : MonoBehaviour
         {
             rb2d.velocity = new Vector2(MoveSpeed, rb2d.velocity.y);
             transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+<<<<<<< HEAD
             GetComponent<Animator>().SetBool("Player1_isRunning", true);
+=======
+            GetComponent<Animator>().SetBool("P1_isRunning", true);
+>>>>>>> V2
         }
         else if (isHoldingLB)
         {
             rb2d.velocity = new Vector2(-MoveSpeed, rb2d.velocity.y);
             transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
+<<<<<<< HEAD
             GetComponent<Animator>().SetBool("Player1_isRunning", true);
+=======
+            GetComponent<Animator>().SetBool("P1_isRunning", true);
+>>>>>>> V2
         }
         else
         {
             rb2d.velocity = new Vector2(0, 0);
+<<<<<<< HEAD
             GetComponent<Animator>().SetBool("Player1_isRunning", false);
+=======
+            GetComponent<Animator>().SetBool("P1_isRunning", false);
+>>>>>>> V2
         }
     }
 
@@ -145,7 +157,11 @@ public class P1_Controls : MonoBehaviour
     {
         if (GameManager.timeLeft <= 0)
         {
+<<<<<<< HEAD
             GetComponent<Animator>().SetBool("Player1_isRunning", false);
+=======
+            GetComponent<Animator>().SetBool("P1_isRunning", false);
+>>>>>>> V2
             rb2d.velocity = new Vector2(0, 0);
             transform.position = StartPos;
         }

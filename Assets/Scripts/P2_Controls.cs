@@ -87,7 +87,11 @@ public class P2_Controls : MonoBehaviour
     {
         HealthSlider.value = Health;
         if (Health <= 0)
+<<<<<<< HEAD
         {
+=======
+        {
+>>>>>>> V2
             GameManager.gameOver = true;
             rb2d.velocity = new Vector2(0, rb2d.velocity.y);
             GameManager.GameOver.SetActive(true);
@@ -101,7 +105,11 @@ public class P2_Controls : MonoBehaviour
                 GameManager.P2_GameOverText.text = "You Lose!";
             }
             GameManager.GameOn.SetActive(false);
+<<<<<<< HEAD
         }
+=======
+        }
+>>>>>>> V2
     }
 
     public void Movement()
@@ -110,19 +118,32 @@ public class P2_Controls : MonoBehaviour
         {
             rb2d.velocity = new Vector2(MoveSpeed, rb2d.velocity.y);
             transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+<<<<<<< HEAD
             GetComponent<Animator>().SetBool("Player2_isRunning", true);
+=======
+            GetComponent<Animator>().SetBool("P2_isRunning", true);
+>>>>>>> V2
         }
         else if (isHoldingLB)
         {
             rb2d.velocity = new Vector2(-MoveSpeed, rb2d.velocity.y);
             transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
+<<<<<<< HEAD
             GetComponent<Animator>().SetBool("Player2_isRunning", true);
+=======
+            GetComponent<Animator>().SetBool("P2_isRunning", true);
+>>>>>>> V2
         }
         else
         {
             rb2d.velocity = new Vector2(0, 0);
+<<<<<<< HEAD
             GetComponent<Animator>().SetBool("Player2_isRunning", false);
         }
+=======
+            GetComponent<Animator>().SetBool("P2_isRunning", false);
+        }
+>>>>>>> V2
     }
     public void Loop()
     {
@@ -133,6 +154,7 @@ public class P2_Controls : MonoBehaviour
         else if (transform.position.x >= 3)
         {
             transform.position = new Vector2(-(transform.position.x - 0.1f), transform.position.y);
+<<<<<<< HEAD
         }
     }
 
@@ -157,5 +179,31 @@ public class P2_Controls : MonoBehaviour
         }
     }
 
+=======
+        }
+    }
+
+    void ShieldButtonStatus()
+    {
+        if (NumberOfShields <= 3)
+        {
+            Shield2_Button.interactable = true;
+        }
+        else
+        {
+            Shield2_Button.interactable = false;
+        }
+    }
+    public void TimeUp()
+    {
+        if (GameManager.timeLeft <= 0)
+        {
+            GetComponent<Animator>().SetBool("P2_isRunning", false);
+            rb2d.velocity = new Vector2(0, 0);
+            transform.position = StartPos;
+        }
+    }
+
+>>>>>>> V2
 }
 

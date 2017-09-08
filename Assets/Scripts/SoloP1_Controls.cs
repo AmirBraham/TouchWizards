@@ -1,9 +1,18 @@
+<<<<<<< HEAD
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
 public class SoloP1_Controls : MonoBehaviour
+=======
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
+
+public class SoloP1_Controls : MonoBehaviour
+>>>>>>> V2
 {
     bool hasChanged = false;
     public static int MoveSpeed = 4;
@@ -40,7 +49,7 @@ public class SoloP1_Controls : MonoBehaviour
         if (AI_Controls.Health <= 0)
         {
             rb2d.velocity = new Vector2(0, 0);
-            GetComponent<Animator>().SetBool("Player1_isRunning", false);
+            GetComponent<Animator>().SetBool("P1_isRunning", false);
         }
     }
 
@@ -136,18 +145,18 @@ public class SoloP1_Controls : MonoBehaviour
         {
             rb2d.velocity = new Vector2(MoveSpeed, rb2d.velocity.y);
             transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-            GetComponent<Animator>().SetBool("Player1_isRunning", true);
+            GetComponent<Animator>().SetBool("P1_isRunning", true);
         }
         else if (isHoldingLB)
         {
             rb2d.velocity = new Vector2(-MoveSpeed, rb2d.velocity.y);
             transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
-            GetComponent<Animator>().SetBool("Player1_isRunning", true);
+            GetComponent<Animator>().SetBool("P1_isRunning", true);
         }
         else
         {
             rb2d.velocity = new Vector2(0, 0);
-            GetComponent<Animator>().SetBool("Player1_isRunning", false);
+            GetComponent<Animator>().SetBool("P1_isRunning", false);
         }
     }
 

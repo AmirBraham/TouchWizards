@@ -20,6 +20,10 @@ TagManager:
   - music
   - SpeedBooster
   - BG
+  - camera
+  - localPlayer
+  - P1HealthBar
+  - P2HealthBar
   layers:
   - Default
   - TransparentFX
@@ -30,10 +34,10 @@ TagManager:
   - 
   - 
   - Ground
-  - P1_Bullet
   - P1
-  - 
-  - 
+  - P2
+  - P1_Bullet
+  - P2_Bullet
   - 
   - 
   - 

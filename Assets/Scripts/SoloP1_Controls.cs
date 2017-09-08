@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+
 public class SoloP1_Controls : MonoBehaviour
 {
     bool hasChanged = false;
@@ -19,6 +19,7 @@ public class SoloP1_Controls : MonoBehaviour
     public Button Shield1_Button;
     List<float> BoosterXPos = new List<float>();
     Rigidbody2D rb2d;
+
     void Start()
     {
         MoveSpeed = 4;
@@ -39,13 +40,15 @@ public class SoloP1_Controls : MonoBehaviour
         if (AI_Controls.Health <= 0)
         {
             rb2d.velocity = new Vector2(0, 0);
-            GetComponent<Animator>().SetBool("Player1_isRunning", false);
+            GetComponent<Animator>().SetBool("P1_isRunning", false);
         }
     }
+
     public void OnPointUpRightButton()
     {
         isHoldingRB = false;
     }
+
     public void onPointerDownRightButton()
     {
         isHoldingRB = true;
@@ -55,10 +58,12 @@ public class SoloP1_Controls : MonoBehaviour
     {
         isHoldingLB = false;
     }
+
     public void onPointerDownLeftButton()
     {
         isHoldingLB = true;
     }
+
     public void Shoot()
     {
         GameObject BulletClone;
@@ -100,13 +105,13 @@ public class SoloP1_Controls : MonoBehaviour
         if (Health <= 0)
         {
             if (!hasChanged)
-                PlayerPrefs.SetInt("CurrentScore",0);
+                PlayerPrefs.SetInt("CurrentScore", 0);
             rb2d.velocity = new Vector2(0, rb2d.velocity.y);
             SoloGameManager.GameOver.SetActive(true);
             GetComponent<SpriteRenderer>().DOFade(0, 2f);
             Destroy(gameObject);
             SoloGameManager.replaytext = "Replay";
-            SoloGameManager.P1_GameOverText= "You Lose!";
+            SoloGameManager.P1_GameOverText = "You Lose!";
             SoloGameManager.GameOn.SetActive(false);
         }
     }
@@ -123,6 +128,7 @@ public class SoloP1_Controls : MonoBehaviour
 
         }
     }
+
     public void Movement()
     {
 
@@ -130,18 +136,18 @@ public class SoloP1_Controls : MonoBehaviour
         {
             rb2d.velocity = new Vector2(MoveSpeed, rb2d.velocity.y);
             transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-            GetComponent<Animator>().SetBool("Player1_isRunning", true);
+            GetComponent<Animator>().SetBool("P1_isRunning", true);
         }
         else if (isHoldingLB)
         {
             rb2d.velocity = new Vector2(-MoveSpeed, rb2d.velocity.y);
             transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
-            GetComponent<Animator>().SetBool("Player1_isRunning", true);
+            GetComponent<Animator>().SetBool("P1_isRunning", true);
         }
         else
         {
             rb2d.velocity = new Vector2(0, 0);
-            GetComponent<Animator>().SetBool("Player1_isRunning", false);
+            GetComponent<Animator>().SetBool("P1_isRunning", false);
         }
     }
 

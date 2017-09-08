@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class P2_Shield : MonoBehaviour {
 	public  float ShieldResistance = 100;
@@ -9,10 +7,10 @@ public class P2_Shield : MonoBehaviour {
 		if(col.gameObject.tag=="P1_Bullet" ) {
 			ShieldResistance -= 20;
 			if(ShieldResistance <= 0) {
-			Destroy(gameObject);
-			P2_Controls.NumberOfShields--;
-			AI_Controls.NumberOfShields--;
-		}
+				Destroy(gameObject);
+				P2_Controls.NumberOfShields--;
+				AI_Controls.NumberOfShields--;
+			}
 		}
 	}
 }

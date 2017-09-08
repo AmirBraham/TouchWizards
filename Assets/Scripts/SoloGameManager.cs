@@ -1,15 +1,8 @@
-﻿using System.Collections;
-
+﻿
 using System.Collections.Generic;
-
 using UnityEngine;
-
-using DG.Tweening;
-
 using UnityEngine.UI;
 
-using UnityEngine.SceneManagement;
-using UnityEngine.Advertisements;
 
 
 public class SoloGameManager : MonoBehaviour
@@ -24,7 +17,7 @@ public class SoloGameManager : MonoBehaviour
     int normalPlayerSpeed = 4;
     public GameObject SpeedBoostPrefab;
     public static GameObject GameOver;
-    public  Text P1_GameOverTextGO;
+    public Text P1_GameOverTextGO;
     public static string P1_GameOverText;
     public static string replaytext;
     public static GameObject GameOn;
@@ -49,11 +42,12 @@ public class SoloGameManager : MonoBehaviour
         MusicSlider.value = PlayerPrefs.GetFloat("MusicVol");
         SFXSlider.value = PlayerPrefs.GetFloat("SFXVol");
     }
+
     void Update()
     {
         replayText.text = replaytext;
-        P1_GameOverTextGO.text =P1_GameOverText;
-        if (SoloP1_Controls.Health>0)
+        P1_GameOverTextGO.text = P1_GameOverText;
+        if (SoloP1_Controls.Health > 0)
         {
             score.text = "Your Score: " + PlayerPrefs.GetInt("CurrentScore").ToString();
         }
@@ -75,56 +69,29 @@ public class SoloGameManager : MonoBehaviour
     {
         PlayerPrefs.SetFloat("MusicVol", MusicSlider.value);
     }
+
     public void changeSFXVolume()
     {
         PlayerPrefs.SetFloat("SFXVol", SFXSlider.value);
     }
+
     public void ShowPause()
     {
         PauseMenu.SetActive(true);
         Time.timeScale = 0;
     }
+
     public void HidePauses()
     {
         Time.timeScale = 1;
         PauseMenu.SetActive(false);
     }
 
-    public void ShowReplayAd()
-              {
-                if (Advertisement.IsReady())
-                {
-                    var options = new ShowOptions { resultCallback = HandleShowResult };
-                  Advertisement.Show(options);
-                }
-              }
-
-     private void HandleShowResult(ShowResult result)
-              {
-                switch (result)
-                {
-                  case ShowResult.Finished:
-                    Debug.Log("The ad was successfully shown.");
-                    PlayerPrefs.SetInt("SPReplays_num",0);
-                    break;
-                  case ShowResult.Skipped:
-                    Debug.Log("The ad was skipped before reaching the end.");
-                    break;
-                  case ShowResult.Failed:
-                    Debug.LogError("The ad failed to be shown.");
-                    break;
-                }
-              }
     public void RestartLevel()
     {
-       PlayerPrefs.SetInt("SPReplays_num",PlayerPrefs.GetInt("SPReplays_num",0)+1);
-        if(PlayerPrefs.GetInt("SPReplays_num") >= 4) {
-            ShowReplayAd();
-        } else {
-             Application.LoadLevel(Application.loadedLevelName);
-        }
-                print(PlayerPrefs.GetInt("SPReplays_num"));
+        Application.LoadLevel(Application.loadedLevelName);
     }
+
     public void GoHome()
     {
         PlayerPrefs.SetInt("CurrentScore", 0);

@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using DG.Tweening;
+﻿using UnityEngine;
 
 public class Fireball_P1 : MonoBehaviour
 {
@@ -16,7 +13,6 @@ public class Fireball_P1 : MonoBehaviour
         GetComponent<Rigidbody2D>().velocity = new Vector2(0, bulletSpeed);
         animator.GetComponent<Animator>();
     }
-    // Update is called once per frame
     void Update()
     {
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("P1_fireball_impact")&& hasCollided && animator.GetCurrentAnimatorStateInfo(0).length < animator.GetCurrentAnimatorStateInfo(0).normalizedTime)

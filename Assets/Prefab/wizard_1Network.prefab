@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4495824396593494}
   - component: {fileID: 212824049521062854}
   - component: {fileID: 50377771597391538}
+  - component: {fileID: 114146775246662920}
   - component: {fileID: 95283102981608612}
   - component: {fileID: 61179032717934382}
   - component: {fileID: 114921040041952754}
@@ -288,6 +289,27 @@ MonoBehaviour:
   - {fileID: 20516695947550838}
   - {fileID: 81861717883920312}
   RedWizardAnim: {fileID: 9100000, guid: b3b99217f1110a745b8ac8f421537f2b, type: 2}
+--- !u!114 &114146775246662920
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1088292306789924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfd727f44302d4cf3bfc1c22082003a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShootingPoint: {fileID: 4399894132108706}
+  BulletP1: {fileID: 1623138230751784, guid: 4ed80cf98a09e794780aeecdd48a7e6b, type: 2}
+  BulletP2: {fileID: 1058990547218076, guid: 6b6153ac41af8a945b8fa33be9da0105, type: 2}
+  ShieldP1: {fileID: 1306834977121360, guid: 1316c914c990a3b4cac36875df8dbf3a, type: 2}
+  ShieldP2: {fileID: 1958236570266622, guid: f2b2eba61ae0d2441a12a6cbbb562cc3, type: 2}
+  healthbarP1: {fileID: 1040565785153356, guid: 476363fa6382d49969d6f1372e32bc4b,
+    type: 2}
+  healthbarP2: {fileID: 0}
+  RedWizardAnim: {fileID: 9100000, guid: b3b99217f1110a745b8ac8f421537f2b, type: 2}
+  canvas: {fileID: 1310819792306424, guid: 3dd2cf0877881482890edfa94b962ff4, type: 2}
 --- !u!114 &114631097590530980
 MonoBehaviour:
   m_ObjectHideFlags: 1

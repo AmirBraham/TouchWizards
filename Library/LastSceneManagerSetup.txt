@@ -1,8 +1,1 @@
-sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scenes/OnlineMultiplayer.unity
-=======
-- path: Assets/Network Khalil/OnlineMultiplayerKhalil.unity
->>>>>>> V2
-  isLoaded: 1
-  isActive: 1
+sceneSetups: []

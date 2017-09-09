@@ -1,18 +1,9 @@
-<<<<<<< HEAD
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
 public class SoloP1_Controls : MonoBehaviour
-=======
-﻿using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using DG.Tweening;
-
-public class SoloP1_Controls : MonoBehaviour
->>>>>>> V2
 {
     bool hasChanged = false;
     public static int MoveSpeed = 4;

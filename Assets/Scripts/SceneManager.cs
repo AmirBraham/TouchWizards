@@ -63,4 +63,8 @@ public class SceneManager : MonoBehaviour
 	{
 		Application.LoadLevel ("LocalMultiplayer");
 	}
+	public void OnlineMultiScene ()
+	{
+		Application.LoadLevel ("OnlineMultiplayer");
+	}
 }

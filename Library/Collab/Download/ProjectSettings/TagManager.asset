@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Player_1
+  - Player_2
+  - P2_Bullet
+  - P1_Bullet
+  - P1_Shield
+  - P2_Shield
+  - ground
+  - GameOn
+  - P1_HealthSlider
+  - GameOver
+  - P1_GameOverText
+  - P2_GameOverText
+  - P2_HealthSlider
+  - music
+  - SpeedBooster
+  - BG
+  - camera
+  - localPlayer
+  - P1HealthBar
+  - P2HealthBar
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Ground
+  - P1
+  - P2
+  - P1_Bullet
+  - P2_Bullet
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0

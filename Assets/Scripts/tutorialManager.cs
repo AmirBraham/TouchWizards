@@ -1,18 +1,4 @@
 ﻿using UnityEngine;
-<<<<<<< HEAD
-
-public class tutorialManager : MonoBehaviour
-{
-    public GameObject NextButton;
-    public GameObject BeforeButton;
-
-    public GameObject DefaultContent;
-    public GameObject LMultiContent;
-
-    void Start()
-    {
-        BeforeButton.SetActive(false);
-=======
 using System.Linq;
 using UnityEngine.UI;
 
@@ -22,12 +8,13 @@ public class tutorialManager : MonoBehaviour
 	public Sprite[] multisteps;
 	Sprite[] steps;
 	int stepcounter;
+	bool hasTouched;
 
 
     void Start()
     {
+		hasTouched = false;
 		stepcounter = 0;
->>>>>>> V2
         if (Application.loadedLevelName == "SinglePlayer")
         {
             if (PlayerPrefs.HasKey("SoloFirstTime"))
@@ -37,14 +24,8 @@ public class tutorialManager : MonoBehaviour
             else
             {
                 PlayerPrefs.SetInt("SoloFirstTime", 1);
-<<<<<<< HEAD
-            }
-            BeforeButton.SetActive(false);
-            NextButton.SetActive(false);
-=======
 				steps = normalsteps;
             }
->>>>>>> V2
         }
         if (Application.loadedLevelName == "LocalMultiplayer")
         {
@@ -55,51 +36,22 @@ public class tutorialManager : MonoBehaviour
             else
             {
                 PlayerPrefs.SetInt("LMultiFirstTime", 1);
-<<<<<<< HEAD
-=======
 				steps = normalsteps.Concat(multisteps).ToArray();
 				Debug.Log (steps);
->>>>>>> V2
             }
         }
     }
 
-<<<<<<< HEAD
-    public void Close()
-    {
-        Time.timeScale = 1;
-        Destroy(gameObject);
-    }
-
     void Update()
     {
         Time.timeScale = 0;
-    }
-
-    public void Next()
-    {
-        BeforeButton.SetActive(true);
-        NextButton.SetActive(false);
-        DefaultContent.SetActive(false);
-        LMultiContent.SetActive(true);
-    }
-
-    public void Before()
-    {
-        BeforeButton.SetActive(false);
-        NextButton.SetActive(true);
-        DefaultContent.SetActive(true);
-        LMultiContent.SetActive(false);
-=======
-    void Update()
-    {
-        Time.timeScale = 0;
-		if (Input.touchCount > 0)
-		{
-			Touch touch = Input.GetTouch(0);
-			if(touch.phase==TouchPhase.Began){
+		if (Input.touchCount > 0 ) {
+			if (!hasTouched) {
 				stepcounter++;
+				hasTouched = true;
 			}
+		} else {
+			hasTouched = false;
 		}
 		if(Input.GetButton("Fire1")){
 			stepcounter++;
@@ -110,6 +62,5 @@ public class tutorialManager : MonoBehaviour
 		} else {
 			gameObject.GetComponent<Image> ().sprite = steps [stepcounter];
 		}
->>>>>>> V2
     }
 }

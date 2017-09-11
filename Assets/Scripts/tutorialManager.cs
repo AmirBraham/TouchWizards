@@ -58,7 +58,6 @@ public class tutorialManager : MonoBehaviour
 		}
 		if (stepcounter >= steps.Length) {
 			Time.timeScale = 1;
-			Destroy (gameObject);
 		} else {
 			gameObject.GetComponent<Image> ().sprite = steps [stepcounter];
 		}

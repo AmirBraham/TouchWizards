@@ -5,8 +5,11 @@ using DG.Tweening;
 
 public class AI_Controls : MonoBehaviour
 {
-    public static float MoveSpeed = 1;
+    [SerializeField]
+    public static float MoveSpeed = 0.05f;
     public static float Health = 1;
+    public static bool GameStarted;
+    public GameObject Player1;
     Rigidbody2D rb2d;
     public Slider HealthSlider;
     public GameObject ShootingPoint;
@@ -25,7 +28,7 @@ public class AI_Controls : MonoBehaviour
     public float BulletDetectionRaduis;
     float random;
     float randomDuration;
-
+    Vector2 TrackingTransform;
 
     void Start()
     {
@@ -34,6 +37,7 @@ public class AI_Controls : MonoBehaviour
         BoosterXPos.Add(-5f);
         BoosterXPos.Add(5f);
         NumberOfShields = 2;
+        Player1 = GameObject.FindWithTag("Player_1");
         Health = 1;
         random = Random.Range(0, 110);
         randomDuration = Random.Range(4, 30);
@@ -57,13 +61,21 @@ public class AI_Controls : MonoBehaviour
 
     void Update()
     {
-        DetectedEnemyBullet = Physics2D.OverlapCircle(transform.position, BulletDetectionRaduis, P1_Bullet);
-        DetectedEnemy = Physics2D.OverlapArea(transform.position, new Vector2(transform.position.x, transform.position.y - 60f), Enemy);
-        Loop();
-        HealthStatus();
-        Movement();
-        Shield();
-        Shoot();
+        if(Player1 != null) {
+			TrackingTransform = new Vector2(Player1.GetComponent<Transform>().position.x,
+									   2.6f);
+        }
+       
+        if(GameObject.FindGameObjectWithTag("Tutorial") == null) {
+			DetectedEnemyBullet = Physics2D.OverlapCircle(transform.position, BulletDetectionRaduis, P1_Bullet);
+			DetectedEnemy = Physics2D.OverlapArea(transform.position, new Vector2(transform.position.x, transform.position.y - 60f), Enemy);
+			Loop();
+			HealthStatus();
+			Movement();
+			Shield();
+			Shoot();
+        }
+      
     }
 
     public void Shield()
@@ -107,9 +119,10 @@ public class AI_Controls : MonoBehaviour
 
     public void Movement()
     {
-        if (random > 30 && random < 60)
+        if (transform.position.x < Player1.transform.position.x)
         {
-            rb2d.velocity = new Vector2(MoveSpeed, rb2d.velocity.y);
+            //rb2d.velocity = new Vector2(MoveSpeed, rb2d.velocity.y);
+            transform.position = Vector2.MoveTowards(transform.position, TrackingTransform, MoveSpeed);
             transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
             GetComponent<Animator>().SetBool("P2_isRunning", true);
             randomDuration++;
@@ -119,10 +132,12 @@ public class AI_Controls : MonoBehaviour
                 randomDuration = Random.Range(4, 30);
             }
         }
-        else if (random > 60 && random < 100)
+        else if (transform.position.x > Player1.transform.position.x)
         {
-            rb2d.velocity = new Vector2(-MoveSpeed, rb2d.velocity.y);
-            transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
+			//rb2d.velocity = new Vector2(-MoveSpeed, rb2d.velocity.y);
+			transform.position = Vector2.MoveTowards(transform.position, TrackingTransform, MoveSpeed);
+
+			transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
             GetComponent<Animator>().SetBool("P2_isRunning", true);
             randomDuration++;
             if (randomDuration >= 30)

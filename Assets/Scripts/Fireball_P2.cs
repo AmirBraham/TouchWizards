@@ -30,8 +30,6 @@ public class Fireball_P2 : MonoBehaviour
             GetComponent<BoxCollider2D>().enabled=false;
             animator.SetTrigger("hasCollided");
             hasCollided = true;
-                                AI_Controls.ReadyToShoot = true;
-
             if (col.gameObject.tag == "Player_1") {
                 P1_Controls.Health -= 0.25f;
                 SoloP1_Controls.Health -= 0.25f;

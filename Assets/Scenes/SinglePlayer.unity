@@ -1618,10 +1618,14 @@ MonoBehaviour:
   P1_Bullet:
     serializedVersion: 2
     m_Bits: 512
+  AI_Bullet:
+    serializedVersion: 2
+    m_Bits: 4096
   Enemy:
     serializedVersion: 2
     m_Bits: 1024
-  BulletDetectionRaduis: 2
+  BulletDetectionRaduis: 1.92
+  BulletShootingRaduis: 2.69
 --- !u!1 &1414040417
 GameObject:
   m_ObjectHideFlags: 0

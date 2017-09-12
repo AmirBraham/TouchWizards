@@ -5,7 +5,6 @@ using DG.Tweening;
 
 public class AI_Controls : MonoBehaviour
 {
-    [SerializeField]
     public static float MoveSpeed = 0.05f;
     public static float Health = 1;
     public static bool GameStarted;
@@ -21,13 +20,13 @@ public class AI_Controls : MonoBehaviour
     public bool DetectedEnemyBullet;
     public bool DetectedEnemy;
     bool hasChanged;
-    public static bool ReadyToShoot;
     public LayerMask P1_Bullet;
+    public LayerMask AI_Bullet;
+	public static bool ReadyToShoot;
     public LayerMask Enemy;
     public static List<GameObject> Shields = new List<GameObject>();
     public float BulletDetectionRaduis;
-    float random;
-    float randomDuration;
+    public float BulletShootingRaduis;
     Vector2 TrackingTransform;
 
     void Start()
@@ -36,12 +35,10 @@ public class AI_Controls : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         BoosterXPos.Add(-5f);
         BoosterXPos.Add(5f);
-        NumberOfShields = 2;
+        NumberOfShields = 0;
+        ReadyToShoot = true;
         Player1 = GameObject.FindWithTag("Player_1");
         Health = 1;
-        random = Random.Range(0, 110);
-        randomDuration = Random.Range(4, 30);
-        ReadyToShoot = true;
         if (PlayerPrefs.GetInt("CurrentScore") != 0)
         {
             if (MoveSpeed < 7)
@@ -61,42 +58,68 @@ public class AI_Controls : MonoBehaviour
 
     void Update()
     {
-        if(Player1 != null) {
-			TrackingTransform = new Vector2(Player1.GetComponent<Transform>().position.x,
-									   2.6f);
+        if (Player1 != null)
+        {
+            TrackingTransform = new Vector2(Player1.GetComponent<Transform>().position.x,
+                                       2.6f);
         }
-       
-        if(GameObject.FindGameObjectWithTag("Tutorial") == null) {
-			DetectedEnemyBullet = Physics2D.OverlapCircle(transform.position, BulletDetectionRaduis, P1_Bullet);
-			DetectedEnemy = Physics2D.OverlapArea(transform.position, new Vector2(transform.position.x, transform.position.y - 60f), Enemy);
-			Loop();
-			HealthStatus();
-			Movement();
-			Shield();
-			Shoot();
+
+        if (GameObject.FindGameObjectWithTag("Tutorial") == null)
+        {
+            DetectedEnemyBullet = Physics2D.OverlapCircle(transform.position, BulletDetectionRaduis, P1_Bullet);
+            DetectedEnemy = Physics2D.OverlapArea(transform.position, new Vector2(transform.position.x, transform.position.y - 60f), Enemy);
+            Loop();
+            HealthStatus();
+            if (Player1 != null)
+                Movement();
+            Shield();
+            Shoot();
         }
-      
+
     }
 
     public void Shield()
     {
         if (DetectedEnemyBullet)
         {
-            if (NumberOfShields <= 1 * PlayerPrefs.GetInt("CurrentScore") && NumberOfShields < 5)
+            if (NumberOfShields == 1 && System.Math.Abs(Shields[Shields.Count - 1].transform.position.x - transform.position.x) > 1 )
             {
-                Shields.Add(Instantiate(ShieldPrefab, ShieldPoint.position, Quaternion.identity) as GameObject);
-                NumberOfShields++;
+                if (NumberOfShields <= 2)
+                {
+                    Debug.Log("SHIELD");
+                    Shields.Add(Instantiate(ShieldPrefab, ShieldPoint.position, Quaternion.identity) as GameObject);
+                    NumberOfShields++;
+                }
+                else
+                {
+                    Debug.Log("Shield Limit" + NumberOfShields);
+                }
+            } else {
+				if (NumberOfShields <= 2)
+				{
+					Debug.Log("SHIELD");
+					Shields.Add(Instantiate(ShieldPrefab, ShieldPoint.position, Quaternion.identity) as GameObject);
+					NumberOfShields++;
+				}
+				else
+				{
+					Debug.Log("Shield Limit" + NumberOfShields);
+				}
             }
+
         }
+
     }
 
     public void Shoot()
     {
+
+        ReadyToShoot =  !Physics2D.OverlapCircle(transform.position, BulletShootingRaduis, AI_Bullet);
         if (DetectedEnemy && ReadyToShoot)
         {
             GameObject BulletClone = Instantiate(Bullet, ShootingPoint.transform.position, Quaternion.Euler(0, 0, -90f)) as GameObject;
             DetectedEnemy = false;
-            ReadyToShoot = false;
+			ReadyToShoot = false;
         }
     }
 
@@ -125,37 +148,19 @@ public class AI_Controls : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, TrackingTransform, MoveSpeed);
             transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
             GetComponent<Animator>().SetBool("P2_isRunning", true);
-            randomDuration++;
-            if (randomDuration >= 30)
-            {
-                random = Random.Range(0, 110);
-                randomDuration = Random.Range(4, 30);
-            }
         }
         else if (transform.position.x > Player1.transform.position.x)
         {
-			//rb2d.velocity = new Vector2(-MoveSpeed, rb2d.velocity.y);
-			transform.position = Vector2.MoveTowards(transform.position, TrackingTransform, MoveSpeed);
+            //rb2d.velocity = new Vector2(-MoveSpeed, rb2d.velocity.y);
+            transform.position = Vector2.MoveTowards(transform.position, TrackingTransform, MoveSpeed);
 
-			transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
+            transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
             GetComponent<Animator>().SetBool("P2_isRunning", true);
-            randomDuration++;
-            if (randomDuration >= 30)
-            {
-                random = Random.Range(0, 110);
-                randomDuration = Random.Range(4, 30);
-            }
         }
         else
         {
             rb2d.velocity = new Vector2(0, 0);
             GetComponent<Animator>().SetBool("P2_isRunning", false);
-            randomDuration++;
-            if (randomDuration >= 30)
-            {
-                random = Random.Range(0, 110);
-                randomDuration = Random.Range(4, 30);
-            }
         }
     }
 
@@ -169,5 +174,14 @@ public class AI_Controls : MonoBehaviour
         {
             transform.position = new Vector2(-(transform.position.x - 0.1f), transform.position.y);
         }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireSphere(transform.position, BulletDetectionRaduis);
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawWireSphere(transform.position, BulletShootingRaduis); 
     }
 }

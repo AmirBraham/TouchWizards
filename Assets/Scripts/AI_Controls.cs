@@ -22,7 +22,7 @@ public class AI_Controls : MonoBehaviour
     bool hasChanged;
     public LayerMask P1_Bullet;
     public LayerMask AI_Bullet;
-	public static bool ReadyToShoot;
+    public static bool ReadyToShoot;
     public LayerMask Enemy;
     public static List<GameObject> Shields = new List<GameObject>();
     public float BulletDetectionRaduis;
@@ -39,15 +39,13 @@ public class AI_Controls : MonoBehaviour
         ReadyToShoot = true;
         Player1 = GameObject.FindWithTag("Player_1");
         Health = 1;
+        Debug.Log(MoveSpeed);
         if (PlayerPrefs.GetInt("CurrentScore") != 0)
         {
-            if (MoveSpeed < 7)
-            {
-                MoveSpeed = PlayerPrefs.GetInt("CurrentScore");
-            }
-
+            MoveSpeed += PlayerPrefs.GetInt("CurrentScore") / 100;
+            BulletDetectionRaduis += PlayerPrefs.GetInt("CurrentScore") / 1.4f;
+            BulletShootingRaduis -= PlayerPrefs.GetInt("CurrentScore") / 1.4f;
         }
-
         if (Health <= 4 && PlayerPrefs.GetInt("CurrentScore") != 0)
         {
 
@@ -82,29 +80,21 @@ public class AI_Controls : MonoBehaviour
     {
         if (DetectedEnemyBullet)
         {
-            if (NumberOfShields == 1 && System.Math.Abs(Shields[Shields.Count - 1].transform.position.x - transform.position.x) > 1 )
+            if (NumberOfShields == 1 && System.Math.Abs(Shields[Shields.Count - 1].transform.position.x - transform.position.x) > 1)
             {
                 if (NumberOfShields <= 2)
                 {
-                    Debug.Log("SHIELD");
                     Shields.Add(Instantiate(ShieldPrefab, ShieldPoint.position, Quaternion.identity) as GameObject);
                     NumberOfShields++;
                 }
-                else
+            }
+            else
+            {
+                if (NumberOfShields <= 2)
                 {
-                    Debug.Log("Shield Limit" + NumberOfShields);
+                    Shields.Add(Instantiate(ShieldPrefab, ShieldPoint.position, Quaternion.identity) as GameObject);
+                    NumberOfShields++;
                 }
-            } else {
-				if (NumberOfShields <= 2)
-				{
-					Debug.Log("SHIELD");
-					Shields.Add(Instantiate(ShieldPrefab, ShieldPoint.position, Quaternion.identity) as GameObject);
-					NumberOfShields++;
-				}
-				else
-				{
-					Debug.Log("Shield Limit" + NumberOfShields);
-				}
             }
 
         }
@@ -114,12 +104,12 @@ public class AI_Controls : MonoBehaviour
     public void Shoot()
     {
 
-        ReadyToShoot =  !Physics2D.OverlapCircle(transform.position, BulletShootingRaduis, AI_Bullet);
+        ReadyToShoot = !Physics2D.OverlapCircle(transform.position, BulletShootingRaduis, AI_Bullet);
         if (DetectedEnemy && ReadyToShoot)
         {
             GameObject BulletClone = Instantiate(Bullet, ShootingPoint.transform.position, Quaternion.Euler(0, 0, -90f)) as GameObject;
             DetectedEnemy = false;
-			ReadyToShoot = false;
+            ReadyToShoot = false;
         }
     }
 
@@ -144,16 +134,13 @@ public class AI_Controls : MonoBehaviour
     {
         if (transform.position.x < Player1.transform.position.x)
         {
-            //rb2d.velocity = new Vector2(MoveSpeed, rb2d.velocity.y);
             transform.position = Vector2.MoveTowards(transform.position, TrackingTransform, MoveSpeed);
             transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
             GetComponent<Animator>().SetBool("P2_isRunning", true);
         }
         else if (transform.position.x > Player1.transform.position.x)
         {
-            //rb2d.velocity = new Vector2(-MoveSpeed, rb2d.velocity.y);
             transform.position = Vector2.MoveTowards(transform.position, TrackingTransform, MoveSpeed);
-
             transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
             GetComponent<Animator>().SetBool("P2_isRunning", true);
         }
@@ -181,7 +168,6 @@ public class AI_Controls : MonoBehaviour
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(transform.position, BulletDetectionRaduis);
         Gizmos.color = Color.red;
-
-        Gizmos.DrawWireSphere(transform.position, BulletShootingRaduis); 
+        Gizmos.DrawWireSphere(transform.position, BulletShootingRaduis);
     }
 }

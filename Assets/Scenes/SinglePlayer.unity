@@ -1500,7 +1500,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4524206849115876, guid: 6c7e2b4bca8deed4cad5225c84146ffc, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.52
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114188466981537122, guid: 6c7e2b4bca8deed4cad5225c84146ffc, type: 2}
@@ -1624,8 +1624,8 @@ MonoBehaviour:
   Enemy:
     serializedVersion: 2
     m_Bits: 1024
-  BulletDetectionRaduis: 1.92
-  BulletShootingRaduis: 2.69
+  BulletDetectionRaduis: 0.18
+  BulletShootingRaduis: 3.51
 --- !u!1 &1414040417
 GameObject:
   m_ObjectHideFlags: 0

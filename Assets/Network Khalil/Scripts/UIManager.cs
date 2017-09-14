@@ -11,14 +11,28 @@ public class UIManager : MonoBehaviour {
 	public GameObject GameOn;
 	public GameObject MatchMakingUI;
 	public GameObject IPAddress;
+	public GameObject SettingsPanel;
+
+	public Slider MusicSlider;
 
 	// Use this for initialization
 	void Start () {
 		showLanWanButtons ();
+		MusicSlider.value = PlayerPrefs.GetFloat ("MusicVol");
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
+	}
+	public void showSettings(){
+		SettingsPanel.SetActive (true);
+	}
+	public void hideSettings(){
+		SettingsPanel.SetActive (false);
+	}
+	public void changeMusicVolume ()
+	{
+		PlayerPrefs.SetFloat ("MusicVol", MusicSlider.value);
 	}
 	public void showIPAddress(){
 		GameObject ip = Instantiate(IPAddress,IPAddress.transform);
@@ -59,6 +73,6 @@ public class UIManager : MonoBehaviour {
 		GameOn.SetActive (false);
 		GameOver.SetActive (false);
 	}
-		
+
 
 }

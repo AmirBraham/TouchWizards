@@ -32,6 +32,26 @@ public class customNetworkManager : NetworkManager {
 		NetworkManager.singleton.StartClient ();
 		UImanager.showGameOn ();
 	}
+	public void disconnect(){
+		if(NetworkClient.active)
+			NetworkClient.ShutdownAll ();
+		if (GameObject.FindGameObjectWithTag ("localPlayer").GetComponent<WizardScriptNet> ().isServer && NetworkServer.active) {
+			NetworkServer.Shutdown();
+		}
+		if (!NetworkClient.active && !NetworkServer.active && NetworkManager.singleton.matchMaker == null) {
+			if (NetworkServer.active || NetworkClient.active) {
+				if (GameObject.FindGameObjectWithTag ("localPlayer").GetComponent<WizardScriptNet> ().isServer) {
+					NetworkManager.singleton.StopHost ();
+				} else {
+					NetworkManager.singleton.StopClient ();
+
+				}
+			}
+		}
+		Application.LoadLevel ("Start");
+		//Network.Disconnect(0);
+		//MasterServer.UnregisterHost();
+	}
 	//call this method to request a match to be created on the server
 	public void CreateInternetMatch()
 	{

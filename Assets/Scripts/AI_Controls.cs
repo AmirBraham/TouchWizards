@@ -39,7 +39,6 @@ public class AI_Controls : MonoBehaviour
         ReadyToShoot = true;
         Player1 = GameObject.FindWithTag("Player_1");
         Health = 1;
-        Debug.Log(MoveSpeed);
         if (PlayerPrefs.GetInt("CurrentScore") != 0)
         {
             MoveSpeed += PlayerPrefs.GetInt("CurrentScore") / 100;
@@ -125,6 +124,7 @@ public class AI_Controls : MonoBehaviour
             SoloGameManager.replaytext = "Next";
             SoloGameManager.P1_GameOverText = "You Win!";
             GetComponent<SpriteRenderer>().DOFade(0, 2f);
+            SoloP1_Controls.Health = 1;
             SoloGameManager.GameOn.SetActive(false);
             Destroy(gameObject);
         }

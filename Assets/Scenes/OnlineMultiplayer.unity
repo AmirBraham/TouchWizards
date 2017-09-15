@@ -935,6 +935,7 @@ MonoBehaviour:
   MatchMakingUI: {fileID: 29594469}
   IPAddress: {fileID: 1939533508269238, guid: 4f7427f1d21384eb2a9bcab2df895593, type: 2}
   SettingsPanel: {fileID: 1901703179}
+  shieldButton: {fileID: 833625470}
   MusicSlider: {fileID: 1631021182}
 --- !u!1 &407271923
 GameObject:
@@ -1892,7 +1893,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 833625471}
   m_OnClick:
     m_PersistentCalls:

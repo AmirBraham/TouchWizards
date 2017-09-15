@@ -18,8 +18,10 @@ public class WizardScriptNet : NetworkBehaviour
 	public static bool isHoldingRB;
 	public static bool isHoldingLB;
 	int dir;
+	bool canCastShield;
 	public GameObject canvas;
 	void Start(){
+		canCastShield = true;
 		dir = isServer ? 1 : -1;
 		if (!isLocalPlayer) {
 			gameObject.layer = !isServer ? LayerMask.NameToLayer ("P1") : LayerMask.NameToLayer ("P2");
@@ -91,7 +93,8 @@ public class WizardScriptNet : NetworkBehaviour
 		Loop();
 		gameObject.tag = "localPlayer";
 		Movement ();
-
+		GameObject [] shields =GameObject.FindGameObjectsWithTag(LayerMask.LayerToName(gameObject.layer)+"_Shield") ;
+		checkShieldSttus (shields);
 		if (!isServer) {
 			GetComponent<Animator> ().runtimeAnimatorController = RedWizardAnim;
 			transform.rotation = Quaternion.Euler (0, 0, 180);
@@ -102,6 +105,15 @@ public class WizardScriptNet : NetworkBehaviour
 		}
 		if (Input.GetKeyDown(KeyCode.Space))
 			Cmdshoot(dir);
+	}
+	void checkShieldSttus(GameObject [] array){
+		if (array.Length < 3) {
+			GameObject.Find ("SceneManager").GetComponent<UIManager> ().activateShieldButton();
+			canCastShield = true;
+		} else {
+			GameObject.Find ("SceneManager").GetComponent<UIManager> ().deactivateShieldButton();
+			canCastShield = false;
+		}
 	}
 
 	[Command]
@@ -116,6 +128,8 @@ public class WizardScriptNet : NetworkBehaviour
 	[Command]
 	void CmdcastShield(int direction)
 	{
+		if (!canCastShield)
+			return;
 		GameObject Shield= direction == 1 ? ShieldP1 : ShieldP2;
 		GameObject _shield = Instantiate(Shield, ShootingPoint.position, Quaternion.identity);
 		NetworkServer.Spawn(_shield);

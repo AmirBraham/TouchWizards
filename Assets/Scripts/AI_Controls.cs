@@ -34,7 +34,6 @@ public class AI_Controls : MonoBehaviour
     {
         first = true;
         hasChanged = false;
-
         rb2d = GetComponent<Rigidbody2D>();
         NumberOfShields = 0;
         Player1 = GameObject.FindWithTag("Player_1");
@@ -42,7 +41,7 @@ public class AI_Controls : MonoBehaviour
         if (PlayerPrefs.GetInt("CurrentScore") != 0)
         {
             MoveSpeed += PlayerPrefs.GetInt("CurrentScore") / 100.0f;
-            if(BulletIntervalDefault >= 0.08)
+            if (BulletIntervalDefault >= 0.08)
                 BulletIntervalDefault = 1.0f - PlayerPrefs.GetInt("CurrentScore") / 70.0f;
             BulletDetectionRaduis += PlayerPrefs.GetInt("CurrentScore") / 1.4f;
         }
@@ -73,7 +72,8 @@ public class AI_Controls : MonoBehaviour
             Shield();
             Shoot();
         }
-        if(Shot) {
+        if (Shot)
+        {
             BulletInterval -= Time.deltaTime;
         }
 
@@ -107,13 +107,14 @@ public class AI_Controls : MonoBehaviour
 
     public void Shoot()
     {
-        if ((BulletInterval <= 0.02f || first) && DetectedEnemy) {
+        if ((BulletInterval <= 0.02f || first) && DetectedEnemy)
+        {
             GameObject BulletClone = Instantiate(Bullet, ShootingPoint.transform.position, Quaternion.Euler(0, 0, -90f)) as GameObject;
             Shot = true;
             BulletInterval = BulletIntervalDefault;
             first = false;
         }
-           
+
 
     }
 

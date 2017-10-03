@@ -2412,8 +2412,11 @@ MonoBehaviour:
   Enemy:
     serializedVersion: 2
     m_Bits: 1024
-  BulletDetectionRaduis: 0.18
-  BulletShootingRaduis: 3.51
+  BulletDetectionRaduis: 0.98
+  BulletInterval: 0
+  BulletIntervalDefault: 0.5
+  Shot: 0
+  first: 0
 --- !u!1 &1414040417
 GameObject:
   m_ObjectHideFlags: 0

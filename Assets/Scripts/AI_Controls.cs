@@ -16,34 +16,35 @@ public class AI_Controls : MonoBehaviour
     public GameObject ShieldPrefab;
     public Transform ShieldPoint;
     public static int NumberOfShields;
-    List<float> BoosterXPos = new List<float>();
     public bool DetectedEnemyBullet;
     public bool DetectedEnemy;
     bool hasChanged;
     public LayerMask P1_Bullet;
     public LayerMask AI_Bullet;
-    public static bool ReadyToShoot;
     public LayerMask Enemy;
     public static List<GameObject> Shields = new List<GameObject>();
     public float BulletDetectionRaduis;
-    public float BulletShootingRaduis;
+    public float BulletInterval;
+    public float BulletIntervalDefault;
+    public bool Shot;
+    public bool first;
     Vector2 TrackingTransform;
 
     void Start()
     {
+        first = true;
         hasChanged = false;
+
         rb2d = GetComponent<Rigidbody2D>();
-        BoosterXPos.Add(-5f);
-        BoosterXPos.Add(5f);
         NumberOfShields = 0;
-        ReadyToShoot = true;
         Player1 = GameObject.FindWithTag("Player_1");
         Health = 1;
         if (PlayerPrefs.GetInt("CurrentScore") != 0)
         {
-            MoveSpeed += PlayerPrefs.GetInt("CurrentScore") / 100;
+            MoveSpeed += PlayerPrefs.GetInt("CurrentScore") / 100.0f;
+            if(BulletIntervalDefault >= 0.08)
+                BulletIntervalDefault = 1.0f - PlayerPrefs.GetInt("CurrentScore") / 70.0f;
             BulletDetectionRaduis += PlayerPrefs.GetInt("CurrentScore") / 1.4f;
-            BulletShootingRaduis -= PlayerPrefs.GetInt("CurrentScore") / 1.4f;
         }
         if (Health <= 4 && PlayerPrefs.GetInt("CurrentScore") != 0)
         {
@@ -71,6 +72,9 @@ public class AI_Controls : MonoBehaviour
                 Movement();
             Shield();
             Shoot();
+        }
+        if(Shot) {
+            BulletInterval -= Time.deltaTime;
         }
 
     }
@@ -100,16 +104,17 @@ public class AI_Controls : MonoBehaviour
 
     }
 
+
     public void Shoot()
     {
-
-        ReadyToShoot = !Physics2D.OverlapCircle(transform.position, BulletShootingRaduis, AI_Bullet);
-        if (DetectedEnemy && ReadyToShoot)
-        {
+        if ((BulletInterval <= 0.02f || first) && DetectedEnemy) {
             GameObject BulletClone = Instantiate(Bullet, ShootingPoint.transform.position, Quaternion.Euler(0, 0, -90f)) as GameObject;
-            DetectedEnemy = false;
-            ReadyToShoot = false;
+            Shot = true;
+            BulletInterval = BulletIntervalDefault;
+            first = false;
         }
+           
+
     }
 
     public void HealthStatus()
@@ -167,7 +172,5 @@ public class AI_Controls : MonoBehaviour
     {
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(transform.position, BulletDetectionRaduis);
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, BulletShootingRaduis);
     }
 }

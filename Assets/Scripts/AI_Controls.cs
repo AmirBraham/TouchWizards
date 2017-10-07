@@ -29,7 +29,8 @@ public class AI_Controls : MonoBehaviour
     public bool Shot;
     public bool first;
     Vector2 TrackingTransform;
-
+	float random;
+    float timeLeft;
     void Start()
     {
         first = true;
@@ -47,10 +48,12 @@ public class AI_Controls : MonoBehaviour
         }
         if (Health <= 4 && PlayerPrefs.GetInt("CurrentScore") != 0)
         {
-
             Health = PlayerPrefs.GetInt("CurrentScore") / 1.4f;
             HealthSlider.maxValue = Health;
         }
+
+        random = Random.Range(0, 110);
+        timeLeft = Random.Range(10, 30);
     }
 
     void Update()
@@ -104,7 +107,6 @@ public class AI_Controls : MonoBehaviour
 
     }
 
-
     public void Shoot()
     {
         if ((BulletInterval <= 0.02f || first) && DetectedEnemy)
@@ -114,8 +116,6 @@ public class AI_Controls : MonoBehaviour
             BulletInterval = BulletIntervalDefault;
             first = false;
         }
-
-
     }
 
     public void HealthStatus()
@@ -138,22 +138,33 @@ public class AI_Controls : MonoBehaviour
 
     public void Movement()
     {
-        if (transform.position.x < Player1.transform.position.x)
+        if (random > 30 && random < 60)
         {
-            transform.position = Vector2.MoveTowards(transform.position, TrackingTransform, MoveSpeed);
-            transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-            GetComponent<Animator>().SetBool("P2_isRunning", true);
-        }
-        else if (transform.position.x > Player1.transform.position.x)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, TrackingTransform, MoveSpeed);
-            transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
-            GetComponent<Animator>().SetBool("P2_isRunning", true);
-        }
-        else
-        {
-            rb2d.velocity = new Vector2(0, 0);
-            GetComponent<Animator>().SetBool("P2_isRunning", false);
+			FollowStrategy();
+            timeLeft -= Time.deltaTime;
+
+			if (timeLeft <= 0)
+			{
+				random = Random.Range(0, 110);
+				timeLeft = Random.Range(10, 30);
+			}
+        } else if  ( random > 60 && random < 100 ) {
+			RunningStrategy();
+			timeLeft -= Time.deltaTime;
+
+			if (timeLeft <= 0)
+			{
+				random = Random.Range(0, 110);
+				timeLeft = Random.Range(10, 30);
+			}
+        } else {
+			RandomStrategy();
+			timeLeft -= Time.deltaTime;
+			if (timeLeft <= 0)
+			{
+				random = Random.Range(0, 110);
+				timeLeft = Random.Range(10, 30);
+			}
         }
     }
 
@@ -167,6 +178,92 @@ public class AI_Controls : MonoBehaviour
         {
             transform.position = new Vector2(-(transform.position.x - 0.1f), transform.position.y);
         }
+    }
+
+    public void FollowStrategy () {
+        Debug.Log("FollowStrategy");
+		if (transform.position.x < Player1.transform.position.x)
+		{
+			transform.position = Vector2.MoveTowards(transform.position, TrackingTransform, MoveSpeed);
+			transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+			GetComponent<Animator>().SetBool("P2_isRunning", true);
+		}
+		else if (transform.position.x > Player1.transform.position.x)
+		{
+			transform.position = Vector2.MoveTowards(transform.position, TrackingTransform, MoveSpeed);
+			transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
+			GetComponent<Animator>().SetBool("P2_isRunning", true);
+		}
+		else
+		{
+			rb2d.velocity = new Vector2(0, 0);
+			GetComponent<Animator>().SetBool("P2_isRunning", false);
+		}
+    }
+
+    public void RunningStrategy () {
+		Debug.Log("RunningStrategy");
+
+		if (transform.position.x < Player1.transform.position.x)
+		{
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(-TrackingTransform.x,TrackingTransform.y) , MoveSpeed);
+			transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+			GetComponent<Animator>().SetBool("P2_isRunning", true);
+		}
+		else if (transform.position.x > Player1.transform.position.x)
+		{
+			transform.position = Vector2.MoveTowards(transform.position, new Vector2(-TrackingTransform.x, TrackingTransform.y), MoveSpeed);
+			transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
+			GetComponent<Animator>().SetBool("P2_isRunning", true);
+		}
+		else
+		{
+			rb2d.velocity = new Vector2(0, 0);
+			GetComponent<Animator>().SetBool("P2_isRunning", false);
+		}
+    }
+
+    public void RandomStrategy () {
+		Debug.Log("RandomStrategy");
+
+		float random = Random.Range(0, 110);
+		float randomDuration = Random.Range(4, 30);
+		if (random > 30 && random < 60)
+		{
+			rb2d.velocity = new Vector2(MoveSpeed * 40, rb2d.velocity.y);
+			transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+			GetComponent<Animator>().SetBool("Player2_isRunning", true);
+			randomDuration++;
+			if (randomDuration >= 30)
+			{
+				random = Random.Range(0, 110);
+				randomDuration = Random.Range(4, 30);
+			}
+		}
+		else if (random > 60 && random < 100)
+		{
+			rb2d.velocity = new Vector2(-MoveSpeed * 40 , rb2d.velocity.y);
+			transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
+			GetComponent<Animator>().SetBool("Player2_isRunning", true);
+			randomDuration++;
+			if (randomDuration >= 30)
+			{
+				random = Random.Range(0, 110);
+				randomDuration = Random.Range(4, 30);
+			}
+		}
+		else
+		{
+			rb2d.velocity = new Vector2(0, 0);
+			GetComponent<Animator>().SetBool("Player2_isRunning", false);
+			randomDuration++;
+			if (randomDuration >= 30)
+			{
+				random = Random.Range(0, 110);
+				randomDuration = Random.Range(4, 30);
+			}
+		}
+
     }
 
     void OnDrawGizmosSelected()

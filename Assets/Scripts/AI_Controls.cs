@@ -15,7 +15,7 @@ public class AI_Controls : MonoBehaviour
     public GameObject Bullet;
     public GameObject ShieldPrefab;
     public Transform ShieldPoint;
-    public static int NumberOfShields;
+    public static int NumberOfShields; // max shields deployed at the same time : 2
     public bool DetectedEnemyBullet;
     public bool DetectedEnemy;
     bool hasChanged;
@@ -24,15 +24,21 @@ public class AI_Controls : MonoBehaviour
     public LayerMask Enemy;
     public static List<GameObject> Shields = new List<GameObject>();
     public float BulletDetectionRaduis;
-    public float BulletInterval;
+    public float BulletInterval; // time between instantiating bullets
     public float BulletIntervalDefault;
     public bool Shot;
     public bool first;
-    Vector2 TrackingTransform;
-	float random;
+    Vector2 TrackingTransform; // Player position 
+    float random;
     float timeLeft;
+    float randomStrategy;
+    float RandomStrategytimeleft;
+    public float shieldtiming; // time in seconds  before Ai can deploy another shield
+    float defaultShieldTiming;
+    bool deployedShield;
     void Start()
     {
+        defaultShieldTiming = shieldtiming;
         first = true;
         hasChanged = false;
         rb2d = GetComponent<Rigidbody2D>();
@@ -54,10 +60,14 @@ public class AI_Controls : MonoBehaviour
 
         random = Random.Range(0, 110);
         timeLeft = Random.Range(10, 30);
+        randomStrategy = Random.Range(0, 110);
+        RandomStrategytimeleft = Random.Range(5, 20);
     }
 
     void Update()
     {
+        if (deployedShield)
+            shieldtiming -= Time.deltaTime;
         if (Player1 != null)
         {
             TrackingTransform = new Vector2(Player1.GetComponent<Transform>().position.x,
@@ -66,8 +76,8 @@ public class AI_Controls : MonoBehaviour
 
         if (GameObject.FindGameObjectWithTag("Tutorial") == null)
         {
-            DetectedEnemyBullet = Physics2D.OverlapCircle(transform.position, BulletDetectionRaduis, P1_Bullet);
-            DetectedEnemy = Physics2D.OverlapArea(transform.position, new Vector2(transform.position.x, transform.position.y - 60f), Enemy);
+            DetectedEnemyBullet = Physics2D.OverlapCircle(transform.position, BulletDetectionRaduis, P1_Bullet); // if bullet is within AI range 
+            DetectedEnemy = Physics2D.OverlapArea(transform.position, new Vector2(transform.position.x, transform.position.y - 60f), Enemy); // if player is within AI shooting range 
             Loop();
             HealthStatus();
             if (Player1 != null)
@@ -86,27 +96,32 @@ public class AI_Controls : MonoBehaviour
     {
         if (DetectedEnemyBullet)
         {
-            if (NumberOfShields == 1 && System.Math.Abs(Shields[Shields.Count - 1].transform.position.x - transform.position.x) > 1)
+            if (!deployedShield || shieldtiming < 1)
             {
-                if (NumberOfShields <= 2)
+                if (NumberOfShields == 1 && System.Math.Abs(Shields[Shields.Count - 1].transform.position.x - transform.position.x) > 1)
                 {
-                    Shields.Add(Instantiate(ShieldPrefab, ShieldPoint.position, Quaternion.identity) as GameObject);
-                    NumberOfShields++;
+                    if (NumberOfShields <= 2)
+                    {
+                        Shields.Add(Instantiate(ShieldPrefab, ShieldPoint.position, Quaternion.identity) as GameObject);
+                        deployedShield = true;
+                        shieldtiming = defaultShieldTiming;
+                        NumberOfShields++;
+                    }
                 }
-            }
-            else
-            {
-                if (NumberOfShields <= 2)
+                else
                 {
-                    Shields.Add(Instantiate(ShieldPrefab, ShieldPoint.position, Quaternion.identity) as GameObject);
-                    NumberOfShields++;
-                }
-            }
+                    if (NumberOfShields <= 2)
+                    {
+                        Shields.Add(Instantiate(ShieldPrefab, ShieldPoint.position, Quaternion.identity) as GameObject);
+                        deployedShield = true;
+                        NumberOfShields++;
+                        shieldtiming = defaultShieldTiming;
 
+                    }
+                }
+            }
         }
-
     }
-
     public void Shoot()
     {
         if ((BulletInterval <= 0.02f || first) && DetectedEnemy)
@@ -118,7 +133,7 @@ public class AI_Controls : MonoBehaviour
         }
     }
 
-    public void HealthStatus()
+    public void HealthStatus() //  manges both health and UIA slider
     {
         HealthSlider.value = Health;
         if (Health <= 0)
@@ -136,39 +151,50 @@ public class AI_Controls : MonoBehaviour
         }
     }
 
-    public void Movement()
+    public void Movement() // chooses a strategy randomly for a short period of time 
     {
+
         if (random > 30 && random < 60)
         {
-			FollowStrategy();
+            Debug.Log("follow");
+
+            FollowStrategy();
+
             timeLeft -= Time.deltaTime;
 
-			if (timeLeft <= 0)
-			{
-				random = Random.Range(0, 110);
-				timeLeft = Random.Range(10, 30);
-			}
-        } else if  ( random > 60 && random < 100 ) {
-			RunningStrategy();
-			timeLeft -= Time.deltaTime;
+            if (timeLeft <= 0)
+            {
+                random = Random.Range(0, 110);
+                timeLeft = Random.Range(10, 30);
+            }
+        }
+        else if (random > 60 && random < 100)
+        {
+            RunningStrategy();
+            timeLeft -= Time.deltaTime;
+            Debug.Log("RUN");
 
-			if (timeLeft <= 0)
-			{
-				random = Random.Range(0, 110);
-				timeLeft = Random.Range(10, 30);
-			}
-        } else {
-			RandomStrategy();
-			timeLeft -= Time.deltaTime;
-			if (timeLeft <= 0)
-			{
-				random = Random.Range(0, 110);
-				timeLeft = Random.Range(10, 30);
-			}
+            if (timeLeft <= 0)
+            {
+                random = Random.Range(0, 110);
+                timeLeft = Random.Range(10, 30);
+            }
+        }
+        else
+        {
+            RandomStrategy();
+            Debug.Log("");
+
+            timeLeft -= Time.deltaTime;
+            if (timeLeft <= 0)
+            {
+                random = Random.Range(0, 110);
+                timeLeft = Random.Range(1, 30);
+            }
         }
     }
 
-    public void Loop()
+    public void Loop() // transports AI to the other side when he reaches the edge 
     {
         if (transform.position.x <= -3)
         {
@@ -180,93 +206,96 @@ public class AI_Controls : MonoBehaviour
         }
     }
 
-    public void FollowStrategy () {
-        Debug.Log("FollowStrategy");
-		if (transform.position.x < Player1.transform.position.x)
-		{
-			transform.position = Vector2.MoveTowards(transform.position, TrackingTransform, MoveSpeed);
-			transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-			GetComponent<Animator>().SetBool("P2_isRunning", true);
-		}
-		else if (transform.position.x > Player1.transform.position.x)
-		{
-			transform.position = Vector2.MoveTowards(transform.position, TrackingTransform, MoveSpeed);
-			transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
-			GetComponent<Animator>().SetBool("P2_isRunning", true);
-		}
-		else
-		{
-			rb2d.velocity = new Vector2(0, 0);
-			GetComponent<Animator>().SetBool("P2_isRunning", false);
-		}
+    public void FollowStrategy()
+    {
+        if (transform.position.x < Player1.transform.position.x)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, TrackingTransform, MoveSpeed);
+            transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+            GetComponent<Animator>().SetBool("P2_isRunning", true);
+        }
+        else if (transform.position.x > Player1.transform.position.x)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, TrackingTransform, MoveSpeed);
+            transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
+            GetComponent<Animator>().SetBool("P2_isRunning", true);
+        }
+        else
+        {
+            rb2d.velocity = new Vector2(0, 0);
+            GetComponent<Animator>().SetBool("P2_isRunning", false);
+        }
     }
 
-    public void RunningStrategy () {
-		Debug.Log("RunningStrategy");
+    public void RunningStrategy()
+    {
+        if (transform.position.x < Player1.transform.position.x)
+        {
 
-		if (transform.position.x < Player1.transform.position.x)
-		{
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(-TrackingTransform.x,TrackingTransform.y) , MoveSpeed);
-			transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-			GetComponent<Animator>().SetBool("P2_isRunning", true);
-		}
-		else if (transform.position.x > Player1.transform.position.x)
-		{
-			transform.position = Vector2.MoveTowards(transform.position, new Vector2(-TrackingTransform.x, TrackingTransform.y), MoveSpeed);
-			transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
-			GetComponent<Animator>().SetBool("P2_isRunning", true);
-		}
-		else
-		{
-			rb2d.velocity = new Vector2(0, 0);
-			GetComponent<Animator>().SetBool("P2_isRunning", false);
-		}
+            if (transform.position.x > 0)
+            {
+                transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
+            }
+            else
+            {
+                transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+            }
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(-TrackingTransform.x, TrackingTransform.y), MoveSpeed);
+            GetComponent<Animator>().SetBool("P2_isRunning", true);
+        }
+        else if (transform.position.x > Player1.transform.position.x)
+        {
+
+
+            if (transform.position.x > 0)
+            {
+                transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+            }
+            else
+            {
+                transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
+            }
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(-TrackingTransform.x, TrackingTransform.y), MoveSpeed);
+            GetComponent<Animator>().SetBool("P2_isRunning", true);
+        }
+        else
+        {
+            rb2d.velocity = new Vector2(0, 0);
+            GetComponent<Animator>().SetBool("P2_isRunning", false);
+        }
     }
 
-    public void RandomStrategy () {
-		Debug.Log("RandomStrategy");
+    public void RandomStrategy()
+    {
 
-		float random = Random.Range(0, 110);
-		float randomDuration = Random.Range(4, 30);
-		if (random > 30 && random < 60)
-		{
-			rb2d.velocity = new Vector2(MoveSpeed * 40, rb2d.velocity.y);
-			transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-			GetComponent<Animator>().SetBool("Player2_isRunning", true);
-			randomDuration++;
-			if (randomDuration >= 30)
-			{
-				random = Random.Range(0, 110);
-				randomDuration = Random.Range(4, 30);
-			}
-		}
-		else if (random > 60 && random < 100)
-		{
-			rb2d.velocity = new Vector2(-MoveSpeed * 40 , rb2d.velocity.y);
-			transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
-			GetComponent<Animator>().SetBool("Player2_isRunning", true);
-			randomDuration++;
-			if (randomDuration >= 30)
-			{
-				random = Random.Range(0, 110);
-				randomDuration = Random.Range(4, 30);
-			}
-		}
-		else
-		{
-			rb2d.velocity = new Vector2(0, 0);
-			GetComponent<Animator>().SetBool("Player2_isRunning", false);
-			randomDuration++;
-			if (randomDuration >= 30)
-			{
-				random = Random.Range(0, 110);
-				randomDuration = Random.Range(4, 30);
-			}
-		}
+        if (randomStrategy >= 0 && randomStrategy <= 55)
+        {
+            rb2d.velocity = new Vector2(MoveSpeed * 40, rb2d.velocity.y);
+            transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+            GetComponent<Animator>().SetBool("Player2_isRunning", true);
+            RandomStrategytimeleft -= Time.deltaTime;
+            if (RandomStrategytimeleft <= 0)
+            {
+                randomStrategy = Random.Range(0, 110);
+                RandomStrategytimeleft = Random.Range(1, 3);
+            }
+        }
+        else
+        {
+            rb2d.velocity = new Vector2(-MoveSpeed * 40, rb2d.velocity.y);
+            transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
+            GetComponent<Animator>().SetBool("Player2_isRunning", true);
+            RandomStrategytimeleft -= Time.deltaTime;
+            if (RandomStrategytimeleft <= 0)
+            {
+                randomStrategy = Random.Range(0, 110);
+                RandomStrategytimeleft = Random.Range(1, 3);
+            }
+        }
 
     }
 
-    void OnDrawGizmosSelected()
+    void OnDrawGizmosSelected() // draws Bullet Detection circle
     {
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(transform.position, BulletDetectionRaduis);

@@ -1252,7 +1252,6 @@ AudioListener:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 656878753}
   m_Enabled: 1
-  m_ExtensionPropertyValues: []
 --- !u!124 &656878755
 Behaviour:
   m_ObjectHideFlags: 0
@@ -1302,7 +1301,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
-  m_StereoMirrorMode: 0
 --- !u!4 &656878758
 Transform:
   m_ObjectHideFlags: 0
@@ -2417,6 +2415,7 @@ MonoBehaviour:
   BulletIntervalDefault: 0.5
   Shot: 0
   first: 0
+  shieldtiming: 5
 --- !u!1 &1414040417
 GameObject:
   m_ObjectHideFlags: 0
@@ -2956,7 +2955,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: af217e9297b42fa48a25dd77cf925e8e, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1500000, guid: af217e9297b42fa48a25dd77cf925e8e, type: 2}
       propertyPath: maxSize
@@ -3465,7 +3464,7 @@ Prefab:
     - target: {fileID: 224874307424214710, guid: 6e7ee89ef8508b044b3df645f5ab5526,
         type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 224874307424214710, guid: 6e7ee89ef8508b044b3df645f5ab5526,
         type: 2}
@@ -3898,7 +3897,7 @@ RectTransform:
   - {fileID: 324739375}
   - {fileID: 95897504}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

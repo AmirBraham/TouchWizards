@@ -1,9 +1,10 @@
-﻿<Properties StartupConfiguration="{336B35C4-057B-4CE8-76D8-757A6AE4E456}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/AI_Controls.cs">
+﻿<Properties StartupConfiguration="{A3E5780F-BF9E-E77F-E036-125F52FEA14E}|Unit Tests">
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SoloGameManager.cs">
     <Files>
       <File FileName="Assets/Scripts/tutorialManager.cs" Line="52" Column="23" />
-      <File FileName="Assets/Scripts/AI_Controls.cs" Line="233" Column="5" />
-      <File FileName="Assets/Scripts/SoloGameManager.cs" Line="94" Column="5" />
+      <File FileName="Assets/Scripts/AI_Controls.cs" Line="16" Column="36" />
+      <File FileName="Assets/Scripts/SoloGameManager.cs" Line="4" Column="1" />
       <File FileName="Assets/Scripts/DeathAnim.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/SceneManager.cs" Line="23" Column="3" />
       <File FileName="Assets/Scripts/GameManager.cs" Line="17" Column="16" />

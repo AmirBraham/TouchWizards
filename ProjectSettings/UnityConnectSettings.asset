@@ -31,6 +31,6 @@ UnityConnectSettings:
     m_GameIds:
       AndroidPlayer: 1452701
       iPhonePlayer: 1452724
-    m_GameId: 1452701
+    m_GameId: 1452724
   PerformanceReportingSettings:
     m_Enabled: 0

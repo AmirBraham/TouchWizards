@@ -59,9 +59,14 @@ public class AI_Controls : MonoBehaviour
         }
 
         random = Random.Range(0, 110);
+        InvokeRepeating("UpdateStrategy",0,Random.Range(3.0f,5.0f));
         timeLeft = Random.Range(10, 30);
         randomStrategy = Random.Range(0, 110);
         RandomStrategytimeleft = Random.Range(5, 20);
+    }
+    void UpdateStrategy(){
+        random = Random.Range(0, 110);
+        print(random);
     }
 
     void Update()

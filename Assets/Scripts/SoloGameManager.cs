@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Advertisements;
 
-
 public class SoloGameManager : MonoBehaviour
 {
     public Text replayText;

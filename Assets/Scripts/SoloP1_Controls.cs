@@ -104,16 +104,19 @@ public class SoloP1_Controls : MonoBehaviour
         P1_HealthSlider.value = Health;
         if (Health <= 0)
         {
-            if (!hasChanged)
+           /* if (!hasChanged)
                 PlayerPrefs.SetInt("CurrentScore", 0);
+            */
             rb2d.velocity = new Vector2(0, rb2d.velocity.y);
             SoloGameManager.GameOver.SetActive(true);
             GetComponent<SpriteRenderer>().DOFade(0, 2f);
-            Destroy(gameObject);
             SoloGameManager.replaytext = "Replay";
             SoloGameManager.P1_GameOverText = "You Lose!";
+            AI_Controls.Health = 1;
             SoloGameManager.GameOn.SetActive(false);
-        }
+			Destroy(gameObject);
+
+		}
     }
 
     public void Loop()

@@ -44,22 +44,29 @@ public class tutorialManager : MonoBehaviour
 
     void Update()
     {
-        Time.timeScale = 0;
-		if (Input.touchCount > 0 ) {
-			if (!hasTouched) {
-				stepcounter++;
-				hasTouched = true;
-			}
-		} else {
-			hasTouched = false;
-		}
-		if(Input.GetButton("Fire1")){
-			stepcounter++;
-		}
+        hasTouched = TouchRelease();
+        if(hasTouched == true) {
+            stepcounter++;
+        }
 		if (stepcounter >= steps.Length) {
 			Time.timeScale = 1;
+			Destroy(gameObject);
 		} else {
+            Time.timeScale = 0;
 			gameObject.GetComponent<Image> ().sprite = steps [stepcounter];
 		}
     }
+
+
+	public static bool TouchRelease()
+	{
+		bool b = false;
+		for (int i = 0; i < Input.touches.Length; i++)
+		{
+			b = Input.touches[i].phase == TouchPhase.Ended;
+			if (b)
+				break;
+		}
+		return b;
+	}
 }

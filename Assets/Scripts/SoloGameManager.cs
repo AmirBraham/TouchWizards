@@ -1,8 +1,7 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.Advertisements;
 
 
 public class SoloGameManager : MonoBehaviour
@@ -16,17 +15,22 @@ public class SoloGameManager : MonoBehaviour
     public Slider SFXSlider;
     int normalPlayerSpeed = 4;
     public GameObject SpeedBoostPrefab;
+    public Text AdRespopnseText;
+    public GameObject AdButton;
+    public GameObject ReviveButton;
     public static GameObject GameOver;
     public Text P1_GameOverTextGO;
     public static string P1_GameOverText;
     public static string replaytext;
     public static GameObject GameOn;
+    string gameId = "1452701";
     int lastScore;
     List<float> BoosterXPos = new List<float>();
 
     void Start()
     {
-        lastScore = PlayerPrefs.GetInt("CurrentScore");
+        Advertisement.Initialize(gameId);
+		lastScore = PlayerPrefs.GetInt("CurrentScore");
         confettis.SetActive(false);
         HighScoreText.text = "High Score: " + PlayerPrefs.GetInt("HighScore").ToString();
         Time.timeScale = 1;
@@ -41,8 +45,42 @@ public class SoloGameManager : MonoBehaviour
         InvokeRepeating("SpawnSpeedBoost", 10, Random.Range(10, 15));
         MusicSlider.value = PlayerPrefs.GetFloat("MusicVol");
         SFXSlider.value = PlayerPrefs.GetFloat("SFXVol");
+        AdButton.SetActive(false);
+        ReviveButton.SetActive(false);
     }
+	public void ShowRewardedVideo()
+	{
+		ShowOptions options = new ShowOptions();
+		options.resultCallback = HandleShowResult;
 
+		Advertisement.Show("video", options);
+	}
+
+	void HandleShowResult(ShowResult result)
+	{
+		if (result == ShowResult.Finished)
+		{
+			Debug.Log("Video completed - Offer a reward to the player");
+            Destroy(AdButton);
+			Application.LoadLevel(Application.loadedLevelName);
+
+		}
+		else if (result == ShowResult.Skipped)
+		{
+			Debug.LogWarning("Video was skipped - Do NOT reward the player");
+			AdButton.SetActive(true);
+
+			AdRespopnseText.text = "Video was skipped :( ";
+
+		}
+		else if (result == ShowResult.Failed)
+		{
+			AdButton.SetActive(true);
+
+			AdRespopnseText.text = "Video failed to show";
+
+		}
+	}
     void Update()
     {
         replayText.text = replaytext;
@@ -61,6 +99,10 @@ public class SoloGameManager : MonoBehaviour
             confettis.SetActive(true);
             PlayerPrefs.SetInt("HighScore", PlayerPrefs.GetInt("CurrentScore"));
             HighScoreText.text = "New High Score! : " + PlayerPrefs.GetInt("HighScore").ToString();
+        }
+
+        if(P1_GameOverText == "You Lose!") {
+            ReviveButton.SetActive(true);
         }
     }
 
@@ -89,8 +131,12 @@ public class SoloGameManager : MonoBehaviour
 
     public void RestartLevel()
     {
-        Application.LoadLevel(Application.loadedLevelName);
-    }
+        if(P1_GameOverText == "You Lose!") {
+            PlayerPrefs.SetInt("CurrentScore", 0);
+		}
+		Application.LoadLevel(Application.loadedLevelName);
+
+	}
 
     public void GoHome()
     {

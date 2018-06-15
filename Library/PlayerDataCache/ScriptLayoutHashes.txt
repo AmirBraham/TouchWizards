@@ -1,4 +1,4 @@
-OSXStandalone
+Android
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.home
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 bdee9faf2be19d4c97f386ea5a93848a UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
@@ -148,14 +148,14 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 60c9557bccfdbd492b40ba21ea876260 Assembly-CSharp.dll:.LeftButton
 d40f6f84a04d66dbae46937557015b92 Assembly-CSharp.dll:.P1_Controls
 b5b7c02c93ff2aa4d3e6c859649463da Assembly-UnityScript.dll:.TimedObjectDestructor
-cd9244018d442205f85cbf4b78469bf6 Assembly-CSharp.dll:.AI_Controls
+04dc963f28b7ebc6443d4356b6455e14 Assembly-CSharp.dll:.AI_Controls
 38e94907bb5eb4a104d4de5662daf6e7 Assembly-CSharp.dll:.P1_Shield
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.PlayModeRunnerCallback
 2a56361227def9f56c2cf57a88b32f4d UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.PlaymodeTestsController
 64eb32cc721b1cc68a91ed57461e188c UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.RemoteTestResultSender
 e0f7ffd5d5c2abe4b2e16569a21163da UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioRoom
 e0f7ffd5d5c2abe4b2e16569a21163da UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioRoom
-3ed8b252bf744e54a078aa75c9bc80a0 Assembly-CSharp.dll:.SoloGameManager
+530a861194dc037fe22971e888ca1abf Assembly-CSharp.dll:.SoloGameManager
 a55be57696f1ecf6678cb0a65ac01cb2 Assembly-CSharp.dll:.dontdestroy
 bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInput
@@ -168,4 +168,4 @@ b8f1a668e693ab37d6f804289f7a508b Assembly-CSharp.dll:.Fireball_P2
 d40f6f84a04d66dbae46937557015b92 Assembly-CSharp.dll:.SoloP1_Controls
 f266a453cd4bfbe81533762a3e3589f4 DOTween.dll:DG.Tweening.Core.DOTweenComponent
 0869883b6445f616fc171fe47d5fa3a0 DOTween.dll:DG.Tweening.Core.DOTweenSettings
-fab131fcdf6e4bacee23c51ad3317753 Assembly-CSharp.dll:.UIManager
+cf2c31b395f46dcf76561f23beaa6ced Assembly-CSharp.dll:.UIManager

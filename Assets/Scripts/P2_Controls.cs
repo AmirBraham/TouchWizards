@@ -154,6 +154,7 @@ public class P2_Controls : MonoBehaviour
             GetComponent<Animator>().SetBool("P2_isRunning", false);
             rb2d.velocity = new Vector2(0, 0);
             transform.position = StartPos;
+            GetComponent<Animator>().SetBool("P2_invoking", true);
         }
     }
 

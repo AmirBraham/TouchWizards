@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TouchWizards", "Assembly-CSharp.csproj", "{014CD201-F1D5-8C10-0213-2EEB793E5B0F}"
 EndProject
-Project("{7E176847-005A-4D42-C318-CA4D8E89F05B}") = "TouchWizards", "Assembly-UnityScript.unityproj", "{9E9D59D9-3379-B236-5186-1EA8BBD4D63B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TouchWizards", "Assembly-CSharp-Editor.csproj", "{DAA546BF-97F0-B775-4404-9DADC2F0592F}"
 EndProject
 Global
@@ -17,10 +15,6 @@ Global
 		{014CD201-F1D5-8C10-0213-2EEB793E5B0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{014CD201-F1D5-8C10-0213-2EEB793E5B0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{014CD201-F1D5-8C10-0213-2EEB793E5B0F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9E9D59D9-3379-B236-5186-1EA8BBD4D63B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9E9D59D9-3379-B236-5186-1EA8BBD4D63B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9E9D59D9-3379-B236-5186-1EA8BBD4D63B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9E9D59D9-3379-B236-5186-1EA8BBD4D63B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DAA546BF-97F0-B775-4404-9DADC2F0592F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DAA546BF-97F0-B775-4404-9DADC2F0592F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAA546BF-97F0-B775-4404-9DADC2F0592F}.Release|Any CPU.ActiveCfg = Release|Any CPU

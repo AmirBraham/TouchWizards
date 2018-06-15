@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour {
 	public GameObject MatchMakingUI;
 	public GameObject IPAddress;
 	public GameObject SettingsPanel;
+	public Button shieldButton;
 
 	public Slider MusicSlider;
 
@@ -72,6 +73,12 @@ public class UIManager : MonoBehaviour {
 		WAN.SetActive (false);
 		GameOn.SetActive (false);
 		GameOver.SetActive (false);
+	}
+	public void activateShieldButton(){
+		shieldButton.interactable = true;
+	}
+	public void deactivateShieldButton(){
+		shieldButton.interactable = false;
 	}
 
 

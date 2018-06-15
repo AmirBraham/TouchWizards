@@ -83,10 +83,9 @@ public class GameManager : MonoBehaviour
             {
                 if (Time.time - lastUpdate > 0.2f)
                 {
-                    tappos.transform.DOMove(new Vector3(tappos.transform.position.x, tappos.transform.position.y + (difference + Random.Range(-0.5f, 0.5f)) / 10, tappos.transform.position.z), 0.2f).SetEase(Ease.OutQuad);
+                    tappos.transform.DOMove(new Vector3(tappos.transform.position.x, Mathf.Clamp(tappos.transform.position.y + (difference + Random.Range(-0.5f, 0.5f)) / 10, -3.5F, 3.5F), tappos.transform.position.z), 0.2f).SetEase(Ease.OutQuad);
                     lastUpdate = Time.time;
                     p1taps = p2taps = 0;
-
                 }
             }
             else

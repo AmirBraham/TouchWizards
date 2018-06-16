@@ -36,17 +36,12 @@ public class AI_Controls : MonoBehaviour
     public float shieldtiming; // time in seconds  before Ai can deploy another shield
     float defaultShieldTiming;
     bool deployedShield;
-<<<<<<< HEAD
     bool notMove;
     float lastxPos;
     void Start()
     {
         notMove=false;
         lastxPos = transform.position.x;
-=======
-    void Start()
-    {
->>>>>>> 1f95211a5b1c359f24b5c0d05ebdfbf19b187ea6
         defaultShieldTiming = shieldtiming;
         first = true;
         hasChanged = false;
@@ -68,23 +63,15 @@ public class AI_Controls : MonoBehaviour
         }
 
         random = Random.Range(0, 110);
-<<<<<<< HEAD
         InvokeRepeating("UpdateStrategy",0,Random.Range(1.0f,3.0f));
-=======
-        InvokeRepeating("UpdateStrategy",0,Random.Range(3.0f,5.0f));
->>>>>>> 1f95211a5b1c359f24b5c0d05ebdfbf19b187ea6
         timeLeft = Random.Range(10, 30);
         randomStrategy = Random.Range(0, 110);
         RandomStrategytimeleft = Random.Range(5, 20);
     }
     void UpdateStrategy(){
         random = Random.Range(0, 110);
-<<<<<<< HEAD
         CancelInvoke();
         InvokeRepeating("UpdateStrategy",Random.Range(3.0f,5.0f),Random.Range(1.0f,4.0f));
-=======
-        print(random);
->>>>>>> 1f95211a5b1c359f24b5c0d05ebdfbf19b187ea6
     }
 
     void Update()
@@ -112,10 +99,7 @@ public class AI_Controls : MonoBehaviour
         {
             BulletInterval -= Time.deltaTime;
         }
-<<<<<<< HEAD
         PlayerAnimation();
-=======
->>>>>>> 1f95211a5b1c359f24b5c0d05ebdfbf19b187ea6
 
     }
 
@@ -123,7 +107,6 @@ public class AI_Controls : MonoBehaviour
     {
         if (DetectedEnemyBullet)
         {
-<<<<<<< HEAD
             if (Random.Range(0,100)>50){
                 if (BulletInterval <= 0.02f || first)
                     {
@@ -133,8 +116,6 @@ public class AI_Controls : MonoBehaviour
                         first = false;
                     }                
             }
-=======
->>>>>>> 1f95211a5b1c359f24b5c0d05ebdfbf19b187ea6
             if (!deployedShield || shieldtiming < 1)
             {
                 if (NumberOfShields == 1 && System.Math.Abs(Shields[Shields.Count - 1].transform.position.x - transform.position.x) > 1)
@@ -191,47 +172,19 @@ public class AI_Controls : MonoBehaviour
     }
 
     public void Movement() // chooses a strategy randomly for a short period of time 
-<<<<<<< HEAD
-=======
     {
 
         if (random > 30 && random < 60)
         {
-            Debug.Log("follow");
-
             FollowStrategy();
-
-            timeLeft -= Time.deltaTime;
-
-            if (timeLeft <= 0)
-            {
-                random = Random.Range(0, 110);
-                timeLeft = Random.Range(10, 30);
-            }
         }
         else if (random > 60 && random < 100)
         {
             RunningStrategy();
-            timeLeft -= Time.deltaTime;
-            Debug.Log("RUN");
-
-            if (timeLeft <= 0)
-            {
-                random = Random.Range(0, 110);
-                timeLeft = Random.Range(10, 30);
-            }
         }
         else
         {
             RandomStrategy();
-            Debug.Log("");
-
-            timeLeft -= Time.deltaTime;
-            if (timeLeft <= 0)
-            {
-                random = Random.Range(0, 110);
-                timeLeft = Random.Range(1, 30);
-            }
         }
     }
 
@@ -247,97 +200,6 @@ public class AI_Controls : MonoBehaviour
         }
     }
 
-    public void FollowStrategy()
->>>>>>> 1f95211a5b1c359f24b5c0d05ebdfbf19b187ea6
-    {
-
-        if (random > 30 && random < 60)
-        {
-            FollowStrategy();
-        }
-        else if (random > 60 && random < 100)
-        {
-            RunningStrategy();
-        }
-        else
-        {
-            RandomStrategy();
-        }
-    }
-
-<<<<<<< HEAD
-    public void Loop() // transports AI to the other side when he reaches the edge 
-=======
-    public void RunningStrategy()
->>>>>>> 1f95211a5b1c359f24b5c0d05ebdfbf19b187ea6
-    {
-        if (transform.position.x < Player1.transform.position.x)
-        {
-
-            if (transform.position.x > 0)
-            {
-                transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
-            }
-            else
-            {
-                transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-            }
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(-TrackingTransform.x, TrackingTransform.y), MoveSpeed);
-            GetComponent<Animator>().SetBool("P2_isRunning", true);
-        }
-        else if (transform.position.x > Player1.transform.position.x)
-        {
-
-
-            if (transform.position.x > 0)
-            {
-                transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-            }
-            else
-            {
-                transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
-            }
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(-TrackingTransform.x, TrackingTransform.y), MoveSpeed);
-            GetComponent<Animator>().SetBool("P2_isRunning", true);
-        }
-        else
-        {
-            rb2d.velocity = new Vector2(0, 0);
-            GetComponent<Animator>().SetBool("P2_isRunning", false);
-        }
-    }
-
-    public void RandomStrategy()
-    {
-
-        if (randomStrategy >= 0 && randomStrategy <= 55)
-        {
-            rb2d.velocity = new Vector2(MoveSpeed * 40, rb2d.velocity.y);
-            transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-            GetComponent<Animator>().SetBool("Player2_isRunning", true);
-            RandomStrategytimeleft -= Time.deltaTime;
-            if (RandomStrategytimeleft <= 0)
-            {
-                randomStrategy = Random.Range(0, 110);
-                RandomStrategytimeleft = Random.Range(1, 3);
-            }
-        }
-        else
-        {
-            rb2d.velocity = new Vector2(-MoveSpeed * 40, rb2d.velocity.y);
-            transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
-            GetComponent<Animator>().SetBool("Player2_isRunning", true);
-            RandomStrategytimeleft -= Time.deltaTime;
-            if (RandomStrategytimeleft <= 0)
-            {
-                randomStrategy = Random.Range(0, 110);
-                RandomStrategytimeleft = Random.Range(1, 3);
-            }
-        }
-
-    }
-
-<<<<<<< HEAD
     public void FollowStrategy()
     {
         if (transform.position.x < Player1.transform.position.x)
@@ -405,8 +267,6 @@ public class AI_Controls : MonoBehaviour
         
     }
 
-=======
->>>>>>> 1f95211a5b1c359f24b5c0d05ebdfbf19b187ea6
     void OnDrawGizmosSelected() // draws Bullet Detection circle
     {
         Gizmos.color = Color.white;

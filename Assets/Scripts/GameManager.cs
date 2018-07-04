@@ -2,6 +2,7 @@
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using GoogleMobileAds.Api;
 
 public class GameManager : MonoBehaviour
 {
@@ -29,7 +30,8 @@ public class GameManager : MonoBehaviour
     public float DuelDuration;
     List<string> GameObjectTags = new List<string>();
     GameObject BG;
-    int Replays_num = 0;
+    InterstitialAd interstitial;
+
 
     void Start()
     {
@@ -56,6 +58,35 @@ public class GameManager : MonoBehaviour
         SFXSlider.value = PlayerPrefs.GetFloat("SFXVol");
         GameObjectTags.AddRange(new string[] { "P1_Shield", "P2_Shield", "P1_Bullet", "P2_Bullet", "SpeedBooster" });
         BG = GameObject.FindGameObjectWithTag("BG");
+        requestInterstitial();
+
+    }
+
+    public void requestInterstitial()
+    {
+
+        string adUnitId = "ca-app-pub-4105711425411317/1785692334";
+        // Initialize an InterstitialAd.
+        interstitial = new InterstitialAd(adUnitId);
+        AdRequest request = new AdRequest.Builder().Build();
+        // Load the interstitial with the request.
+        interstitial.LoadAd(request);
+        interstitial.OnAdClosed += HandleOnAdClosed;
+
+    }
+
+    public void ShowInterstitial()
+    {
+
+        if (interstitial.IsLoaded())
+        {
+            interstitial.Show();
+        }
+    }
+
+    public void HandleOnAdClosed(object sender, System.EventArgs args)
+    {
+        interstitial.Destroy();
     }
 
 
@@ -160,6 +191,13 @@ public class GameManager : MonoBehaviour
 
     public void RestartLevel()
     {
+        PlayerPrefs.SetInt("deathCount", PlayerPrefs.HasKey("deathCount") ? PlayerPrefs.GetInt("deathCount") + 1 : 0);
+        if (PlayerPrefs.GetInt("deathCount") >= 4)
+        {
+            ShowInterstitial();
+            Debug.Log("Showing Ad and Reseting count");
+            PlayerPrefs.SetInt("deathCount", 0);
+        }
         Application.LoadLevel(Application.loadedLevelName);
     }
     public void GoHome()

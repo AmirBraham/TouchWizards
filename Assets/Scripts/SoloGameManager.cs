@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Advertisements;
 
 
 public class SoloGameManager : MonoBehaviour
@@ -29,8 +28,7 @@ public class SoloGameManager : MonoBehaviour
 
     void Start()
     {
-        Advertisement.Initialize(gameId);
-		lastScore = PlayerPrefs.GetInt("CurrentScore");
+        lastScore = PlayerPrefs.GetInt("CurrentScore");
         confettis.SetActive(false);
         HighScoreText.text = "High Score: " + PlayerPrefs.GetInt("HighScore").ToString();
         Time.timeScale = 1;
@@ -48,39 +46,12 @@ public class SoloGameManager : MonoBehaviour
         AdButton.SetActive(false);
         ReviveButton.SetActive(false);
     }
-	public void ShowRewardedVideo()
-	{
-		ShowOptions options = new ShowOptions();
-		options.resultCallback = HandleShowResult;
+    public void ShowRewardedVideo()
+    {
 
-		Advertisement.Show("video", options);
-	}
 
-	void HandleShowResult(ShowResult result)
-	{
-		if (result == ShowResult.Finished)
-		{
-			Debug.Log("Video completed - Offer a reward to the player");
-            Destroy(AdButton);
-			Application.LoadLevel(Application.loadedLevelName);
+    }
 
-		}
-		else if (result == ShowResult.Skipped)
-		{
-			Debug.LogWarning("Video was skipped - Do NOT reward the player");
-			AdButton.SetActive(true);
-
-			AdRespopnseText.text = "Video was skipped :( ";
-
-		}
-		else if (result == ShowResult.Failed)
-		{
-			AdButton.SetActive(true);
-
-			AdRespopnseText.text = "Video failed to show";
-
-		}
-	}
     void Update()
     {
         replayText.text = replaytext;
@@ -101,7 +72,8 @@ public class SoloGameManager : MonoBehaviour
             HighScoreText.text = "New High Score! : " + PlayerPrefs.GetInt("HighScore").ToString();
         }
 
-        if(P1_GameOverText == "You Lose!") {
+        if (P1_GameOverText == "You Lose!")
+        {
             ReviveButton.SetActive(true);
         }
     }
@@ -131,12 +103,13 @@ public class SoloGameManager : MonoBehaviour
 
     public void RestartLevel()
     {
-        if(P1_GameOverText == "You Lose!") {
+        if (P1_GameOverText == "Game Over!")
+        {
             PlayerPrefs.SetInt("CurrentScore", 0);
-		}
-		Application.LoadLevel(Application.loadedLevelName);
+        }
+        Application.LoadLevel(Application.loadedLevelName);
 
-	}
+    }
 
     public void GoHome()
     {

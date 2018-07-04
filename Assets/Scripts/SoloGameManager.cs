@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using GoogleMobileAds.Api;
 
 
 public class SoloGameManager : MonoBehaviour
@@ -25,6 +26,8 @@ public class SoloGameManager : MonoBehaviour
     string gameId = "1452701";
     int lastScore;
     List<float> BoosterXPos = new List<float>();
+    RewardBasedVideoAd ReviveRewardBasedVideo;
+
 
     void Start()
     {
@@ -45,13 +48,37 @@ public class SoloGameManager : MonoBehaviour
         SFXSlider.value = PlayerPrefs.GetFloat("SFXVol");
         AdButton.SetActive(false);
         ReviveButton.SetActive(false);
+        string appId = "ca-app-pub-4105711425411317~2575620706";
+        MobileAds.Initialize(appId);
+        ReviveRewardBasedVideo = RewardBasedVideoAd.Instance;
+        ReviveRewardBasedVideo.OnAdRewarded += HandleReviveRewardBasedVideoRewarded;
+        requestReviveRewardAd();
     }
-    public void ShowRewardedVideo()
+    void requestReviveRewardAd()
     {
 
-
+        string adUnitId = "ca-app-pub-4105711425411317/2982798909";
+        // Create an empty ad request.
+        AdRequest request = new AdRequest.Builder().Build();
+        // Load the rewarded video ad with the request.
+        ReviveRewardBasedVideo.LoadAd(request, adUnitId);
     }
 
+    public void ShowReviveRewardedAd(int i)
+    {
+        if (ReviveRewardBasedVideo.IsLoaded())
+        {
+            Debug.Log("Show Revive Ad");
+            ReviveRewardBasedVideo.Show();
+        }
+    }
+
+    void HandleReviveRewardBasedVideoRewarded(object sender, System.EventArgs arg)
+    {
+
+        Application.LoadLevel(Application.loadedLevelName);
+
+    }
     void Update()
     {
         replayText.text = replaytext;
@@ -72,7 +99,7 @@ public class SoloGameManager : MonoBehaviour
             HighScoreText.text = "New High Score! : " + PlayerPrefs.GetInt("HighScore").ToString();
         }
 
-        if (P1_GameOverText == "You Lose!")
+        if (P1_GameOverText == "Game Over!")
         {
             ReviveButton.SetActive(true);
         }

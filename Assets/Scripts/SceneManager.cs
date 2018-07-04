@@ -76,7 +76,6 @@ public class SceneManager : MonoBehaviour
     void RequestBanner()
     {
         string adUnitId = "ca-app-pub-4105711425411317/9400458479";
-        // Create a 320x50 banner at the top of the screen.
         bannerView = new BannerView(adUnitId, AdSize.SmartBanner, AdPosition.Bottom);
         AdRequest request = new AdRequest.Builder().Build();
         bannerView.LoadAd(request);

@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class SoloP1_Controls : MonoBehaviour
 {
-    bool hasChanged = false;
+    bool hasChanged;
     public static int MoveSpeed = 4;
     public static float Health = 1;
     bool isHoldingRB;
@@ -108,7 +108,7 @@ public class SoloP1_Controls : MonoBehaviour
             SoloGameManager.GameOver.SetActive(true);
             GetComponent<SpriteRenderer>().DOFade(0, 2f);
             SoloGameManager.replaytext = "Replay";
-            SoloGameManager.P1_GameOverText = "You Lose!";
+            SoloGameManager.P1_GameOverText = "Game Over!";
             AI_Controls.Health = 1;
             SoloGameManager.GameOn.SetActive(false);
             Destroy(gameObject);
